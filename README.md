@@ -13,4 +13,4 @@ DB_HOST = [el host de la base de datos]
 ```
 
 ## Ver documentación
-Para ver la documentación se debe ejecutar el programa en /api y acceder a la URL /docs del server que se muestre en la terminal (por defecto [http://127.0.0.1:9000/](http://127.0.0.1:9000/))
+Para ver la documentación se debe ejecutar el programa en /api y acceder a la URL `/docs` del server que se muestre en la terminal (por defecto [http://127.0.0.1:9000/docs](http://127.0.0.1:9000/docs))
