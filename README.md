@@ -14,3 +14,4 @@ DB_HOST = [el host de la base de datos]
 
 ## Ver documentación
 Para ver la documentación se debe ejecutar el programa en /api y acceder a la URL `/docs` del server que se muestre en la terminal (por defecto [http://127.0.0.1:9000/docs](http://127.0.0.1:9000/docs))
+Alternativamente, también se puede optar por ver el diseño por modelo de entidades de la base de datos en el directorio design.
