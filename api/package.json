@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "c8 tap \"test/**/*.test.js\"",
-    "start": "fastify start -l info app.js",
-    "dev": "fastify start -w -l info -P app.js"
+    "start": "fastify start -l info -p 9000 app.js",
+    "dev": "fastify start -w -l info -P -p 9000 app.js"
   },
   "keywords": [],
   "author": "",
