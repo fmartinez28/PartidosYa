@@ -1,8 +1,8 @@
-import { query } from "../../../db/index.js";
+import { query } from "../../db/index.js";
+import * as matchesSchemas from '../../schemas/partidos/root.js';
 
 export default async function(fastify, opts) {
-    // un partido tiene CanchaId, FechaCreacion, FechaProgramada, ComunidadId
-    fastify.get('/', async function(request, reply) {
+    fastify.get('/', { schema: matchesSchemas.getAllSchema }, async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Partidos"');
         const rows = queryresult.rows;
         if (rows.length === 0)
@@ -10,7 +10,7 @@ export default async function(fastify, opts) {
         return reply.send(rows);
     });
 
-    fastify.get('/:id', async function(request, reply) {
+    fastify.get('/:id', { schema: matchesSchemas.getByIdSchema }, async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Partidos" WHERE "Id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
@@ -18,7 +18,7 @@ export default async function(fastify, opts) {
         return reply.send(rows[0]);
     });
 
-    fastify.post('/', async function(request, reply) {
+    fastify.post('/', { schema: matchesSchemas.postSchema }, async function(request, reply) {
         const { canchaId, fechaCreacion, fechaProgramada, comunidadId } = request.body;
         const queryresult = await query('INSERT INTO "Partidos" ("CanchaId", "FechaCreacion", "FechaProgramada", "ComunidadId") VALUES ($1, $2, $3, $4) RETURNING *', [canchaId, fechaCreacion, fechaProgramada, comunidadId]);
         if(queryresult.rows.length === 0)
@@ -26,7 +26,7 @@ export default async function(fastify, opts) {
         return reply.send(queryresult.rows[0]);
     });
 
-    fastify.put('/:id', async function(request, reply) {
+    fastify.put('/:id', { schema: matchesSchemas.putSchema } ,async function(request, reply) {
         const paramId = request.params.id;
         const bodyId = request.body.id;
         try {

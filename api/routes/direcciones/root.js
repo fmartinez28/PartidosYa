@@ -1,7 +1,8 @@
-import { query } from "../../../db/index.js";
+import { query } from "../../db/index.js";
+import * as addressSchemas from '../../schemas/direcciones/root.js';
 
 export default async function(fastify, opts) {
-    fastify.get('/', async function(request, reply) {
+    fastify.get('/', { schema: addressSchemas.getAllSchema }, async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Direcciones"');
         const rows = queryresult.rows;
         if (rows.length === 0)
@@ -9,7 +10,7 @@ export default async function(fastify, opts) {
         return reply.send(rows);
     });
 
-    fastify.get('/:id', async function(request, reply) {
+    fastify.get('/:id', { schema: addressSchemas.getByIdSchema }, async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Direcciones" WHERE "Id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
@@ -17,7 +18,15 @@ export default async function(fastify, opts) {
         return reply.send(rows[0]);
     });
 
-    fastify.put('/:id', async function(request, reply) {
+    fastify.post('/', { schema: addressSchemas.postSchema }, async function(request, reply) {
+        const { Pais, Estado, Ciudad, Calle, Numero } = request.body;
+        const queryresult = await query('INSERT INTO "Direcciones" ("Pais", "Estado", "Ciudad", "Calle", "Numero") VALUES ($1, $2, $3, $4, $5) RETURNING *', [Pais, Estado, Ciudad, Calle, Numero]);
+        if(queryresult.rows.length === 0)
+            return reply.status(500).send({error: 'Error al crear la direccion'});
+        return reply.send(queryresult.rows[0]);
+    });
+
+    fastify.put('/:id', { schema: addressSchemas.putSchema }, async function(request, reply) {
         const paramId = request.params.id;
         const bodyId = request.body.id;
         try {
@@ -31,13 +40,5 @@ export default async function(fastify, opts) {
         } catch (error) {
             return reply.status(500).send(error);
         }
-    });
-
-    fastify.post('/', async function(request, reply) {
-        const { Pais, Estado, Ciudad, Calle, Numero } = request.body;
-        const queryresult = await query('INSERT INTO "Direcciones" ("Pais", "Estado", "Ciudad", "Calle", "Numero") VALUES ($1, $2, $3, $4, $5) RETURNING *', [Pais, Estado, Ciudad, Calle, Numero]);
-        if(queryresult.rows.length === 0)
-            return reply.status(500).send({error: 'Error al crear la direccion'});
-        return reply.send(queryresult.rows[0]);
     });
 }

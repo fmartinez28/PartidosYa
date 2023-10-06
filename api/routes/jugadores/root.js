@@ -1,7 +1,8 @@
 import { query } from "../../db/index.js";
+import * as playersSchemas from '../../schemas/jugadores/root.js';
 
 export default async function(fastify, opts) {
-    fastify.get('/', async function(request, reply) {
+    fastify.get('/', { schema: playersSchemas.getAllSchema }, async function(request, reply) {
         // top 10 queries de los videojuegos
         // debería tomar todos los usuarios que sean jugadores
         const queryresult  = await query('SELECT Usuarios.* FROM Usuarios JOIN Jugadores ON Usuarios.Id = Jugadores.UsuarioId');
@@ -12,7 +13,7 @@ export default async function(fastify, opts) {
     });
 
     // seleccionar de la tabla Jugadores el jugador que coincida la ID. Seleccionar de la tabla Usuarios el usuario que coincida la ID. Retornar el Usuario.
-    fastify.get('/:id', async function(request, reply) {
+    fastify.get('/:id', { schema: playersSchemas.getByIdSchema }, async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Jugadores" WHERE "Id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)

@@ -1,8 +1,9 @@
-import { query } from "../../../db/index.js";
+import { query } from "../../db/index.js";
+import * as courtSchemas from '../../schemas/canchas/root.js';
 
 export default async function(fastify, opts) {
     // una cancha tiene Id, Nombre, DireccionID, CanchaNum y PropietarioId
-    fastify.get('/', async function(request, reply) {
+    fastify.get('/', { schema: courtSchemas.getAllSchema }, async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Canchas"');
         const rows = queryresult.rows;
         if (rows.length === 0)
@@ -10,7 +11,7 @@ export default async function(fastify, opts) {
         return reply.send(rows);
     });
 
-    fastify.get('/:id', async function(request, reply) {
+    fastify.get('/:id', { schema: courtSchemas.getByIdSchema }, async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Canchas" WHERE "Id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
@@ -18,7 +19,7 @@ export default async function(fastify, opts) {
         return reply.send(rows[0]);
     });
 
-    fastify.post('/', async function(request, reply) {
+    fastify.post('/', { schema: courtSchemas.postSchema }, async function(request, reply) {
         const { nombre, direccionId, canchaNum, propietarioId } = request.body;
         const queryresult = await query('INSERT INTO "Canchas" ("Nombre", "DireccionId", "CanchaNum", "PropietarioId") VALUES ($1, $2, $3, $4) RETURNING *', [nombre, direccionId, canchaNum, propietarioId]);
         if(queryresult.rows.length === 0)
@@ -26,7 +27,7 @@ export default async function(fastify, opts) {
         return reply.send(queryresult.rows[0]);
     });
 
-    fastify.put('/:id', async function(request, reply) {
+    fastify.put('/:id', { schema: courtSchemas.putSchema }, async function(request, reply) {
         const paramId = request.params.id;
         const bodyId = request.body.id;
         try {

@@ -1,7 +1,9 @@
 import { query } from "../../db/index.js";
+import * as ownersSchemas from '../../schemas/propietarios/root.js';
+
 
 export default async function(fastify, opts) {
-    fastify.get('/', async function(request, reply) {
+    fastify.get('/', { schema: ownersSchemas.getAllSchema } , async function(request, reply) {
         // top 10 queries de los videojuegos
         // debería tomar todos los usuarios que sean propietarios
         const queryresult  = await query('SELECT Usuarios.* FROM Usuarios JOIN Propietarios ON Usuarios.Id = Propietarios.UsuarioId');
@@ -12,7 +14,7 @@ export default async function(fastify, opts) {
     });
 
     // seleccionar de la tabla Propietarios el propietario que coincida la ID. Seleccionar de la tabla Usuarios el usuario que coincida la ID. Retornar el Usuario.
-    fastify.get('/:id', async function(request, reply) {
+    fastify.get('/:id', { schema: ownersSchemas.getByIdSchema } , async function(request, reply) {
         const queryresult  = await query('SELECT * FROM "Propietarios" WHERE "Id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)

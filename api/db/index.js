@@ -1,9 +1,10 @@
-import { Pool } from "pg";
+import pkg from "pg";
 import dotenv from "dotenv";
 
+const { Pool } = pkg;
 dotenv.config();
 
-config = {
+const config = {
     user: process.env.DB_USER,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
