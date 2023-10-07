@@ -19,3 +19,4 @@ Alternativamente, también se puede optar por ver el diseño por modelo de entid
 
 ## Base de datos
 El diagrama de la misma se encuentra en design/db dentro del repositorio
+```
