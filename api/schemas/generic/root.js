@@ -97,6 +97,19 @@ const genericSingleCommunityPlayer = {
     required: ['idJugador', 'idComunidad']
 }
 
+// un telefono tiene CodPais, codArea, Numero. Todos son strings
+const genericSinglePhone = {
+    $id: 'genericSinglePhone',
+    type: 'object',
+    properties: {
+        CodPais: { type: 'string' },
+        CodArea: { type: 'string' },
+        Numero: { type: 'string' }
+    },
+    required: ['CodPais', 'CodArea', 'Numero']
+}
+
+
 export {
     genericErrorMessageSchema,
     genericSingleUserSchema,
@@ -105,5 +118,6 @@ export {
     genericSingleCommunitySchema,
     genericSingleMatch,
     genericSingleSignUp,
-    genericSingleCommunityPlayer
+    genericSingleCommunityPlayer,
+    genericSinglePhone
 }
