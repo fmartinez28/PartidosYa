@@ -25,16 +25,16 @@ const getByIdSchema = {
     }
 }
 
-const postSchema = {
+const postSchema = {//
     description: 'Crea una entrada de la entidad Dirección',
     body: {
         type: 'object',
         properties: {
-            Pais: { type: 'string'},
-            Estado: { type: 'string'},
-            Ciudad: { type: 'string'},
-            Calle: { type: 'string'},
-            Numero: { type: 'number'}
+            Pais: { type: 'string' },
+            Estado: { type: 'string' },
+            Ciudad: { type: 'string' },
+            Calle: { type: 'string' },
+            Numero: { type: 'number' }
         },
         required: ['Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
     },
@@ -53,12 +53,12 @@ const putSchema = {
     body: {
         type: 'object',
         properties: {
-            id: { type: 'number'},
-            Pais: { type: 'string'},
-            Estado: { type: 'string'},
-            Ciudad: { type: 'string'},
-            Calle: { type: 'string'},
-            Numero: { type: 'number'}
+            id: { type: 'number' },
+            Pais: { type: 'string' },
+            Estado: { type: 'string' },
+            Ciudad: { type: 'string' },
+            Calle: { type: 'string' },
+            Numero: { type: 'number' }
         },
         required: ['id', 'Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
     },

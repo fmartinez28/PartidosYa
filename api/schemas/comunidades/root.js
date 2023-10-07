@@ -30,7 +30,7 @@ const postSchema = {
     body: {
         type: 'object',
         properties: {
-            nombre: { type: 'string'}
+            nombre: { type: 'string' }
         },
         required: ['nombre']
     },
@@ -49,8 +49,8 @@ const putSchema = {
     body: {
         type: 'object',
         properties: {
-            id: { type: 'number'},
-            nombre: { type: 'string'}
+            id: { type: 'number' },
+            nombre: { type: 'string' }
         },
         required: ['id', 'nombre']
     },
@@ -64,9 +64,30 @@ const putSchema = {
     }
 }
 
+// corresponde al POST /:id que recibe un UsuarioID
+const inscribirJugadorSchema = {
+    description: 'Inscribe un jugador a una comunidad',
+    body: {
+        type: 'object',
+        properties: {
+            idUsuario: { type: 'number' }
+        },
+        required: ['idUsuario']
+    },
+    response: {
+        200: {
+            $ref: 'genericSingleCommunityPlayer'
+        },
+        404: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
 export {
     getAllSchema,
     getByIdSchema,
     putSchema,
-    postSchema
+    postSchema,
+    inscribirJugadorSchema
 }
