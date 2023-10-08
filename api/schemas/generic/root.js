@@ -45,6 +45,7 @@ const genericSingleCommunitySchema = {
 
 }
 
+//FIXME: Este me parece que le pifiaron.
 const genericSingleAddressSchema = {
     $id: 'genericSingleAddress',
     type: 'object',
@@ -63,6 +64,7 @@ const genericSingleAddressSchema = {
     required: ['canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
 }
 
+//FIXME: Este también. Les quedaron cambiados?
 const genericSingleMatch = {
     $id: 'genericSingleMatch',
     type: 'object',

@@ -1,5 +1,6 @@
 import * as signupSchemas from '../../schemas/inscribir/root.js';
 
+//FIXME: Este inscribir me suena más a .../¿canchas?/partidos/jugadores 
 export default async function (fastify, opts) {
     // un post que recibe una id de un jugador y una id de un partido, para agregarlos a la tabla ParticipacionPartido
     fastify.post('/', { schema: signupSchemas.inscribirseSchema }, async function (request, reply) {

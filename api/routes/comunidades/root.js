@@ -21,6 +21,7 @@ export default async function (fastify, opts) {
     });
 
     // un Usuario se puede agregar a una comunidad
+    //FIXME: Esto no debería ser /comunidades/idcomunidad/jugadores? También podrían tener un DELETE.
     fastify.post('/:id', { schema: communitySchemas.inscribirJugadorSchema }, async function (request, reply) {
         const { JugadorId } = request.body;
         const queryresult = await query('INSERT INTO "ComunidadJugador" ("ComunidadId", "JugadorId") VALUES ($1, $2) RETURNING *', [request.params.id, JugadorId]);
@@ -55,6 +56,7 @@ export default async function (fastify, opts) {
 
     // obtener todos los usuarios de la tabla Usuarios cuando su id esté en la tabla de ComunidadesUsuarios
     // TODO TESTEAR ESTO
+    //FIXME: Las comunidades son de usuarios? O de Jugadores? El diagrama dice jugadores.
     fastify.get('/:id/usuarios', { schema: getAllSchema }, async function (request, reply) {
         const queryresult = await query('SELECT * FROM "Usuarios" WHERE "Id" IN (SELECT "UsuarioId" FROM "ComunidadesUsuarios" WHERE "ComunidadId" = $1)', [request.params.id]);
         const rows = queryresult.rows;
@@ -62,5 +64,7 @@ export default async function (fastify, opts) {
             return reply.status(404).send({ error: 'Comunidad no encontrada' });
         return reply.send(rows);
     });
+
+    //FIXME: Tampoco veo posibilidad de borrar una comunidad. Quien crea las comunidades? Cualqueir jugador? El último la elimina? Si queda vacía se elimina sola?
 
 }

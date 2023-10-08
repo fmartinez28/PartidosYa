@@ -2,6 +2,8 @@ import { query } from "../../db/index.js";
 import * as addressSchemas from '../../schemas/direcciones/root.js';
 
 export default async function (fastify, opts) {
+
+    //FIXME: Ojo que no se estén complicando con la dirección. Deberían usar una campo coordenada del tipo Geometry POINT. 
     fastify.get('/', { schema: addressSchemas.getAllSchema }, async function (request, reply) {
         const queryresult = await query('SELECT * FROM "Direcciones"');
         const rows = queryresult.rows;
