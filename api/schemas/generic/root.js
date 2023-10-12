@@ -45,9 +45,22 @@ const genericSingleCommunitySchema = {
 
 }
 
-//FIXME: Este me parece que le pifiaron.
 const genericSingleAddressSchema = {
     $id: 'genericSingleAddress',
+    type: 'object',
+    properties: {
+        Pais: { type: 'string' },
+        Estado: { type: 'string' },
+        Ciudad: { type: 'string' },
+        Calle: { type: 'string' },
+        Numero: { type: 'number' }
+    },
+    required: ['Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
+}
+
+//FIXME: Este también. Les quedaron cambiados?
+const genericSingleMatch = {
+    $id: 'genericSingleMatch',
     type: 'object',
     properties: {
         canchaId: { type: 'number' },
@@ -62,20 +75,6 @@ const genericSingleAddressSchema = {
         comunidadId: { type: 'number' }
     },
     required: ['canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
-}
-
-//FIXME: Este también. Les quedaron cambiados?
-const genericSingleMatch = {
-    $id: 'genericSingleMatch',
-    type: 'object',
-    properties: {
-        Pais: { type: 'string' },
-        Estado: { type: 'string' },
-        Ciudad: { type: 'string' },
-        Calle: { type: 'string' },
-        Numero: { type: 'number' }
-    },
-    required: ['Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
 
 }
 
@@ -99,7 +98,6 @@ const genericSingleCommunityPlayer = {
     required: ['idJugador', 'idComunidad']
 }
 
-// un telefono tiene CodPais, codArea, Numero. Todos son strings
 const genericSinglePhone = {
     $id: 'genericSinglePhone',
     type: 'object',
