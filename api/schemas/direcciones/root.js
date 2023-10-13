@@ -4,7 +4,7 @@ const getAllSchema = {
         200: {
             type: 'array',
             items: {
-                $ref: 'genericSingleAddress' // TODO
+                $ref: 'genericSingleAddress'
             }
         },
         400: {
