@@ -1,6 +1,6 @@
 import { query } from "../../db/index.js";
 import * as communitySchemas from '../../schemas/comunidades/root.js';
-import { getAllSchema } from '../../schemas/usuarios/root.js';
+import { getAllSchema } from '../../schemas/jugadores/root.js';
 
 export default async function (fastify, opts) {
     // una comunidad tiene nombre
@@ -26,7 +26,7 @@ export default async function (fastify, opts) {
         const { JugadorId } = request.body;
         const queryresult = await query('INSERT INTO "ComunidadJugador" ("ComunidadId", "JugadorId") VALUES ($1, $2) RETURNING *', [request.params.id, JugadorId]);
         if (queryresult.rows.length === 0)
-            return reply.status(500).send({ error: 'Error al agregar el usuario a la comunidad' });
+            return reply.status(500).send({ error: 'Error al agregar el jugador a la comunidad' });
         return reply.send(queryresult.rows[0]);
     });
 
@@ -64,9 +64,9 @@ export default async function (fastify, opts) {
 
     // obtener todos los usuarios de la tabla Usuarios cuando su id esté en la tabla de ComunidadesUsuarios
     // TODO TESTEAR ESTO
-    //FIXME: Las comunidades son de usuarios? O de Jugadores? El diagrama dice jugadores.
-    fastify.get('/:id/usuarios', { schema: getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "Usuarios" WHERE "Id" IN (SELECT "UsuarioId" FROM "ComunidadesUsuarios" WHERE "ComunidadId" = $1)', [request.params.id]);
+    //DONE: Las comunidades son de usuarios? O de Jugadores? El diagrama dice jugadores.
+    fastify.get('/:id/jugadores', { schema: getAllSchema }, async function (request, reply) {
+        const queryresult = await query('SELECT * FROM "Jugadores" WHERE "Id" IN (SELECT "JugadorId" FROM "ComunidadJugador" WHERE "ComunidadId" = $1)', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ error: 'Comunidad no encontrada' });
@@ -74,5 +74,5 @@ export default async function (fastify, opts) {
     });
 
     //FIXME: Tampoco veo posibilidad de borrar una comunidad. Quien crea las comunidades? Cualqueir jugador? El último la elimina? Si queda vacía se elimina sola?
-
+    
 }
