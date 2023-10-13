@@ -58,7 +58,6 @@ const genericSingleAddressSchema = {
     required: ['Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
 }
 
-//FIXME: Este también. Les quedaron cambiados?
 const genericSingleMatch = {
     $id: 'genericSingleMatch',
     type: 'object',

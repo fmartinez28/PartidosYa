@@ -1,5 +1,8 @@
 import { genericSingleUserSchema, genericErrorMessageSchema } from '../generic/root.js';
 
+
+//TODO: Agregar los 'body' a un generic también?
+
 const getAllSchema = {
     description: 'Retorna todas las entradas de la entidad Usuario',
     response: {

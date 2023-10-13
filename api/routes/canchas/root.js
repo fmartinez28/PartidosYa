@@ -43,6 +43,13 @@ export default async function (fastify, opts) {
         }
     });
 
-    //FIXME: Falta baja (al menos lógica.). El usuario siempre se puede equivocar.
+    //DONE: Falta baja (al menos lógica.). El usuario siempre se puede equivocar.
+    fastify.delete('/:id', { schema: courtSchemas.deleteSchema }, async function (request, reply) {
+        const queryresult = await query('DELETE FROM "Canchas" WHERE "Id" = $1 RETURNING *', [request.params.id]);
+        const rows = queryresult.rows;
+        if (rows.length === 0)
+            return reply.status(404).send({ error: 'Cancha no encontrada' });
+        return reply.send(rows[0]);
+    });
 
 }

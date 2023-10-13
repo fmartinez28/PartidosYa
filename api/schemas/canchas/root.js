@@ -70,9 +70,22 @@ const putSchema = {
     }
 }
 
+const deleteSchema = {
+    description: 'Elimina una entrada de la entidad Cancha',
+    response: {
+        200: {
+            $ref: 'genericSingleCourt'
+        },
+        404: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
 export {
     getAllSchema,
     getByIdSchema,
     postSchema,
-    putSchema
+    putSchema,
+    deleteSchema
 }
