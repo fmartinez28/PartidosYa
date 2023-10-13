@@ -21,13 +21,21 @@ export default async function (fastify, opts) {
     });
 
     // un Usuario se puede agregar a una comunidad
-    //FIXME: Esto no debería ser /comunidades/idcomunidad/jugadores? También podrían tener un DELETE.
-    fastify.post('/:id', { schema: communitySchemas.inscribirJugadorSchema }, async function (request, reply) {
+    //DONE: Esto no debería ser /comunidades/idcomunidad/jugadores? También podrían tener un DELETE.
+    fastify.post('/:id/jugadores', { schema: communitySchemas.inscribirJugadorSchema }, async function (request, reply) {
         const { JugadorId } = request.body;
         const queryresult = await query('INSERT INTO "ComunidadJugador" ("ComunidadId", "JugadorId") VALUES ($1, $2) RETURNING *', [request.params.id, JugadorId]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ error: 'Error al agregar el usuario a la comunidad' });
         return reply.send(queryresult.rows[0]);
+    });
+
+    fastify.delete('/:id/jugadores/:jugadorId', { schema: communitySchemas.desinscribirJugadorSchema }, async function (request, reply) {
+        const queryresult = await query('DELETE FROM "ComunidadJugador" WHERE "ComunidadId" = $1 AND "JugadorId" = $2 RETURNING *', [request.params.id, request.params.jugadorId]);
+        const rows = queryresult.rows;
+        if (rows.length === 0)
+            return reply.status(404).send({ error: 'Comunidad no encontrada' });
+        return reply.send(rows[0]);
     });
 
     fastify.post('/', { schema: communitySchemas.postSchema }, async function (request, reply) {

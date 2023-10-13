@@ -84,10 +84,23 @@ const inscribirJugadorSchema = {
     }
 }
 
+const desinscribirJugadorSchema = {
+    description: 'Desinscribe un jugador de una comunidad',
+    response: {
+        200: {
+            $ref: 'genericSingleCommunityPlayer'
+        },
+        404: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
 export {
     getAllSchema,
     getByIdSchema,
     putSchema,
     postSchema,
-    inscribirJugadorSchema
+    inscribirJugadorSchema,
+    desinscribirJugadorSchema
 }
