@@ -73,6 +73,12 @@ export default async function (fastify, opts) {
         return reply.send(rows);
     });
 
-    //FIXME: Tampoco veo posibilidad de borrar una comunidad. Quien crea las comunidades? Cualqueir jugador? El último la elimina? Si queda vacía se elimina sola?
-    
+    //DONE: Tampoco veo posibilidad de borrar una comunidad. Quien crea las comunidades? Cualqueir jugador? El último la elimina? Si queda vacía se elimina sola?
+    fastify.delete('/:id', { schema: communitySchemas.deleteSchema }, async function (request, reply) {
+        const queryresult = await query('DELETE FROM "Comunidades" WHERE "Id" = $1 RETURNING *', [request.params.id]);
+        const rows = queryresult.rows;
+        if (rows.length === 0)
+            return reply.status(404).send({ error: 'Comunidad no encontrada' });
+        return reply.send(rows[0]);
+    });
 }

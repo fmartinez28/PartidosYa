@@ -64,6 +64,18 @@ const putSchema = {
     }
 }
 
+const deleteSchema = {
+    description: 'Elimina una entrada de la entidad Comunidad',
+    response: {
+        200: {
+            $ref: 'genericSingleCommunity'
+        },
+        404: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
 // corresponde al POST /:id que recibe un UsuarioID
 const inscribirJugadorSchema = {
     description: 'Inscribe un jugador a una comunidad',
