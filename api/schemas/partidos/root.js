@@ -69,10 +69,30 @@ const putSchema = {
         }
     }
 }
+const postJugadoresSchema = {
+    tags: ['Inscribir'],
+    description: 'Inscribirse a un partido. La inscripción se agrega a la tabla ParticipacionPartido',
+    body: {
+        type: 'object',
+        properties: {
+            idJugador: { type: 'number' }
+        },
+        required: ['idJugador']
+    },
+    response: {
+        200: {
+            $ref: 'genericSingleSignUp'
+        },
+        400: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
 
 export {
     getAllSchema,
     getByIdSchema,
     postSchema,
-    putSchema
+    putSchema,
+    postJugadoresSchema
 }

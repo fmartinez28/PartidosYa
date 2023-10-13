@@ -42,4 +42,14 @@ export default async function(fastify, opts) {
         }
     });
 
+    fastify.post('/:id/jugadores', { schema: matchesSchemas.postJugadoresSchema }, async function(request, reply) {
+        //honestamente no estoy seguro de si debería ser mejor pasar jugadorid en la url o en el body
+        //diría que es por la url, pero bueno, recurso/id/recurso/id tampoco es muy lindo
+        const { JugadorId } = request.body;
+        const queryresult = await query('INSERT INTO "PartidosJugadores" ("PartidoId", "JugadorId") VALUES ($1, $2) RETURNING *', [request.params.id, JugadorId]);
+        const rows = queryresult.rows;
+        if (rows.length === 0) return reply.status(500).send({error: 'Error al ingresar el jugador al partido'});
+        return reply.send(rows[0]);
+    })
+
 }

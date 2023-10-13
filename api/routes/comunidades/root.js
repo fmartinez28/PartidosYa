@@ -63,10 +63,11 @@ export default async function (fastify, opts) {
     });
 
     // obtener todos los usuarios de la tabla Usuarios cuando su id esté en la tabla de ComunidadesUsuarios
-    // TODO TESTEAR ESTO
+    //FIXME: el schema tira que fechaNac, telefonoId y direccionId no están siendo recibidos
     //DONE: Las comunidades son de usuarios? O de Jugadores? El diagrama dice jugadores.
+    //Los nombres de tablas y columnas sin capitalizar, siempre, tira error de lo contrario
     fastify.get('/:id/jugadores', { schema: getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "Jugadores" WHERE "Id" IN (SELECT "JugadorId" FROM "ComunidadJugador" WHERE "ComunidadId" = $1)', [request.params.id]);
+        const queryresult = await query('SELECT * FROM "usuarios" WHERE "id" IN (SELECT "jugadorid" FROM "comunidadjugador" WHERE "comunidadid" = $1)', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ error: 'Comunidad no encontrada' });
