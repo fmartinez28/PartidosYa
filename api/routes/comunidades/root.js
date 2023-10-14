@@ -8,7 +8,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('SELECT * FROM "comunidades"');
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(204).send({ error: 'No hay entradas para la colección comunidades.' });
+            return reply.status(204).send({ message: 'No hay entradas para la colección comunidades.' });
         return reply.send(rows);
     });
 
@@ -16,7 +16,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('SELECT * FROM "comunidades" WHERE "id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(404).send({ error: 'Comunidad no encontrada' });
+            return reply.status(404).send({ message: 'Comunidad no encontrada' });
         return reply.send(rows[0]);
     });
 
@@ -26,7 +26,7 @@ export default async function (fastify, opts) {
         const { JugadorId } = request.body;
         const queryresult = await query('INSERT INTO "ComunidadJugador" ("ComunidadId", "JugadorId") VALUES ($1, $2) RETURNING *', [request.params.id, JugadorId]);
         if (queryresult.rows.length === 0)
-            return reply.status(500).send({ error: 'Error al agregar el jugador a la comunidad' });
+            return reply.status(500).send({ message: 'Error al agregar el jugador a la comunidad' });
         return reply.send(queryresult.rows[0]);
     });
 
@@ -34,7 +34,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('DELETE FROM "ComunidadJugador" WHERE "ComunidadId" = $1 AND "JugadorId" = $2 RETURNING *', [request.params.id, request.params.jugadorId]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(404).send({ error: 'Comunidad no encontrada' });
+            return reply.status(404).send({ message: 'Comunidad no encontrada' });
         return reply.send(rows[0]);
     });
 
@@ -42,7 +42,7 @@ export default async function (fastify, opts) {
         const { nombre } = request.body;
         const queryresult = await query('INSERT INTO "comunidades" ("Nombre") VALUES ($1) RETURNING *', [nombre]);
         if (queryresult.rows.length === 0)
-            return reply.status(500).send({ error: 'Error al crear la comunidad' });
+            return reply.status(500).send({ message: 'Error al crear la comunidad' });
         return reply.send(queryresult.rows[0]);
     });
 
@@ -50,12 +50,12 @@ export default async function (fastify, opts) {
         const paramId = request.params.id;
         const bodyId = request.body.id;
         try {
-            if (paramId != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
+            if (paramId != bodyId) return reply.status(409).send({ message: 'La id del cuerpo y del parámetro no coinciden.' })
             const { nombre } = request.body;
             const queryresult = await query('UPDATE "comunidades" SET "Nombre" = $1 WHERE "id" = $2 RETURNING *', [nombre, paramId]);
             const rows = queryresult.rows;
             if (rows.length === 0)
-                return reply.status(404).send({ error: 'Comunidad no encontrada' });
+                return reply.status(404).send({ message: 'Comunidad no encontrada' });
             return reply.send(rows[0]);
         } catch (error) {
             return reply.status(500).send(error);
@@ -70,7 +70,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('SELECT * FROM "usuarios" WHERE "id" IN (SELECT "jugadorid" FROM "comunidadjugador" WHERE "comunidadid" = $1)', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(404).send({ error: 'Comunidad no encontrada' });
+            return reply.status(404).send({ message: 'Comunidad no encontrada' });
         return reply.send(rows);
     });
 
@@ -79,7 +79,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('DELETE FROM "comunidades" WHERE "id" = $1 RETURNING *', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(404).send({ error: 'Comunidad no encontrada' });
+            return reply.status(404).send({ message: 'Comunidad no encontrada' });
         return reply.send(rows[0]);
     });
 }

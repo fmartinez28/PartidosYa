@@ -3,31 +3,31 @@ import { build } from '../../helper.js';
 import { dbReset, populateDb } from '../../../utils/dbReset.js';
 
 
-test("GET de todos los usuarios", async (t)=> {
+test("GET de todos los jugadores", async (t)=> {
     const app = await build(t);
     
     const res = await app.inject({
-        url: '/usuarios',
+        url: '/jugadores',
         method: 'GET'
     });
     t.equal(res.statusCode, 200);
 })
 
-test("GET de un solo usuario", async (t)=> {
+test("GET de un solo jugador", async (t)=> {
     const app = await build(t);
 
     const res = await app.inject({
-        url: '/usuarios/1',
+        url: '/jugadores/1',
         method: 'GET'
     });
     t.equal(res.statusCode, 200);
 });
 
-test("GET de un solo usuario que no existe", async (t)=> {
+test("GET de un solo jugador que no existe", async (t)=> {
     const app = await build(t);
 
     const res = await app.inject({
-        url: '/usuarios/0',
+        url: '/jugadores/0',
         method: 'GET'
     });
     t.equal(res.statusCode, 404);
