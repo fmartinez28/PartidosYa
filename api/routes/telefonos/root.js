@@ -2,17 +2,17 @@ import { query } from "../../db/index.js";
 import * as phonesSchemas from '../../schemas/telefonos/root.js';
 
 export default async function (fastify, opts) {
-    // un telefono tiene CodPais, codArea, Numero
+    // un telefono tiene codpais, codArea, numero
     fastify.get('/', { schema: phonesSchemas.getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "Telefonos"');
+        const queryresult = await query('SELECT * FROM "telefonos"');
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(204).send({ error: 'No hay entradas para la colección Telefonos.' });
+            return reply.status(204).send({ error: 'No hay entradas para la colección telefonos.' });
         return reply.send(rows);
     });
 
     fastify.get('/:id', { schema: phonesSchemas.getByIdSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "Telefonos" WHERE "Id" = $1', [request.params.id]);
+        const queryresult = await query('SELECT * FROM "telefonos" WHERE "id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ error: 'Telefono no encontrado' });
@@ -20,20 +20,20 @@ export default async function (fastify, opts) {
     });
 
     fastify.post('/', { schema: phonesSchemas.postSchema }, async function (request, reply) {
-        const { CodPais, CodArea, Numero } = request.body;
-        const queryresult = await query('INSERT INTO "Telefonos" ("CodPais", "CodArea", "Numero") VALUES ($1, $2, $3) RETURNING *', [CodPais, CodArea, Numero]);
+        const { codpais, codarea, numero } = request.body;
+        const queryresult = await query('INSERT INTO "telefonos" ("codpais", "codarea", "numero") VALUES ($1, $2, $3) RETURNING *', [codpais, codarea, numero]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ error: 'Error al crear el telefono' });
         return reply.send(queryresult.rows[0]);
     });
 
     fastify.put('/:id', { schema: phonesSchemas.putSchema }, async function (request, reply) {
-        const paramId = request.params.id;
+        const paramid = request.params.id;
         const bodyId = request.body.id;
         try {
-            if (paramId != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
-            const { CodPais, CodArea, Numero } = request.body;
-            const queryresult = await query('UPDATE "Telefonos" SET "CodPais" = $1, "CodArea" = $2, "Numero" = $3 WHERE "Id" = $4 RETURNING *', [CodPais, CodArea, Numero, paramId]);
+            if (paramid != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
+            const { codpais, codarea, numero } = request.body;
+            const queryresult = await query('UPDATE "telefonos" SET "codpais" = $1, "codarea" = $2, "numero" = $3 WHERE "id" = $4 RETURNING *', [codpais, codarea, numero, paramid]);
             const rows = queryresult.rows;
             if (rows.length === 0)
                 return reply.status(404).send({ error: 'Telefono no encontrado' });

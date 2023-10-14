@@ -4,14 +4,14 @@ const genericSingleUserSchema = {
     properties: {
         nombre: { type: 'string' },
         apellido: { type: 'string' },
-        fechaNac: {
+        telefonoid: { type: 'number' },
+        direccionid: { type: 'number' },
+        fechanac: {
             type: 'string',
             format: 'date'
         },
-        telefonoId: { type: 'number' },
-        direccionId: { type: 'number' },
     },
-    required: ['nombre', 'apellido', 'fechaNac', 'telefonoId', 'direccionId']
+    required: ['nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
 }
 
 const genericErrorMessageSchema = {

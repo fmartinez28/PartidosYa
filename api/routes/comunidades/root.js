@@ -5,15 +5,15 @@ import { getAllSchema } from '../../schemas/jugadores/root.js';
 export default async function (fastify, opts) {
     // una comunidad tiene nombre
     fastify.get('/', { schema: communitySchemas.getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "Comunidades"');
+        const queryresult = await query('SELECT * FROM "comunidades"');
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(204).send({ error: 'No hay entradas para la colección Comunidades.' });
+            return reply.status(204).send({ error: 'No hay entradas para la colección comunidades.' });
         return reply.send(rows);
     });
 
     fastify.get('/:id', { schema: communitySchemas.getByIdSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "Comunidades" WHERE "Id" = $1', [request.params.id]);
+        const queryresult = await query('SELECT * FROM "comunidades" WHERE "id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ error: 'Comunidad no encontrada' });
@@ -40,7 +40,7 @@ export default async function (fastify, opts) {
 
     fastify.post('/', { schema: communitySchemas.postSchema }, async function (request, reply) {
         const { nombre } = request.body;
-        const queryresult = await query('INSERT INTO "Comunidades" ("Nombre") VALUES ($1) RETURNING *', [nombre]);
+        const queryresult = await query('INSERT INTO "comunidades" ("Nombre") VALUES ($1) RETURNING *', [nombre]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ error: 'Error al crear la comunidad' });
         return reply.send(queryresult.rows[0]);
@@ -52,7 +52,7 @@ export default async function (fastify, opts) {
         try {
             if (paramId != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
             const { nombre } = request.body;
-            const queryresult = await query('UPDATE "Comunidades" SET "Nombre" = $1 WHERE "Id" = $2 RETURNING *', [nombre, paramId]);
+            const queryresult = await query('UPDATE "comunidades" SET "Nombre" = $1 WHERE "id" = $2 RETURNING *', [nombre, paramId]);
             const rows = queryresult.rows;
             if (rows.length === 0)
                 return reply.status(404).send({ error: 'Comunidad no encontrada' });
@@ -63,7 +63,7 @@ export default async function (fastify, opts) {
     });
 
     // obtener todos los usuarios de la tabla Usuarios cuando su id esté en la tabla de ComunidadesUsuarios
-    //FIXME: el schema tira que fechaNac, telefonoId y direccionId no están siendo recibidos
+    //DONE: el schema tira que fechaNac, telefonoId y direccionId no están siendo recibidos
     //DONE: Las comunidades son de usuarios? O de Jugadores? El diagrama dice jugadores.
     //Los nombres de tablas y columnas sin capitalizar, siempre, tira error de lo contrario
     fastify.get('/:id/jugadores', { schema: getAllSchema }, async function (request, reply) {
@@ -76,7 +76,7 @@ export default async function (fastify, opts) {
 
     //DONE: Tampoco veo posibilidad de borrar una comunidad. Quien crea las comunidades? Cualqueir jugador? El último la elimina? Si queda vacía se elimina sola?
     fastify.delete('/:id', { schema: communitySchemas.deleteSchema }, async function (request, reply) {
-        const queryresult = await query('DELETE FROM "Comunidades" WHERE "Id" = $1 RETURNING *', [request.params.id]);
+        const queryresult = await query('DELETE FROM "comunidades" WHERE "id" = $1 RETURNING *', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ error: 'Comunidad no encontrada' });
