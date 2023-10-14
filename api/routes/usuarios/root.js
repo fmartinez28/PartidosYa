@@ -10,7 +10,8 @@ export default async function(fastify, opts) {
     fastify.get('/:id', { schema: userSchemas.getByIdSchema }, async function(req, reply){
         const id = req.params.id;
         try{
-            const res = await query('SELECT FROM "usuarios" WHERE id = $1', [id]);
+            const res = await query('SELECT * FROM "usuarios" WHERE id = $1', [id]);
+            console.log(res);
             if (res.rows.length === 0) return reply.status(404).send({ error: 'No existe el usuario solicitado'});
             return reply.send(res.rows[0]);
         } catch (error){
