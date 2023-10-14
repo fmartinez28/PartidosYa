@@ -42,4 +42,16 @@ export default async function (fastify, opts) {
             return reply.status(500).send(error);
         }
     });
+
+    fastify.delete('/:id', { schema: phonesSchemas.deleteSchema }, async function (request, reply) {
+        const id = request.params.id;
+        try {
+            const queryresult = await query('DELETE FROM "telefonos" WHERE "id" = $1 RETURNING *', [id]);
+            if (queryresult.rows.length === 0)
+                return reply.status(404).send({ message: 'Telefono no encontrado' });
+            return reply.status(200).send({ message: "El telefono fue eliminado" });
+        } catch (error) {
+            return reply.status(500).send({ message: error });
+        }
+    });
 }

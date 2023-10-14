@@ -2,6 +2,7 @@ const genericSingleUserSchema = {
     $id: 'genericSingleUser',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         nombre: { type: 'string' },
         apellido: { type: 'string' },
         telefonoid: { type: 'number' },
@@ -11,7 +12,7 @@ const genericSingleUserSchema = {
             format: 'date'
         },
     },
-    required: ['nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
+    required: ['id', 'nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
 }
 
 const genericErrorMessageSchema = {
@@ -27,41 +28,44 @@ const genericSingleCourtSchema = {
     $id: 'genericSingleCourt',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         nombre: { type: 'string' },
         canchanum: { type: 'string' },
         direccionid: { type: 'number' },
         propietarioid: { type: 'number' }
     },
-    required: ['nombre', 'canchanum', 'direccionid', 'propietarioid']
+    required: ['id', 'nombre', 'canchanum', 'direccionid', 'propietarioid']
 }
 
 const genericSingleCommunitySchema = {
     $id: 'genericSingleCommunity',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         nombre: { type: 'string' },
     },
-    required: ['nombre']
-
+    required: ['id', 'nombre']
 }
 
 const genericSingleAddressSchema = {
     $id: 'genericSingleAddress',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         pais: { type: 'string' },
         estado: { type: 'string' },
         ciudad: { type: 'string' },
         calle: { type: 'string' },
         numero: { type: 'number' }
     },
-    required: ['pais', 'estado', 'ciudad', 'calle', 'numero']
+    required: ['id', 'pais', 'estado', 'ciudad', 'calle', 'numero']
 }
 
 const genericSingleMatch = {
     $id: 'genericSingleMatch',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         canchaid: { type: 'number' },
         fechacreacion: {
             type: 'string',
@@ -73,7 +77,7 @@ const genericSingleMatch = {
         },
         comunidadid: { type: 'number' }
     },
-    required: ['canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
+    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
 
 }
 
@@ -81,31 +85,34 @@ const genericSingleSignUp = {
     $id: 'genericSingleSignUp',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         idjugador: { type: 'number' },
         idpartido: { type: 'number' }
     },
-    required: ['idjugador', 'idpartido']
+    required: ['id', 'idjugador', 'idpartido']
 }
 
 const genericSingleCommunityPlayer = {
     $id: 'genericSingleCommunityPlayer',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         idjugador: { type: 'number' },
         idcomunidad: { type: 'number' }
     },
-    required: ['idjugador', 'idcomunidad']
+    required: ['id', 'idjugador', 'idcomunidad']
 }
 
 const genericSinglePhone = {
     $id: 'genericSinglePhone',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         codpais: { type: 'string' },
         codarea: { type: 'string' },
         numero: { type: 'string' }
     },
-    required: ['codpais', 'codarea', 'numero']
+    required: ['id', 'codpais', 'codarea', 'numero']
 }
 
 
