@@ -7,7 +7,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('SELECT * FROM "telefonos"');
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(204).send({ error: 'No hay entradas para la colección telefonos.' });
+            return reply.status(204).send({ message: 'No hay entradas para la colección telefonos.' });
         return reply.send(rows);
     });
 
@@ -15,7 +15,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('SELECT * FROM "telefonos" WHERE "id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(404).send({ error: 'Telefono no encontrado' });
+            return reply.status(404).send({ message: 'Telefono no encontrado' });
         return reply.send(rows[0]);
     });
 
@@ -23,7 +23,7 @@ export default async function (fastify, opts) {
         const { codpais, codarea, numero } = request.body;
         const queryresult = await query('INSERT INTO "telefonos" ("codpais", "codarea", "numero") VALUES ($1, $2, $3) RETURNING *', [codpais, codarea, numero]);
         if (queryresult.rows.length === 0)
-            return reply.status(500).send({ error: 'Error al crear el telefono' });
+            return reply.status(500).send({ message: 'Error al crear el telefono' });
         return reply.send(queryresult.rows[0]);
     });
 
@@ -31,15 +31,15 @@ export default async function (fastify, opts) {
         const paramid = request.params.id;
         const bodyId = request.body.id;
         try {
-            if (paramid != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
+            if (paramid != bodyId) return reply.status(409).send({ message: 'La id del cuerpo y del parámetro no coinciden.' })
             const { codpais, codarea, numero } = request.body;
             const queryresult = await query('UPDATE "telefonos" SET "codpais" = $1, "codarea" = $2, "numero" = $3 WHERE "id" = $4 RETURNING *', [codpais, codarea, numero, paramid]);
             const rows = queryresult.rows;
             if (rows.length === 0)
-                return reply.status(404).send({ error: 'Telefono no encontrado' });
+                return reply.status(404).send({ message: 'Telefono no encontrado' });
             return reply.send(rows[0]);
         } catch (error) {
-            return reply.status(500).send(error);
+            return reply.status(500).send({ message: error });
         }
     });
 

@@ -98,7 +98,9 @@ CREATE TABLE public.comunidadjugador (
 );
 
 INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(1, 'Uruguay', 'Salto', 'Salto', 'Uruguay', '911');
+INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(2, 'Uruguay', 'Montevideo', 'Cerro', 'Cerrito', '922');
 INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(1, '+598', '473', '911');
+INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(2, '+598', '473', '922');
 INSERT INTO usuarios(id, nombre, apellido, fechanac, telefonoid, direccionid) VALUES(1, 'Stego', 'Saurus', '1970-10-01', 1, 1);
 INSERT INTO usuarios(id, nombre, apellido, fechanac, telefonoid, direccionid) VALUES(2, 'Tyranno', 'Saurus', '1960-11-10', 1, 1);
 INSERT INTO jugadores(usuarioid) VALUES(1); 

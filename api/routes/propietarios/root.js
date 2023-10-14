@@ -14,7 +14,7 @@ export default async function (fastify, opts) {
 
     // seleccionar de la tabla propietarios el propietario que coincida la ID. Seleccionar de la tabla usuarios el usuario que coincida la ID. Retornar el Usuario.
     fastify.get('/:id', { schema: ownersSchemas.getByIdSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "propietarios" WHERE "id" = $1', [request.params.id]);
+        const queryresult = await query('SELECT * FROM "propietarios" WHERE "usuarioid" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ error: 'Propietario no encontrado' });
