@@ -76,15 +76,14 @@ const deleteSchema = {
     }
 }
 
-// corresponde al POST /:id que recibe un UsuarioID
 const inscribirJugadorSchema = {
     description: 'Inscribe un jugador a una comunidad',
     body: {
         type: 'object',
         properties: {
-            idUsuario: { type: 'number' }
+            idusuario: { type: 'number' }
         },
-        required: ['idUsuario']
+        required: ['idusuario']
     },
     response: {
         200: {

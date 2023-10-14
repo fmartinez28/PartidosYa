@@ -28,11 +28,11 @@ const genericSingleCourtSchema = {
     type: 'object',
     properties: {
         nombre: { type: 'string' },
-        canchaNum: { type: 'string' },
-        direccionId: { type: 'number' },
-        propietarioId: { type: 'number' }
+        canchanum: { type: 'string' },
+        direccionid: { type: 'number' },
+        propietarioid: { type: 'number' }
     },
-    required: ['nombre', 'canchaNum', 'direccionId', 'propietarioId']
+    required: ['nombre', 'canchanum', 'direccionid', 'propietarioid']
 }
 
 const genericSingleCommunitySchema = {
@@ -49,31 +49,31 @@ const genericSingleAddressSchema = {
     $id: 'genericSingleAddress',
     type: 'object',
     properties: {
-        Pais: { type: 'string' },
-        Estado: { type: 'string' },
-        Ciudad: { type: 'string' },
-        Calle: { type: 'string' },
-        Numero: { type: 'number' }
+        pais: { type: 'string' },
+        estado: { type: 'string' },
+        ciudad: { type: 'string' },
+        calle: { type: 'string' },
+        numero: { type: 'number' }
     },
-    required: ['Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
+    required: ['pais', 'estado', 'ciudad', 'calle', 'numero']
 }
 
 const genericSingleMatch = {
     $id: 'genericSingleMatch',
     type: 'object',
     properties: {
-        canchaId: { type: 'number' },
-        fechaCreacion: {
+        canchaid: { type: 'number' },
+        fechacreacion: {
             type: 'string',
             format: 'date'
         },
-        fechaProgramada: {
+        fechaprogramada: {
             type: 'string',
             format: 'date'
         },
-        comunidadId: { type: 'number' }
+        comunidadid: { type: 'number' }
     },
-    required: ['canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
+    required: ['canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
 
 }
 
@@ -81,31 +81,31 @@ const genericSingleSignUp = {
     $id: 'genericSingleSignUp',
     type: 'object',
     properties: {
-        idJugador: { type: 'number' },
-        idPartido: { type: 'number' }
+        idjugador: { type: 'number' },
+        idpartido: { type: 'number' }
     },
-    required: ['idJugador', 'idPartido']
+    required: ['idjugador', 'idpartido']
 }
 
 const genericSingleCommunityPlayer = {
     $id: 'genericSingleCommunityPlayer',
     type: 'object',
     properties: {
-        idJugador: { type: 'number' },
-        idComunidad: { type: 'number' }
+        idjugador: { type: 'number' },
+        idcomunidad: { type: 'number' }
     },
-    required: ['idJugador', 'idComunidad']
+    required: ['idjugador', 'idcomunidad']
 }
 
 const genericSinglePhone = {
     $id: 'genericSinglePhone',
     type: 'object',
     properties: {
-        CodPais: { type: 'string' },
-        CodArea: { type: 'string' },
-        Numero: { type: 'string' }
+        codpais: { type: 'string' },
+        codarea: { type: 'string' },
+        numero: { type: 'string' }
     },
-    required: ['CodPais', 'CodArea', 'Numero']
+    required: ['codpais', 'codarea', 'numero']
 }
 
 

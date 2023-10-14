@@ -30,12 +30,12 @@ const postSchema = {
     body: {
         type: 'object',
         properties: {
-            canchaId: { type: 'number'},
-            fechaCreacion: { type: 'string'},
-            fechaProgramada: { type: 'string'},
-            comunidadId: { type: 'number'}
+            canchaid: { type: 'number' },
+            fechacreacion: { type: 'string' },
+            fechaprogramada: { type: 'string' },
+            comunidadid: { type: 'number' }
         },
-        required: ['canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
+        required: ['canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
     },
     response: {
         201: {
@@ -52,13 +52,13 @@ const putSchema = {
     body: {
         type: 'object',
         properties: {
-            id: { type: 'number'},
-            canchaId: { type: 'number'},
-            fechaCreacion: { type: 'string'},
-            fechaProgramada: { type: 'string'},
-            comunidadId: { type: 'number'}
+            id: { type: 'number' },
+            canchaid: { type: 'number' },
+            fechacreacion: { type: 'string' },
+            fechaprogramada: { type: 'string' },
+            comunidadid: { type: 'number' }
         },
-        required: ['id', 'canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
+        required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
     },
     response: {
         200: {
@@ -75,9 +75,9 @@ const postJugadoresSchema = {
     body: {
         type: 'object',
         properties: {
-            idJugador: { type: 'number' }
+            idjugador: { type: 'number' }
         },
-        required: ['idJugador']
+        required: ['idjugador']
     },
     response: {
         200: {
