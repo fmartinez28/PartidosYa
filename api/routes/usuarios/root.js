@@ -4,6 +4,8 @@ import * as userSchemas from '../../schemas/usuarios/root.js';
 export default async function (fastify, opts) {
     fastify.get('/', { schema: userSchemas.getAllSchema }, async function (req, reply) {
         const queryresult = await query('SELECT * FROM "usuarios"');
+        if (queryresult.rows.length === 0)
+            return reply.status(204).send({ message: 'No hay entradas para la colección usuarios.' });
         return reply.send(queryresult.rows);
     });
 
