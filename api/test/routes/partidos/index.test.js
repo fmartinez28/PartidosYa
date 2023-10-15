@@ -4,9 +4,9 @@ import { query } from '../../../db/index.js';
 import * as normalize from '../../../utils/dbNormalization.js';
 
 
-test("GET de todos los partidos", async (t)=> {
+test("GET de todos los partidos", async (t) => {
     const app = await build(t);
-    
+
     const res = await app.inject({
         url: '/partidos',
         method: 'GET'
@@ -15,7 +15,7 @@ test("GET de todos los partidos", async (t)=> {
 })
 
 
-test("GET de un solo partido", async (t)=> {
+test("GET de un solo partido", async (t) => {
     const app = await build(t);
     await normalize.begin();
     
@@ -32,7 +32,7 @@ test("GET de un solo partido", async (t)=> {
 });
 
 
-test("GET de un solo partido que no existe", async (t)=> {
+test("GET de un solo partido que no existe", async (t) => {
     const app = await build(t);
     const res = await app.inject({
         url: `/partidos/0`,

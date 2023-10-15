@@ -24,6 +24,7 @@ export default async function (fastify, opts) {
         const { pais, estado, ciudad, calle, numero } = request.body;
         const queryresult = await query('INSERT INTO "direcciones" ("pais", "estado", "ciudad", "calle", "numero") VALUES ($1, $2, $3, $4, $5) RETURNING *', [pais, estado, ciudad, calle, numero]);
         if (queryresult.rows.length === 0)
+            //FIXME: ver bien el codigo de error en estos casos
             return reply.status(500).send({ error: 'Error al crear la direccion' });
         return reply.send(queryresult.rows[0]);
     });

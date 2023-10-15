@@ -46,7 +46,7 @@ test("GET de un solo usuario", async (t) => {
     t.equal(res.statusCode, 200);
 });
 
-test("GET de un solo usuario que no existe", async (t)=> {
+test("GET de un solo usuario que no existe", async (t) => {
     const app = await build(t);
 
     const res = await app.inject({
