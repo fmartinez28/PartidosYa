@@ -75,9 +75,9 @@ const postJugadoresSchema = {
     body: {
         type: 'object',
         properties: {
-            idjugador: { type: 'number' }
+            jugadorid: { type: 'number' }
         },
-        required: ['idjugador']
+        required: ['jugadorid']
     },
     response: {
         200: {

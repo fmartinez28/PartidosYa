@@ -36,7 +36,7 @@ export default async function (fastify, opts) {
             const rows = queryresult.rows;
             if (rows.length === 0)
                 return reply.status(404).send({ error: 'Partido no encontrado' });
-            return reply.send(rows[0]);
+            return reply.status(200).send(rows[0]);
         } catch (error) {
             return reply.status(500).send(error);
         }
@@ -46,9 +46,9 @@ export default async function (fastify, opts) {
         //honestamente no estoy seguro de si debería ser mejor pasar jugadorid en la url o en el body
         //diría que es por la url, pero bueno, recurso/id/recurso/id tampoco es muy lindo
         const { jugadorid } = request.body;
-        const queryresult = await query('INSERT INTO "partidosjugadores" ("partidoid", "jugadorid") VALUES ($1, $2) RETURNING *', [request.params.id, jugadorid]);
+        const queryresult = await query('INSERT INTO "participacionpartido" ("partidoid", "jugadorid") VALUES ($1, $2) RETURNING *', [request.params.id, jugadorid]);
         const rows = queryresult.rows;
         if (rows.length === 0) return reply.status(500).send({ error: 'Error al ingresar el jugador al partido' });
-        return reply.send(rows[0]);
+        return reply.status(201).send(rows[0]);
     })
 }
