@@ -3,7 +3,7 @@ import * as matchesSchemas from '../../schemas/partidos/root.js';
 
 export default async function (fastify, opts) {
     fastify.get('/', { schema: matchesSchemas.getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "partidos"');
+        const queryresult = await query('SELECT * FROM "partido"');
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(204).send({ error: 'No hay entradas para la colección partidos.' });
@@ -11,7 +11,7 @@ export default async function (fastify, opts) {
     });
 
     fastify.get('/:id', { schema: matchesSchemas.getByIdSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "partidos" WHERE "id" = $1', [request.params.id]);
+        const queryresult = await query('SELECT * FROM "partido" WHERE "id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ error: 'Partido no encontrado' });
@@ -20,7 +20,7 @@ export default async function (fastify, opts) {
 
     fastify.post('/', { schema: matchesSchemas.postSchema }, async function (request, reply) {
         const { canchaid, fechacreacion, fechaprogramada, comunidadid } = request.body;
-        const queryresult = await query('INSERT INTO "partidos" ("canchaid", "fechacreacion", "fechaprogramada", "comunidadid") VALUES ($1, $2, $3, $4) RETURNING *', [canchaid, fechacreacion, fechaprogramada, comunidadid]);
+        const queryresult = await query('INSERT INTO "partido" ("canchaid", "fechacreacion", "fechaprogramada", "comunidadid") VALUES ($1, $2, $3, $4) RETURNING *', [canchaid, fechacreacion, fechaprogramada, comunidadid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ error: 'Error al crear el partido' });
         return reply.send(queryresult.rows[0]);
@@ -32,7 +32,7 @@ export default async function (fastify, opts) {
         try {
             if (paramid != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
             const { canchaid, fechacreacion, fechaprogramada, comunidadid } = request.body;
-            const queryresult = await query('UPDATE "partidos" SET "canchaid" = $1, "fechacreacion" = $2, "fechaprogramada" = $3, "comunidadid" = $4 WHERE "id" = $5 RETURNING *', [canchaid, fechacreacion, fechaprogramada, comunidadid, paramid]);
+            const queryresult = await query('UPDATE "partido" SET "canchaid" = $1, "fechacreacion" = $2, "fechaprogramada" = $3, "comunidadid" = $4 WHERE "id" = $5 RETURNING *', [canchaid, fechacreacion, fechaprogramada, comunidadid, paramid]);
             const rows = queryresult.rows;
             if (rows.length === 0)
                 return reply.status(404).send({ error: 'Partido no encontrado' });
