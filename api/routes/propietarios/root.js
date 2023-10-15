@@ -24,4 +24,24 @@ export default async function (fastify, opts) {
             return reply.status(404).send({ error: 'No se encontró un usuario cuyo Id corresponda al Id del propietario solicitado' });
         return reply.status(200).send(rowsUsuario[0]);
     });
+
+    fastify.post('/', { schema: ownersSchemas.postSchema }, async function (request, reply) {
+        const { usuarioid } = request.body;
+        const queryresult = await query('INSERT INTO "propietarios" ("usuarioid") VALUES ($1) RETURNING *', [usuarioid]);
+        if (queryresult.rows.length === 0)
+            return reply.status(500).send({ message: 'Error al crear el propietario' });
+        return reply.send(queryresult.rows[0]);
+    });
+
+    fastify.delete('/:id', { schema: ownersSchemas.deleteSchema }, async function (request, reply) {
+        const id = request.params.id;
+        try {
+            const queryresult = await query('DELETE FROM "propietarios" WHERE "usuarioid" = $1 RETURNING *', [id]);
+            if (queryresult.rows.length === 0)
+                return reply.status(404).send({ message: 'Propietario no encontrado' });
+            return reply.status(200).send({ message: "El propietario fue eliminado" });
+        } catch (error) {
+            return reply.status(500).send({ message: error });
+        }
+    });
 }

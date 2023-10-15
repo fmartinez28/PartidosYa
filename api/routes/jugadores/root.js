@@ -26,4 +26,24 @@ export default async function (fastify, opts) {
             return reply.status(404).send({ error: 'No se encontró un usuario cuyo id corresponda al id del jugador solicitado' });
         return reply.status(200).send(rowsUsuario[0]);
     });
+
+    fastify.post('/', { schema: playersSchemas.postSchema }, async function (request, reply) {
+        const { usuarioid } = request.body;
+        const queryresult = await query('INSERT INTO "jugadores" ("usuarioid") VALUES ($1) RETURNING *', [usuarioid]);
+        if (queryresult.rows.length === 0)
+            return reply.status(500).send({ message: 'Error al crear el jugador' });
+        return reply.send(queryresult.rows[0]);
+    });
+
+    fastify.delete('/:id', { schema: playersSchemas.deleteSchema }, async function (request, reply) {
+        const id = request.params.id;
+        try {
+            const queryresult = await query('DELETE FROM "jugadores" WHERE "usuarioid" = $1 RETURNING *', [id]);
+            if (queryresult.rows.length === 0)
+                return reply.status(404).send({ message: 'Jugador no encontrado' });
+            return reply.status(200).send({ message: "El jugador fue eliminado" });
+        } catch (error) {
+            return reply.status(500).send({ message: error });
+        }
+    });
 }

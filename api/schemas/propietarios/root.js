@@ -25,7 +25,42 @@ const getByIdSchema = {
     }
 }
 
+const postSchema = {
+    description: 'Crea una entrada de la entidad Propietario',
+    body: {
+        type: 'object',
+        properties: {
+            usuarioid: { type: 'number' }
+        }
+    },
+    response: {
+        200: {
+            $ref: 'genericSingleUser'
+        },
+        400: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
+const deleteSchema = {
+    description: 'Elimina una entrada de la entidad Propietario',
+    response: {
+        200: {
+            type: 'object',
+            properties: {
+                message: { type: 'string' }
+            }
+        },
+        404: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
 export {
     getAllSchema,
-    getByIdSchema
+    getByIdSchema,
+    postSchema,
+    deleteSchema
 }
