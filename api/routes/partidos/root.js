@@ -23,7 +23,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('INSERT INTO "partido" ("canchaid", "fechacreacion", "fechaprogramada", "comunidadid") VALUES ($1, $2, $3, $4) RETURNING *', [canchaid, fechacreacion, fechaprogramada, comunidadid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ error: 'Error al crear el partido' });
-        return reply.send(queryresult.rows[0]);
+        return reply.status(201).send(queryresult.rows[0]);
     });
 
     fastify.put('/:id', { schema: matchesSchemas.putSchema }, async function (request, reply) {

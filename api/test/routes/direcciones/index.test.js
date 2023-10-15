@@ -111,7 +111,6 @@ test('PUT de una dirección correcto', async (t) => {
     });
     const updatableAddress = JSON.parse(postRes.payload);
     const updatableAddressId = updatableAddress.id;
-    console.log(updatableAddress);
     const res = await app.inject({
         url: `/direcciones/${updatableAddressId}`,
         method: 'PUT',

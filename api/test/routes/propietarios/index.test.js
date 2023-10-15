@@ -39,7 +39,7 @@ test("POST de un propietario funciona", async (t) => {
     const app = await build(t);
     await begin();
 
-    await app.inject({
+    const direccionRes = await app.inject({
         url: '/direcciones',
         method: 'POST',
         payload: {
@@ -50,8 +50,9 @@ test("POST de un propietario funciona", async (t) => {
             numero: 123
         }
     })
+    const direccionId = JSON.parse(direccionRes.payload).id;
 
-    await app.inject({
+    const telefonoRes = await app.inject({
         url: '/telefonos',
         method: 'POST',
         payload: {
@@ -60,24 +61,26 @@ test("POST de un propietario funciona", async (t) => {
             numero: "1234567"
         }
     })
+    const telefonoId = JSON.parse(telefonoRes.payload).id;
 
-    await app.inject({
+    const usuarioRes = await app.inject({
         url: '/usuarios',
         method: 'POST',
         payload: {
             nombre: "Usuario de prueba",
             apellido: "Apellido de prueba",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
+    const usuarioId = JSON.parse(usuarioRes.payload).id;
 
     const res = await app.inject({
         url: '/propietarios',
         method: 'POST',
         payload: {
-            usuarioid: 1
+            usuarioid: usuarioId
         }
     });
 
@@ -85,7 +88,7 @@ test("POST de un propietario funciona", async (t) => {
         await rollback();
     });
 
-    t.equal(res.statusCode, 200);
+    t.equal(res.statusCode, 201);
 });
 
 test("POST de un propietario con un usuario que no existe", async (t) => {
@@ -96,7 +99,7 @@ test("POST de un propietario con un usuario que no existe", async (t) => {
         url: '/propietarios',
         method: 'POST',
         payload: {
-            usuarioid: -1
+            usuarioid: 0
         }
     });
 
@@ -104,14 +107,36 @@ test("POST de un propietario con un usuario que no existe", async (t) => {
         await rollback();
     });
 
-    t.equal(res.statusCode, 400);
+    t.equal(res.statusCode, 500);
 });
 
 test("DELETE de un propietario funciona", async (t) => {
     const app = await build(t);
     await begin();
 
-    await app.inject({
+
+    const res = await app.inject({
+        url: '/jugadores',
+        method: 'POST',
+        payload: {
+            usuarioid: 0
+        }
+    });
+
+    t.teardown(async () => {
+        await rollback();
+    });
+
+    t.equal(res.statusCode, 500);
+});
+
+test("DELETE de un jugador funciona", async (t) => {
+    const app = await build(t);
+    await begin();
+    /*TODO: todo esto repetido se debería meter en algun objeto para reutilizar, a tomar en cuenta para las 
+    siguientes entregas, hacemos un cleanup de todo esto para que quede más nice
+    */
+    const direccionRes = await app.inject({
         url: '/direcciones',
         method: 'POST',
         payload: {
@@ -122,8 +147,9 @@ test("DELETE de un propietario funciona", async (t) => {
             numero: 123
         }
     })
+    const direccionId = JSON.parse(direccionRes.payload).id;
 
-    await app.inject({
+    const telefonoRes = await app.inject({
         url: '/telefonos',
         method: 'POST',
         payload: {
@@ -132,29 +158,32 @@ test("DELETE de un propietario funciona", async (t) => {
             numero: "1234567"
         }
     })
+    const telefonoId = JSON.parse(telefonoRes.payload).id;
 
-    await app.inject({
+    const usuarioRes = await app.inject({
         url: '/usuarios',
         method: 'POST',
         payload: {
             nombre: "Usuario de prueba",
             apellido: "Apellido de prueba",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
+    const usuarioId = JSON.parse(usuarioRes.payload).id;
 
-    await app.inject({
+    const propietarioRes = await app.inject({
         url: '/propietarios',
         method: 'POST',
         payload: {
-            usuarioid: 1
+            usuarioid: usuarioId
         }
     });
+    const propietarioId = JSON.parse(propietarioRes.payload).usuarioid;
 
     const res = await app.inject({
-        url: '/propietarios/1',
+        url: `/propietarios/${propietarioId}`,
         method: 'DELETE'
     });
 

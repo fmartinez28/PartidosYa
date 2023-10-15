@@ -36,7 +36,7 @@ test("POST de un jugador funciona", async (t) => {
     const app = await build(t);
     await begin();
 
-    await app.inject({
+    const direccionRes = await app.inject({
         url: '/direcciones',
         method: 'POST',
         payload: {
@@ -47,8 +47,9 @@ test("POST de un jugador funciona", async (t) => {
             numero: 123
         }
     })
+    const direccionId = JSON.parse(direccionRes.payload).id;
 
-    await app.inject({
+    const telefonoRes = await app.inject({
         url: '/telefonos',
         method: 'POST',
         payload: {
@@ -57,24 +58,26 @@ test("POST de un jugador funciona", async (t) => {
             numero: "1234567"
         }
     })
+    const telefonoId = JSON.parse(telefonoRes.payload).id;
 
-    await app.inject({
+    const usuarioRes = await app.inject({
         url: '/usuarios',
         method: 'POST',
         payload: {
             nombre: "Usuario de prueba",
             apellido: "Apellido de prueba",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
+    const usuarioId = JSON.parse(usuarioRes.payload).id;
 
-    const res = await app.inject({
+    const jugadorRes = await app.inject({
         url: '/jugadores',
         method: 'POST',
         payload: {
-            usuarioid: 1
+            usuarioid: usuarioId
         }
     });
 
@@ -82,7 +85,7 @@ test("POST de un jugador funciona", async (t) => {
         await rollback();
     });
 
-    t.equal(res.statusCode, 200);
+    t.equal(jugadorRes.statusCode, 201);
 });
 
 test("POST de un jugador con un usuario que no existe", async (t) => {
@@ -93,7 +96,7 @@ test("POST de un jugador con un usuario que no existe", async (t) => {
         url: '/jugadores',
         method: 'POST',
         payload: {
-            usuarioid: -10
+            usuarioid: 0
         }
     });
 
@@ -108,7 +111,7 @@ test("DELETE de un jugador funciona", async (t) => {
     const app = await build(t);
     await begin();
 
-    await app.inject({
+    const direccionRes = await app.inject({
         url: '/direcciones',
         method: 'POST',
         payload: {
@@ -119,8 +122,9 @@ test("DELETE de un jugador funciona", async (t) => {
             numero: 123
         }
     })
+    const direccionId = JSON.parse(direccionRes.payload).id;
 
-    await app.inject({
+    const telefonoRes = await app.inject({
         url: '/telefonos',
         method: 'POST',
         payload: {
@@ -129,29 +133,31 @@ test("DELETE de un jugador funciona", async (t) => {
             numero: "1234567"
         }
     })
+    const telefonoId = JSON.parse(telefonoRes.payload).id;
 
-    await app.inject({
+    const usuarioRes = await app.inject({
         url: '/usuarios',
         method: 'POST',
         payload: {
             nombre: "Usuario de prueba",
             apellido: "Apellido de prueba",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
+    const usuarioId = JSON.parse(usuarioRes.payload).id;
 
-    await app.inject({
+    const jugadorRes = await app.inject({
         url: '/jugadores',
         method: 'POST',
         payload: {
-            usuarioid: 1
+            usuarioid: usuarioId
         }
     });
-
+    const jugadorId = JSON.parse(jugadorRes.payload).usuarioid;
     const res = await app.inject({
-        url: '/jugadores/1',
+        url: `/jugadores/${jugadorId}`,
         method: 'DELETE'
     });
 

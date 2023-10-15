@@ -220,7 +220,7 @@ test("DELETE de una cancha funciona", async (t) => {
     const app = await build(t);
     await begin();
 
-    await app.inject({
+    const direccionRes = await app.inject({
         url: '/direcciones',
         method: 'POST',
         payload: {
@@ -231,8 +231,9 @@ test("DELETE de una cancha funciona", async (t) => {
             numero: 123
         }
     })
-
-    await app.inject({
+    const direccionId = JSON.parse(direccionRes.payload).id;
+    
+    const telefonosRes = await app.inject({
         url: '/telefonos',
         method: 'POST',
         payload: {
@@ -241,40 +242,44 @@ test("DELETE de una cancha funciona", async (t) => {
             numero: "1234567"
         }
     })
-
-    await app.inject({
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+    
+    const usuarioRes = await app.inject({
         url: '/usuarios',
         method: 'POST',
         payload: {
             nombre: "Usuario de prueba",
             apellido: "Apellido de prueba",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
-
-    await app.inject({
+    const usuarioId = JSON.parse(usuarioRes.payload).id;
+    
+    const propietarioRes = await app.inject({
         url: '/propietarios',
         method: 'POST',
         payload: {
-            usuarioid: 1
+            usuarioid: usuarioId
         }
     })
-
-    await app.inject({
+    const propietarioId = JSON.parse(propietarioRes.payload).usuarioid;
+    
+    const canchaRes = await app.inject({
         url: '/canchas',
         method: 'POST',
         payload: {
             nombre: "Cancha de prueba",
-            direccionid: 1,
+            direccionid: direccionId,
             canchanum: 1,
-            propietarioid: 1
+            propietarioid: propietarioId
         }
     });
-
+    const canchaId = JSON.parse(canchaRes.payload).id;
+    
     const res = await app.inject({
-        url: '/canchas/1',
+        url: `/canchas/${canchaId}`,
         method: 'DELETE'
     });
 

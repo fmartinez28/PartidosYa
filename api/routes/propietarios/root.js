@@ -30,7 +30,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('INSERT INTO "propietarios" ("usuarioid") VALUES ($1) RETURNING *', [usuarioid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ message: 'Error al crear el propietario' });
-        return reply.send(queryresult.rows[0]);
+        return reply.status(201).send(queryresult.rows[0]);
     });
 
     fastify.delete('/:id', { schema: ownersSchemas.deleteSchema }, async function (request, reply) {

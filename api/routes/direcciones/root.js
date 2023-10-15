@@ -44,4 +44,5 @@ export default async function (fastify, opts) {
             return reply.status(500).send(error);
         }
     });
+    //TODO: Endpoint para delete de direcciones
 }
