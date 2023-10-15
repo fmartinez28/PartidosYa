@@ -2,6 +2,7 @@ import { test } from 'tap';
 import { build } from '../../helper.js';
 import * as normalize from '../../../utils/dbNormalization.js';
 import { query } from '../../../db/index.js';
+import { purge } from '../../../utils/dbPurge.js';
 
 test("GET de todos los telefonos", async (t) => {
     const app = await build(t);
@@ -17,15 +18,7 @@ test("GET de todos los telefonos", async (t) => {
 test("GET de todos los telefonos no existen registros en la base", async (t) => {
     const app = await build(t);
     await normalize.begin();
-    await query('DELETE FROM "comunidadjugador"');
-    await query('DELETE FROM "participacionpartido"');
-    await query('DELETE FROM "partido"');
-    await query('DELETE FROM "canchas"');
-    await query('DELETE FROM "comunidades"');
-    await query('DELETE FROM "propietarios"');
-    await query('DELETE FROM "jugadores"');
-    await query('DELETE FROM "usuarios"');
-    await query('DELETE FROM "telefonos"');
+    await purge('telefonos');
     const res = await app.inject({
         url: '/telefonos',
         method: 'GET'
@@ -164,8 +157,21 @@ test('DELETE de un telefono que no existe', async (t) => {
 test('DELETE de un telefono que existe', async (t) => {
     const app = await build(t);
 
+    const postPayload = {
+        codpais: '+598',
+        codarea: '473',
+        numero: '123456'
+    };
+
+    const createdRes = await app.inject({
+        url: '/telefonos/',
+        method: 'POST',
+        payload: postPayload
+    });
+
+    const id = JSON.parse(createdRes.payload).id;
     const res = await app.inject({
-        url: '/telefonos/2',
+        url: `/telefonos/${id}`,
         method: 'DELETE'
     });
 
