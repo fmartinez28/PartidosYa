@@ -24,7 +24,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('INSERT INTO "canchas" ("nombre", "direccionid", "canchanum", "propietarioid") VALUES ($1, $2, $3, $4) RETURNING *', [nombre, direccionid, canchanum, propietarioid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ error: 'Error al crear la cancha' });
-        return reply.send(queryresult.rows[0]);
+        return reply.status(201).send(queryresult.rows[0]);
     });
 
     fastify.put('/:id', { schema: courtSchemas.putSchema }, async function (request, reply) {
