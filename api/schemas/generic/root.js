@@ -2,16 +2,17 @@ const genericSingleUserSchema = {
     $id: 'genericSingleUser',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         nombre: { type: 'string' },
         apellido: { type: 'string' },
-        fechaNac: {
+        telefonoid: { type: 'number' },
+        direccionid: { type: 'number' },
+        fechanac: {
             type: 'string',
             format: 'date'
         },
-        telefonoId: { type: 'number' },
-        direccionId: { type: 'number' },
     },
-    required: ['nombre', 'apellido', 'fechaNac', 'telefonoId', 'direccionId']
+    required: ['id', 'nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
 }
 
 const genericErrorMessageSchema = {
@@ -27,53 +28,56 @@ const genericSingleCourtSchema = {
     $id: 'genericSingleCourt',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         nombre: { type: 'string' },
-        canchaNum: { type: 'string' },
-        direccionId: { type: 'number' },
-        propietarioId: { type: 'number' }
+        canchanum: { type: 'string' },
+        direccionid: { type: 'number' },
+        propietarioid: { type: 'number' }
     },
-    required: ['nombre', 'canchaNum', 'direccionId', 'propietarioId']
+    required: ['id', 'nombre', 'canchanum', 'direccionid', 'propietarioid']
 }
 
 const genericSingleCommunitySchema = {
     $id: 'genericSingleCommunity',
     type: 'object',
     properties: {
+        id: { type: 'number' },
         nombre: { type: 'string' },
     },
-    required: ['nombre']
-
+    required: ['id', 'nombre']
 }
 
 const genericSingleAddressSchema = {
     $id: 'genericSingleAddress',
     type: 'object',
     properties: {
-        canchaId: { type: 'number' },
-        fechaCreacion: {
-            type: 'string',
-            format: 'date'
-        },
-        fechaProgramada: {
-            type: 'string',
-            format: 'date'
-        },
-        comunidadId: { type: 'number' }
+        id: { type: 'number' },
+        pais: { type: 'string' },
+        estado: { type: 'string' },
+        ciudad: { type: 'string' },
+        calle: { type: 'string' },
+        numero: { type: 'number' }
     },
-    required: ['canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
+    required: ['id', 'pais', 'estado', 'ciudad', 'calle', 'numero']
 }
 
 const genericSingleMatch = {
     $id: 'genericSingleMatch',
     type: 'object',
     properties: {
-        Pais: { type: 'string' },
-        Estado: { type: 'string' },
-        Ciudad: { type: 'string' },
-        Calle: { type: 'string' },
-        Numero: { type: 'number' }
+        id: { type: 'number' },
+        canchaid: { type: 'number' },
+        fechacreacion: {
+            type: 'string',
+            format: 'date'
+        },
+        fechaprogramada: {
+            type: 'string',
+            format: 'date'
+        },
+        comunidadid: { type: 'number' }
     },
-    required: ['Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
+    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
 
 }
 
@@ -81,32 +85,34 @@ const genericSingleSignUp = {
     $id: 'genericSingleSignUp',
     type: 'object',
     properties: {
-        idJugador: { type: 'number' },
-        idPartido: { type: 'number' }
+        id: { type: 'number' },
+        idjugador: { type: 'number' },
+        idpartido: { type: 'number' }
     },
-    required: ['idJugador', 'idPartido']
+    required: ['id', 'idjugador', 'idpartido']
 }
 
 const genericSingleCommunityPlayer = {
     $id: 'genericSingleCommunityPlayer',
     type: 'object',
     properties: {
-        idJugador: { type: 'number' },
-        idComunidad: { type: 'number' }
+        id: { type: 'number' },
+        idjugador: { type: 'number' },
+        idcomunidad: { type: 'number' }
     },
-    required: ['idJugador', 'idComunidad']
+    required: ['id', 'idjugador', 'idcomunidad']
 }
 
-// un telefono tiene CodPais, codArea, Numero. Todos son strings
 const genericSinglePhone = {
     $id: 'genericSinglePhone',
     type: 'object',
     properties: {
-        CodPais: { type: 'string' },
-        CodArea: { type: 'string' },
-        Numero: { type: 'string' }
+        id: { type: 'number' },
+        codpais: { type: 'string' },
+        codarea: { type: 'string' },
+        numero: { type: 'string' }
     },
-    required: ['CodPais', 'CodArea', 'Numero']
+    required: ['id', 'codpais', 'codarea', 'numero']
 }
 
 

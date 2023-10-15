@@ -30,12 +30,12 @@ const postSchema = {
     body: {
         type: 'object',
         properties: {
-            canchaId: { type: 'number'},
-            fechaCreacion: { type: 'string'},
-            fechaProgramada: { type: 'string'},
-            comunidadId: { type: 'number'}
+            canchaid: { type: 'number' },
+            fechacreacion: { type: 'string' },
+            fechaprogramada: { type: 'string' },
+            comunidadid: { type: 'number' }
         },
-        required: ['canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
+        required: ['canchaid', 'fechacreacion', 'fechaprogramada']
     },
     response: {
         201: {
@@ -52,17 +52,36 @@ const putSchema = {
     body: {
         type: 'object',
         properties: {
-            id: { type: 'number'},
-            canchaId: { type: 'number'},
-            fechaCreacion: { type: 'string'},
-            fechaProgramada: { type: 'string'},
-            comunidadId: { type: 'number'}
+            id: { type: 'number' },
+            canchaid: { type: 'number' },
+            fechacreacion: { type: 'string' },
+            fechaprogramada: { type: 'string' },
+            comunidadid: { type: 'number' }
         },
-        required: ['id', 'canchaId', 'fechaCreacion', 'fechaProgramada', 'comunidadId']
+        required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
     },
     response: {
         200: {
             $ref: 'genericSingleMatch'
+        },
+        400: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+const postJugadoresSchema = {
+    tags: ['Inscribir'],
+    description: 'Inscribirse a un partido. La inscripción se agrega a la tabla ParticipacionPartido',
+    body: {
+        type: 'object',
+        properties: {
+            jugadorid: { type: 'number' }
+        },
+        required: ['jugadorid']
+    },
+    response: {
+        200: {
+            $ref: 'genericSingleSignUp'
         },
         400: {
             $ref: 'genericErrorMessage'
@@ -74,5 +93,6 @@ export {
     getAllSchema,
     getByIdSchema,
     postSchema,
-    putSchema
+    putSchema,
+    postJugadoresSchema
 }

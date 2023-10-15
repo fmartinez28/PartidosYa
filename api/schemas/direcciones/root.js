@@ -4,7 +4,7 @@ const getAllSchema = {
         200: {
             type: 'array',
             items: {
-                $ref: 'genericSingleAddress' // TODO
+                $ref: 'genericSingleAddress'
             }
         },
         400: {
@@ -25,18 +25,18 @@ const getByIdSchema = {
     }
 }
 
-const postSchema = {//
+const postSchema = {
     description: 'Crea una entrada de la entidad Dirección',
     body: {
         type: 'object',
         properties: {
-            Pais: { type: 'string' },
-            Estado: { type: 'string' },
-            Ciudad: { type: 'string' },
-            Calle: { type: 'string' },
-            Numero: { type: 'number' }
+            pais: { type: 'string' },
+            estado: { type: 'string' },
+            ciudad: { type: 'string' },
+            calle: { type: 'string' },
+            numero: { type: 'number' }
         },
-        required: ['Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
+        required: ['pais', 'estado', 'ciudad', 'calle', 'numero']
     },
     response: {
         201: {
@@ -54,13 +54,13 @@ const putSchema = {
         type: 'object',
         properties: {
             id: { type: 'number' },
-            Pais: { type: 'string' },
-            Estado: { type: 'string' },
-            Ciudad: { type: 'string' },
-            Calle: { type: 'string' },
-            Numero: { type: 'number' }
+            pais: { type: 'string' },
+            estado: { type: 'string' },
+            ciudad: { type: 'string' },
+            calle: { type: 'string' },
+            numero: { type: 'number' }
         },
-        required: ['id', 'Pais', 'Estado', 'Ciudad', 'Calle', 'Numero']
+        required: ['id', 'pais', 'estado', 'ciudad', 'calle', 'numero']
     },
     response: {
         200: {

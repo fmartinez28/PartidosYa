@@ -4,7 +4,7 @@ const getAllSchema = {
         200: {
             type: 'array',
             items: {
-                $ref: 'genericSingleCommunity' // TODO
+                $ref: 'genericSingleCommunity'
             }
         },
         400: {
@@ -64,16 +64,39 @@ const putSchema = {
     }
 }
 
-// corresponde al POST /:id que recibe un UsuarioID
+const deleteSchema = {
+    description: 'Elimina una entrada de la entidad Comunidad',
+    response: {
+        200: {
+            $ref: 'genericSingleCommunity'
+        },
+        404: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
 const inscribirJugadorSchema = {
     description: 'Inscribe un jugador a una comunidad',
     body: {
         type: 'object',
         properties: {
-            idUsuario: { type: 'number' }
+            idusuario: { type: 'number' }
         },
-        required: ['idUsuario']
+        required: ['idusuario']
     },
+    response: {
+        200: {
+            $ref: 'genericSingleCommunityPlayer'
+        },
+        404: {
+            $ref: 'genericErrorMessage'
+        }
+    }
+}
+
+const desinscribirJugadorSchema = {
+    description: 'Desinscribe un jugador de una comunidad',
     response: {
         200: {
             $ref: 'genericSingleCommunityPlayer'
@@ -89,5 +112,6 @@ export {
     getByIdSchema,
     putSchema,
     postSchema,
-    inscribirJugadorSchema
+    inscribirJugadorSchema,
+    desinscribirJugadorSchema
 }

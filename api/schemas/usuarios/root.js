@@ -1,5 +1,8 @@
 import { genericSingleUserSchema, genericErrorMessageSchema } from '../generic/root.js';
 
+
+//TODO: Agregar los 'body' a un generic también?
+
 const getAllSchema = {
     description: 'Retorna todas las entradas de la entidad Usuario',
     response: {
@@ -32,16 +35,16 @@ const postSchema = {
     body: {
         type: 'object',
         properties: {
-            nombre: { type: 'string'},
-            apellido: { type: 'string'},
-            fechaNac: { 
+            nombre: { type: 'string' },
+            apellido: { type: 'string' },
+            fechanac: {
                 type: 'string',
                 format: 'date'
-                },
-            telefonoId: { type: 'number'},
-            direccionId: { type: 'number'},
+            },
+            telefonoid: { type: 'number' },
+            direccionid: { type: 'number' },
         },
-        required: ['nombre', 'apellido', 'fechaNac', 'telefonoId', 'direccionId']
+        required: ['nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
     },
     response: {
         201: {
@@ -58,17 +61,17 @@ const putSchema = {
     body: {
         type: 'object',
         properties: {
-            id: { type: 'number'},
-            nombre: { type: 'string'},
-            apellido: { type: 'string'},
-            fechaNac: { 
+            id: { type: 'number' },
+            nombre: { type: 'string' },
+            apellido: { type: 'string' },
+            fechanac: {
                 type: 'string',
                 format: 'date'
-                },
-            telefonoId: { type: 'number'},
-            direccionId: { type: 'number'},
+            },
+            telefonoid: { type: 'number' },
+            direccionid: { type: 'number' },
         },
-        required: ['id', 'nombre', 'apellido', 'fechaNac', 'telefonoId', 'direccionId']
+        required: ['id', 'nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
     },
     response: {
         200: {

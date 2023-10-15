@@ -1,4 +1,3 @@
-// telefonos
 const getAllSchema = {
     description: 'Obtiene todas las entradas de la entidad Telefono',
     response: {
@@ -26,17 +25,16 @@ const getByIdSchema = {
     }
 }
 
-// un telefono tiene CodPais, codArea, Numero. Todos son strings
 const postSchema = {
     description: 'Crea una entrada de la entidad Telefono',
     body: {
         type: 'object',
         properties: {
-            CodPais: { type: 'string' },
-            CodArea: { type: 'string' },
-            Numero: { type: 'string' }
+            codpais: { type: 'string' },
+            codarea: { type: 'string' },
+            numero: { type: 'string' }
         },
-        required: ['CodPais', 'CodArea', 'Numero']
+        required: ['codpais', 'codarea', 'numero']
     },
     response: {
         201: {
@@ -54,11 +52,11 @@ const putSchema = {
         type: 'object',
         properties: {
             id: { type: 'number' },
-            CodPais: { type: 'string' },
-            CodArea: { type: 'string' },
-            Numero: { type: 'string' }
+            codpais: { type: 'string' },
+            codarea: { type: 'string' },
+            numero: { type: 'string' }
         },
-        required: ['id', 'CodPais', 'CodArea', 'Numero']
+        required: ['id', 'codpais', 'codarea', 'numero']
     },
     response: {
         200: {
