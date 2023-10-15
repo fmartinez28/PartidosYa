@@ -3,7 +3,7 @@ import { build } from '../../helper.js';
 
 test("GET de todos los usuarios", async (t) => {
     const app = await build(t);
-
+    
     const res = await app.inject({
         url: '/usuarios',
         method: 'GET'
