@@ -2,6 +2,7 @@ import { test } from 'tap';
 import { build } from '../../helper.js';
 import { query } from '../../../db/index.js';
 import * as normalize from '../../../utils/dbNormalization.js';
+import { purge } from '../../../utils/dbPurge.js';
 
 test("GET de todos los usuarios", async (t) => {
     const app = await build(t);
@@ -11,19 +12,14 @@ test("GET de todos los usuarios", async (t) => {
         method: 'GET'
     });
     t.equal(res.statusCode, 200);
-})
+});
+
+
 test("GET de todos los usuarios cuando no hay usuarios", async (t) => {
     const app = await build(t);
     await normalize.begin();
 
-    await query('DELETE FROM "comunidadjugador"');
-    await query('DELETE FROM "participacionpartido"');
-    await query('DELETE FROM "partido"');
-    await query('DELETE FROM "canchas"');
-    await query('DELETE FROM "comunidades"');
-    await query('DELETE FROM "propietarios"');
-    await query('DELETE FROM "jugadores"');
-    await query('DELETE FROM "usuarios"');
+    await purge('usuarios');
 
     const res = await app.inject({
         url: '/usuarios',
