@@ -40,10 +40,10 @@ export default async function (fastify, opts) {
 
     fastify.post('/', { schema: communitySchemas.postSchema }, async function (request, reply) {
         const { nombre } = request.body;
-        const queryresult = await query('INSERT INTO "comunidades" ("Nombre") VALUES ($1) RETURNING *', [nombre]);
+        const queryresult = await query('INSERT INTO "comunidades" ("nombre") VALUES ($1) RETURNING *', [nombre]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ message: 'Error al crear la comunidad' });
-        return reply.send(queryresult.rows[0]);
+        return reply.status(201).send(queryresult.rows[0]);
     });
 
     fastify.put('/:id', { schema: communitySchemas.putSchema }, async function (request, reply) {
@@ -52,7 +52,7 @@ export default async function (fastify, opts) {
         try {
             if (paramId != bodyId) return reply.status(409).send({ message: 'La id del cuerpo y del parámetro no coinciden.' })
             const { nombre } = request.body;
-            const queryresult = await query('UPDATE "comunidades" SET "Nombre" = $1 WHERE "id" = $2 RETURNING *', [nombre, paramId]);
+            const queryresult = await query('UPDATE "comunidades" SET "nombre" = $1 WHERE "id" = $2 RETURNING *', [nombre, paramId]);
             const rows = queryresult.rows;
             if (rows.length === 0)
                 return reply.status(404).send({ message: 'Comunidad no encontrada' });
