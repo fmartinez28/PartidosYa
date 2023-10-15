@@ -2,6 +2,7 @@ import { test } from 'tap';
 import { build } from '../../helper.js';
 import * as normalize from '../../../utils/dbNormalization.js';
 import { query } from '../../../db/index.js';
+import { purge } from '../../../utils/dbPurge.js';
 
 test("GET de todas las direcciones", async (t) => {
     const app = await build(t);
@@ -17,16 +18,9 @@ test("GET de todas las direcciones", async (t) => {
 test("GET de todas las direcciones, no existen registros en la base", async (t) => {
     const app = await build(t);
     await normalize.begin();
-    await query('DELETE FROM "comunidadjugador"');
-    await query('DELETE FROM "participacionpartido"');
-    await query('DELETE FROM "partido"');
-    await query('DELETE FROM "canchas"');
-    await query('DELETE FROM "comunidades"');
-    await query('DELETE FROM "propietarios"');
-    await query('DELETE FROM "jugadores"');
-    await query('DELETE FROM "usuarios"');
-    await query('DELETE FROM "telefonos"');
-    await query('DELETE FROM "direcciones"');
+
+    await purge('direcciones');
+
     const res = await app.inject({
         url: '/direcciones',
         method: 'GET'
@@ -61,7 +55,7 @@ test("GET de una dirección que no existe", async (t) => {
 
 test('POST de una dirección correcto', async (t) => {
     const app = await build(t);
-
+    await normalize.begin();
     const postPayload = {
         pais: "Uruguay",
         estado: "Salto",
@@ -75,7 +69,9 @@ test('POST de una dirección correcto', async (t) => {
         method: 'POST',
         payload: postPayload
     });
-
+    t.teardown(async() => {
+        await normalize.rollback();
+    })
     t.equal(res.statusCode, 200);
 });
 
@@ -105,21 +101,23 @@ test('PUT de una dirección correcto', async (t) => {
     const postRes = await app.inject({
         url: '/direcciones/',
         method: 'POST',
-        postPayload: {
+        payload: {
+            pais: "Uruguay",
             estado: 'Salto',
             ciudad: 'Salto',
-            call: 'Uruguay',
+            calle: 'Uruguay',
             numero: 911
         }
     });
-    const updatableUser = JSON.parse(postRes.payload);
-    const updatableUserId = updatableUser.id;
+    const updatableAddress = JSON.parse(postRes.payload);
+    const updatableAddressId = updatableAddress.id;
+    console.log(updatableAddress);
     const res = await app.inject({
-        url: `/direcciones/${updatableUserId}`,
+        url: `/direcciones/${updatableAddressId}`,
         method: 'PUT',
-        putPayload: {
-            id: 1,
-            pais: "Uruguay",
+        payload: {
+            id: updatableAddressId,
+            pais: "Urug",
             estado: "Salto",
             ciudad: "Constitucion",
             calle: "Uruguay",
@@ -156,19 +154,30 @@ test('PUT de una dirección incorrecto, no coinciden id de url y el body', async
 test('PUT de una dirección incorrecto, no existe la direccion', async (t) => {
     const app = await build(t);
 
-    const putPayload = {
-        id: 0,
-        pais: "Uruguay",
-        estado: "Salto",
-        ciudad: "Salto",
-        calle: "Uruguay",
-        numero: 123
-    };
-
+    const postRes = await app.inject({
+        url: '/direcciones/',
+        method: 'POST',
+        payload: {
+            pais: "Uruguay",
+            estado: 'Salto',
+            ciudad: 'Salto',
+            calle: 'Uruguay',
+            numero: 911
+        }
+    });
+    const updatableAddress = JSON.parse(postRes.payload);
+    const updatableAddressId = updatableAddress.id;
     const res = await app.inject({
-        url: '/direcciones/0',
+        url: `/direcciones/${updatableAddressId+1}`,
         method: 'PUT',
-        payload: putPayload
+        payload: {
+            id: updatableAddressId+1,
+            pais: "Uruguay",
+            estado: "Salto",
+            ciudad: "Constitucion",
+            calle: "Uruguay",
+            numero: 123
+        }
     });
 
     t.equal(res.statusCode, 404);

@@ -35,7 +35,7 @@ export default async function (fastify, opts) {
         try {
             if (paramId != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
             const { pais, estado, ciudad, calle, numero } = request.body;
-            const queryresult = await query('UPDATE "direcciones" SET "pais" = $1, "estado" = $2, "ciudad" = $3, "calle" = $4, "numero" = $5 WHERE "id" = $5 RETURNING *', [pais, estado, ciudad, calle, numero, paramId]);
+            const queryresult = await query('UPDATE "direcciones" SET "pais" = $1, "estado" = $2, "ciudad" = $3, "calle" = $4, "numero" = $5 WHERE "id" = $6 RETURNING *', [pais, estado, ciudad, calle, numero, paramId]);
             const rows = queryresult.rows;
             if (rows.length === 0)
                 return reply.status(404).send({ error: 'Direccion no encontrada' });
