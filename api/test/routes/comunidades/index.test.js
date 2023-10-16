@@ -266,8 +266,7 @@ test("POST jugador a comunidad, funciona", async (t)=> {
         }
     });
     const comunidadId = JSON.parse(comunidadRes.payload).id;
-    console.log(comunidadId);
-    console.log(jugadorId);
+
     //Agrego el jugador a la comunidad
     const res = await app.inject({
         url: `/comunidades/${comunidadId}/jugadores`,
@@ -280,4 +279,101 @@ test("POST jugador a comunidad, funciona", async (t)=> {
         await normalize.rollback();
     })
     t.equal(res.statusCode, 201);
+})
+test("GET de todos los jugadores de una comunidad, funciona", async (t)=> {
+    const app = await build(t);
+    normalize.begin();
+    //Creo un jugador
+    const direccionRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+    const direccionId = JSON.parse(direccionRes.payload).id;
+
+    const telefonoRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+    const telefonoId = JSON.parse(telefonoRes.payload).id;
+
+    const usuarioRes = await app.inject({
+        url: '/usuarios',
+        method: 'POST',
+        payload: {
+            nombre: "Usuario de prueba",
+            apellido: "Apellido de prueba",
+            fechanac: "2020-01-01",
+            telefonoid: telefonoId,
+            direccionid: direccionId
+        }
+    })
+    const usuarioId = JSON.parse(usuarioRes.payload).id;
+
+    const jugadorRes = await app.inject({
+        url: '/jugadores',
+        method: 'POST',
+        payload: {
+            usuarioid: usuarioId
+        }
+    });
+    const jugadorId = JSON.parse(jugadorRes.payload).usuarioid;
+    //Creo una comunidad
+    const comunidadRes = await app.inject({
+        url: '/comunidades',
+        method: 'POST',
+        payload: {
+            nombre: 'ComunidadDePruebaParaJugadores'
+        }
+    });
+    const comunidadId = JSON.parse(comunidadRes.payload).id;
+
+    //Agrego el jugador a la comunidad
+    await app.inject({
+        url: `/comunidades/${comunidadId}/jugadores`,
+        payload: {
+            jugadorid: jugadorId
+        },
+        method: 'POST'
+    });
+    const res = await app.inject({
+        url: `/comunidades/${comunidadId}/jugadores`,
+        method: 'GET'
+    })
+    t.teardown(async () => {
+        await normalize.rollback();
+    })
+    t.equal(res.statusCode, 200);
+})
+test("GET de todos los jugadores de una comunidad, no hay jugadores", async (t)=> {
+    const app = await build(t);
+    normalize.begin();
+    const comunidadRes = await app.inject({
+        url: '/comunidades',
+        method: 'POST',
+        payload: {
+            nombre: 'ComunidadDePruebaParaJugadores'
+        }
+    })
+    const comunidadId = JSON.parse(comunidadRes.payload).id;
+
+    const res = await app.inject({
+        url: `/comunidades/${comunidadId}/jugadores`,
+        method: 'GET'
+    })
+    t.teardown(async () => {
+        await normalize.rollback();
+    })
+    t.equal(res.statusCode, 204);
 })

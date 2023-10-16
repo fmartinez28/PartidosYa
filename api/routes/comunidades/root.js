@@ -70,7 +70,7 @@ export default async function (fastify, opts) {
         const queryresult = await query('SELECT * FROM "usuarios" WHERE "id" IN (SELECT "jugadorid" FROM "comunidadjugador" WHERE "comunidadid" = $1)', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(404).send({ message: 'Comunidad no encontrada' });
+            return reply.status(204).send({ message: 'No hay jugadores en la comunidad' });
         return reply.send(rows);
     });
 
