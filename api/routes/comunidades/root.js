@@ -35,7 +35,7 @@ export default async function (fastify, opts) {
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ message: 'Comunidad no encontrada' });
-        return reply.send(rows[0]);
+        return reply.status(204).send(rows[0]);
     });
 
     fastify.post('/', { schema: communitySchemas.postSchema }, async function (request, reply) {
