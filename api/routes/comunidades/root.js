@@ -23,15 +23,15 @@ export default async function (fastify, opts) {
     // un Usuario se puede agregar a una comunidad
     //DONE: Esto no debería ser /comunidades/idcomunidad/jugadores? También podrían tener un DELETE.
     fastify.post('/:id/jugadores', { schema: communitySchemas.inscribirJugadorSchema }, async function (request, reply) {
-        const { JugadorId } = request.body;
-        const queryresult = await query('INSERT INTO "ComunidadJugador" ("ComunidadId", "JugadorId") VALUES ($1, $2) RETURNING *', [request.params.id, JugadorId]);
+        const { jugadorid } = request.body;
+        const queryresult = await query('INSERT INTO "comunidadjugador" ("comunidadid", "jugadorid") VALUES ($1, $2) RETURNING *', [request.params.id, jugadorid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ message: 'Error al agregar el jugador a la comunidad' });
-        return reply.send(queryresult.rows[0]);
+        return reply.status(201).send(queryresult.rows[0]);
     });
 
     fastify.delete('/:id/jugadores/:jugadorId', { schema: communitySchemas.desinscribirJugadorSchema }, async function (request, reply) {
-        const queryresult = await query('DELETE FROM "ComunidadJugador" WHERE "ComunidadId" = $1 AND "JugadorId" = $2 RETURNING *', [request.params.id, request.params.jugadorId]);
+        const queryresult = await query('DELETE FROM "comunidadjugador" WHERE "comunidadid" = $1 AND "jugadorid" = $2 RETURNING *', [request.params.id, request.params.jugadorId]);
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(404).send({ message: 'Comunidad no encontrada' });
