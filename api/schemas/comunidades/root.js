@@ -81,9 +81,9 @@ const inscribirJugadorSchema = {
     body: {
         type: 'object',
         properties: {
-            idusuario: { type: 'number' }
+            jugadorid: { type: 'number' }
         },
-        required: ['idusuario']
+        required: ['jugadorid']
     },
     response: {
         200: {
