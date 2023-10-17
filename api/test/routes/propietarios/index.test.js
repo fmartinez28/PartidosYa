@@ -114,28 +114,6 @@ test("DELETE de un propietario funciona", async (t) => {
     const app = await build(t);
     await begin();
 
-
-    const res = await app.inject({
-        url: '/jugadores',
-        method: 'POST',
-        payload: {
-            usuarioid: 0
-        }
-    });
-
-    t.teardown(async () => {
-        await rollback();
-    });
-
-    t.equal(res.statusCode, 500);
-});
-
-test("DELETE de un jugador funciona", async (t) => {
-    const app = await build(t);
-    await begin();
-    /*TODO: todo esto repetido se debería meter en algun objeto para reutilizar, a tomar en cuenta para las 
-    siguientes entregas, hacemos un cleanup de todo esto para que quede más nice
-    */
     const direccionRes = await app.inject({
         url: '/direcciones',
         method: 'POST',
