@@ -65,6 +65,33 @@ test("GET de un solo usuario que no existe", async (t)=> {
 test("POST a usuarios, funcionando", async (t)=> {
     const app = await build(t);
     await normalize.begin();
+
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const res = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -72,10 +99,11 @@ test("POST a usuarios, funcionando", async (t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     });
+    
     t.teardown(async () => {
         await normalize.rollback();
     })
@@ -106,6 +134,32 @@ test("PUT a usuarios, funcionando", async (t)=> {
     const app = await build(t);
     await normalize.begin();
 
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const postRes = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -113,8 +167,8 @@ test("PUT a usuarios, funcionando", async (t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     });
     const updatableUser = JSON.parse(postRes.payload);
@@ -127,8 +181,8 @@ test("PUT a usuarios, funcionando", async (t)=> {
             nombre: "AHORA NO SOY JUAN",
             apellido: "NI PEREZ",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
     t.teardown(async () => {
@@ -141,6 +195,32 @@ test("PUT a usuarios, mismatch de ids de body/param", async (t)=> {
     const app = await build(t);
     await normalize.begin();
 
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const postRes = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -148,8 +228,8 @@ test("PUT a usuarios, mismatch de ids de body/param", async (t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     });
     const updatableUser = JSON.parse(postRes.payload);
@@ -162,8 +242,8 @@ test("PUT a usuarios, mismatch de ids de body/param", async (t)=> {
             nombre: "AHORA NO SOY JUAN",
             apellido: "NI PEREZ",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
     t.teardown(async () => {
@@ -176,6 +256,32 @@ test("PUT a usuarios, tira 500 por no poder actualizar", async (t)=> {
     const app = await build(t);
     await normalize.begin();
 
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const postRes = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -183,8 +289,8 @@ test("PUT a usuarios, tira 500 por no poder actualizar", async (t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     });
     const updatableUser = JSON.parse(postRes.payload);
@@ -197,8 +303,8 @@ test("PUT a usuarios, tira 500 por no poder actualizar", async (t)=> {
             nombre: "AHORA NO SOY JUAN",
             apellido: "NI PEREZ",
             fechanac: "2020-01-01",
-            telefonoid: 0,
-            direccionid: 0
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     })
     t.teardown(async () => {
@@ -211,6 +317,32 @@ test("DELETE a usuarios, funcionando", async (t)=> {
     const app = await build(t);
     await normalize.begin();
 
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const postRes = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -218,8 +350,8 @@ test("DELETE a usuarios, funcionando", async (t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId, 
+            direccionid: direccionId
         }
     });
     const updatableUser = JSON.parse(postRes.payload);
@@ -238,6 +370,32 @@ test("DELETE a usuarios, tira 500", async (t)=> {
     const app = await build(t);
     await normalize.begin();
 
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const postRes = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -245,8 +403,8 @@ test("DELETE a usuarios, tira 500", async (t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     });
     const updatableUser = JSON.parse(postRes.payload);
@@ -260,9 +418,36 @@ test("DELETE a usuarios, tira 500", async (t)=> {
     })
     t.equal(res.statusCode, 500);
 });
+
 test("DELETE a usuarios, usuario no existe", async (t)=> {
     const app = await build(t);
     await normalize.begin();
+
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
 
     const postRes = await app.inject({
         url: '/usuarios/',
@@ -271,8 +456,8 @@ test("DELETE a usuarios, usuario no existe", async (t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
-            direccionid: 1
+            telefonoid: telefonoId,
+            direccionid: direccionId
         }
     });
     const updatableUser = JSON.parse(postRes.payload);
