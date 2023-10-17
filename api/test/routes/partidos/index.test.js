@@ -144,6 +144,18 @@ test(("POST de un partido, NO valido"), async(t)=> {
     const app = await build(t);
     await normalize.begin();
 
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const direccionRes = await app.inject({
         url: '/direcciones/',
         method: 'POST',
@@ -164,7 +176,7 @@ test(("POST de un partido, NO valido"), async(t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
+            telefonoid: telefonoId,
             direccionid: direccionId
         }
     })
@@ -204,10 +216,10 @@ test(("POST de un partido, NO valido"), async(t)=> {
         url: `/partidos/`,
         method: 'POST',
         payload: {
-            canchaid: 1,
+            canchaid: canchaId,
             fechacreacion: '2020-01-01',
             fechaprogramada: '2020-01-02',
-            comunidadid: 1
+            comunidadid: comunidadId
         }
     });
     t.teardown(async () => {
@@ -233,6 +245,18 @@ test(("PUT de un partido, funciona"), async(t)=> {
     });
     const direccionId = JSON.parse(direccionRes.payload).id;
 
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const usuarioRes = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -240,7 +264,7 @@ test(("PUT de un partido, funciona"), async(t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
+            telefonoid: telefonoId,
             direccionid: direccionId
         }
     })
@@ -320,7 +344,20 @@ test(("PUT de un partido, no encontrado"), async(t)=> {
             numero: 911
         }
     });
+
     const direccionId = JSON.parse(direccionRes.payload).id;
+
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
 
     const usuarioRes = await app.inject({
         url: '/usuarios/',
@@ -329,7 +366,7 @@ test(("PUT de un partido, no encontrado"), async(t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
+            telefonoid: telefonoId,
             direccionid: direccionId
         }
     })
@@ -412,6 +449,18 @@ test(("POST de un jugador a un partido, funciona"), async(t)=> {
     });
     const direccionId = JSON.parse(direccionRes.payload).id;
 
+    const telefonosRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+
+    const telefonoId = JSON.parse(telefonosRes.payload).id;
+
     const usuarioRes = await app.inject({
         url: '/usuarios/',
         method: 'POST',
@@ -419,7 +468,7 @@ test(("POST de un jugador a un partido, funciona"), async(t)=> {
             nombre: "Juan",
             apellido: "Perez",
             fechanac: "2020-01-01",
-            telefonoid: 1,
+            telefonoid: telefonoId,
             direccionid: direccionId
         }
     })
