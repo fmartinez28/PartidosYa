@@ -34,8 +34,22 @@ test("GET de todas las direcciones, no existen registros en la base", async (t) 
 test("GET de una sola direccion", async (t) => {
     const app = await build(t);
 
+    const direccionesRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+
+    const direccionId = JSON.parse(direccionesRes.payload).id;
+
     const res = await app.inject({
-        url: '/direcciones/1',
+        url: `/direcciones/${direccionId}`,
         method: 'GET'
     });
 
