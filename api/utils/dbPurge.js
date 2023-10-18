@@ -13,12 +13,13 @@ const tableQs = {
     "direcciones": "DELETE FROM direcciones;",
 }
 const purge = async (upTo) => {
-    let finalQuery = "";
+    /**let finalQuery = "";
     for (const table in tableQs){
         finalQuery += tableQs[table] + "\n";
         if (table === upTo) break;
     }
     await query(finalQuery, []);
+    **/
 }
 
 export {

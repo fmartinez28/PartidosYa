@@ -189,17 +189,17 @@ test("PUT de una cancha funciona", async (t) => {
         }
     });
 
-    const postId = JSON.parse(postRes.payload).id;
+    const canchaId = JSON.parse(postRes.payload).id;
     
     const res = await app.inject({
-        url: `/canchas/${postId}`,
+        url: `/canchas/${canchaId}`,
         method: 'PUT',
         payload: {
             id: canchaId,
             nombre: "Cancha de prueba 2",
             direccionid: direccionId,
             canchanum: canchaId,
-            propietarioid: propietarioId
+            propietarioid: usuarioId
         }
     });
 
@@ -282,8 +282,8 @@ test("PUT de una cancha con id de cuerpo y parámetro diferentes no funciona", a
             id: postId+1,
             nombre: "Cancha de prueba 2",
             direccionid: direccionId,
-            canchanum: canchaId,
-            propietarioid: propietarioId
+            canchanum: postId,
+            propietarioid: usuarioId
         }
     });
 
@@ -307,7 +307,7 @@ test("DELETE de una cancha funciona", async (t) => {
             ciudad: "La Plata",
             calle: "Calle de prueba",
             numero: 123
-        }
+        }   
     })
 
     const direccionId = JSON.parse(direccionRes.payload).id;

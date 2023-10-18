@@ -74,6 +74,7 @@ test("POST de un propietario funciona", async (t) => {
             direccionid: direccionId
         }
     })
+
     const usuarioId = JSON.parse(usuarioRes.payload).id;
 
     const res = await app.inject({
