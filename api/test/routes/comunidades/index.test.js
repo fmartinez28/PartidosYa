@@ -56,7 +56,7 @@ test("GET de una comunidad", async (t) => {
     const comunidadId = JSON.parse(comunidadRes.payload).id;
 
     const res = await app.inject({
-        url: `/comunidades/${comunidadId}}`,
+        url: `/comunidades/${comunidadId}`,
         method: 'GET'
     });
 

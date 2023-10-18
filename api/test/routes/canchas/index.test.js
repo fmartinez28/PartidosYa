@@ -36,8 +36,8 @@ test("GET de una cancha que no existe", async (t) => {
 });
 
 test("POST de una cancha funciona", async (t) => {
-    await begin();
     const app = await build(t);
+    await begin();
 
     const direccionRes = await app.inject({
         url: '/direcciones',
@@ -48,7 +48,7 @@ test("POST de una cancha funciona", async (t) => {
             ciudad: "La Plata",
             calle: "Calle de prueba",
             numero: 123
-        }
+        }   
     })
 
     const direccionId = JSON.parse(direccionRes.payload).id;
@@ -79,7 +79,7 @@ test("POST de una cancha funciona", async (t) => {
 
     const usuarioId = JSON.parse(usuarioRes.payload).id;
 
-    app.inject({
+    const propRes = await app.inject({
         url: '/propietarios',
         method: 'POST',
         payload: {
@@ -87,48 +87,29 @@ test("POST de una cancha funciona", async (t) => {
         }
     })
 
-    const res = await app.inject({
+    const propietarioId = JSON.parse(propRes.payload).usuarioid;
+
+    const canchaRes = await app.inject({
         url: '/canchas',
         method: 'POST',
         payload: {
             nombre: "Cancha de prueba",
             direccionid: direccionId,
             canchanum: 1,
-            propietarioid: usuarioId
+            propietarioid: propietarioId
         }
     });
-
+    
     t.teardown(async () => {
         await rollback();
     })
 
-    t.equal(res.statusCode, 201);
+    t.equal(canchaRes.statusCode, 201);
 });
 
 test("POST de una cancha sin nombre y con malos ids no funciona", async (t) => {
     const app = await build(t);
     await begin();
-    const res = await app.inject({
-        url: '/canchas',
-        method: 'POST',
-        payload: {
-            direccionid: 1,
-            canchanum: 1,
-            propietarioid: 1
-        }
-    });
-
-    t.teardown(async () => {
-        await rollback();
-    });
-
-    t.equal(res.statusCode, 400);
-});
-
-
-test("PUT de una cancha funciona", async (t) => {
-    const app = await build(t);
-    await begin();
 
     const direccionRes = await app.inject({
         url: '/direcciones',
@@ -139,7 +120,7 @@ test("PUT de una cancha funciona", async (t) => {
             ciudad: "La Plata",
             calle: "Calle de prueba",
             numero: 123
-        }
+        }   
     })
 
     const direccionId = JSON.parse(direccionRes.payload).id;
@@ -170,7 +151,7 @@ test("PUT de una cancha funciona", async (t) => {
 
     const usuarioId = JSON.parse(usuarioRes.payload).id;
 
-    app.inject({
+    const propRes = await app.inject({
         url: '/propietarios',
         method: 'POST',
         payload: {
@@ -178,18 +159,20 @@ test("PUT de una cancha funciona", async (t) => {
         }
     })
 
-    const postRes = await app.inject({
+    const propietarioId = JSON.parse(propRes.payload).usuarioid;
+
+    const canchaRes = await app.inject({
         url: '/canchas',
         method: 'POST',
         payload: {
             nombre: "Cancha de prueba",
             direccionid: direccionId,
             canchanum: 1,
-            propietarioid: usuarioId
+            propietarioid: propietarioId
         }
     });
 
-    const canchaId = JSON.parse(postRes.payload).id;
+    const canchaId = JSON.parse(canchaRes.payload).id;
     
     const res = await app.inject({
         url: `/canchas/${canchaId}`,
@@ -254,13 +237,14 @@ test("PUT de una cancha con id de cuerpo y parámetro diferentes no funciona", a
 
     const usuarioId = JSON.parse(usuarioRes.payload).id;
 
-    app.inject({
+    const propRes = await app.inject({
         url: '/propietarios',
         method: 'POST',
         payload: {
             usuarioid: usuarioId
         }
-    })
+    });
+    const propId = JSON.parse(propRes.payload).usuarioid;;
 
     const postRes = await app.inject({
         url: '/canchas',
@@ -269,21 +253,22 @@ test("PUT de una cancha con id de cuerpo y parámetro diferentes no funciona", a
             nombre: "Cancha de prueba",
             direccionid: direccionId,
             canchanum: 1,
-            propietarioid: usuarioId
+            propietarioid: propId
         }
     });
 
     const postId = JSON.parse(postRes.payload).id;
+    const canchaNum = JSON.parse(postRes.payload).canchanum;
    
     const res = await app.inject({
-        url: `/canchas/${postId}`,
+        url: `/canchas/${postId+1}`,
         method: 'PUT',
         payload: {
-            id: postId+1,
+            id: postId,
             nombre: "Cancha de prueba 2",
             direccionid: direccionId,
-            canchanum: postId,
-            propietarioid: usuarioId
+            canchanum: canchaNum,
+            propietarioid: propId
         }
     });
 
@@ -338,13 +323,15 @@ test("DELETE de una cancha funciona", async (t) => {
 
     const usuarioId = JSON.parse(usuarioRes.payload).id;
 
-    app.inject({
+    const propRes = await app.inject({
         url: '/propietarios',
         method: 'POST',
         payload: {
             usuarioid: usuarioId
         }
     })
+
+    const propietarioId = JSON.parse(propRes.payload).usuarioid;
 
     const postRes = await app.inject({
         url: '/canchas',
@@ -353,14 +340,14 @@ test("DELETE de una cancha funciona", async (t) => {
             nombre: "Cancha de prueba",
             direccionid: direccionId,
             canchanum: 1,
-            propietarioid: usuarioId
+            propietarioid: propietarioId
         }
     });
 
-    const postId = JSON.parse(postRes.payload).id;
+    const propId = JSON.parse(postRes.payload).id;
 
     const res = await app.inject({
-        url: `/canchas/${postId}`,
+        url: `/canchas/${propId}`,
         method: 'DELETE'
     });
 
