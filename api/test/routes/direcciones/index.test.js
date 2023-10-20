@@ -33,6 +33,7 @@ test("GET de todas las direcciones, no existen registros en la base", async (t) 
     */
 });
 
+
 test("GET de una sola direccion", async (t) => {
     const app = await build(t);
 
@@ -47,14 +48,13 @@ test("GET de una sola direccion", async (t) => {
             numero: 123
         }
     })
-
+    
     const direccionId = JSON.parse(direccionesRes.payload).id;
 
     const res = await app.inject({
         url: `/direcciones/${direccionId}`,
         method: 'GET'
     });
-
     t.equal(res.statusCode, 200);
 });
 
