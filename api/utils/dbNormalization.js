@@ -1,11 +1,11 @@
 import { query } from '../db/index.js';
 
 const begin = async () => {
-    await query('BEGIN;');
+    //console.log('ACA COMENZABA LA TRANSACCION, PERO YA NO');
 }
 
 const rollback = async () => {
-    await query('ROLLBACK;');
+    //console.log('ESTO ERA UN ROLLBACK, PERO YA NO');
 }
 
 export {

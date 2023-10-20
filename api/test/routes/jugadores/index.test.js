@@ -15,8 +15,55 @@ test("GET de todos los jugadores", async (t) => {
 test("GET de un solo jugador", async (t) => {
     const app = await build(t);
 
+    const direccionRes = await app.inject({
+        url: '/direcciones',
+        method: 'POST',
+        payload: {
+            pais: "Argentina",
+            estado: "Buenos Aires",
+            ciudad: "La Plata",
+            calle: "Calle de prueba",
+            numero: 123
+        }
+    })
+    const direccionId = JSON.parse(direccionRes.payload).id;
+
+    const telefonoRes = await app.inject({
+        url: '/telefonos',
+        method: 'POST',
+        payload: {
+            codpais: "54",
+            codarea: "221",
+            numero: "1234567"
+        }
+    })
+    const telefonoId = JSON.parse(telefonoRes.payload).id;
+
+    const usuarioRes = await app.inject({
+        url: '/usuarios',
+        method: 'POST',
+        payload: {
+            nombre: "Usuario de prueba",
+            apellido: "Apellido de prueba",
+            fechanac: "2020-01-01",
+            telefonoid: telefonoId,
+            direccionid: direccionId
+        }
+    })
+    const usuarioId = JSON.parse(usuarioRes.payload).id;
+
+    const jugadorRes = await app.inject({
+        url: '/jugadores',
+        method: 'POST',
+        payload: {
+            usuarioid: usuarioId
+        }
+    });
+
+    const jugadorId = JSON.parse(jugadorRes.payload).usuarioid;
+
     const res = await app.inject({
-        url: '/jugadores/1',
+        url: `/jugadores/${jugadorId}`,
         method: 'GET'
     });
     t.equal(res.statusCode, 200);

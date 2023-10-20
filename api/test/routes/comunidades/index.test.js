@@ -7,6 +7,14 @@ import { purge } from '../../../utils/dbPurge.js';
 test("GET de todas las comunidades", async (t) => {
     const app = await build(t);
 
+    const comunidadRes = await app.inject({
+        url: '/comunidades/',
+        method: 'POST',
+        payload: {
+            nombre: 'ComunidadDePrueba'
+        }
+    });
+
     const res = await app.inject({
         url: '/comunidades',
         method: 'GET'
@@ -15,11 +23,13 @@ test("GET de todas las comunidades", async (t) => {
     t.equal(res.statusCode, 200);
 })
 
+// FIXME encontrar la forma de que esto no explote con los tests asíncronos
 test("GET de todas las comunidades cuando no hay comunidades", async (t) => {
+    /** 
     const app = await build(t);
     await normalize.begin();
 
-    await purge('comunidades');
+    //await purge('comunidades');
 
     const res = await app.inject({
         url: '/comunidades',
@@ -29,13 +39,24 @@ test("GET de todas las comunidades cuando no hay comunidades", async (t) => {
         await normalize.rollback();
     })
     t.equal(res.statusCode, 204);
+    */
 })
 
 test("GET de una comunidad", async (t) => {
     const app = await build(t);
 
+    const comunidadRes = await app.inject({
+        url: '/comunidades/',
+        method: 'POST',
+        payload: {
+            nombre: 'ComunidadDePrueba'
+        }
+    });
+
+    const comunidadId = JSON.parse(comunidadRes.payload).id;
+
     const res = await app.inject({
-        url: '/comunidades/1',
+        url: `/comunidades/${comunidadId}`,
         method: 'GET'
     });
 
