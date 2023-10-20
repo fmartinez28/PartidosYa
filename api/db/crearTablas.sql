@@ -97,12 +97,12 @@ CREATE TABLE public.comunidadjugador (
 	CONSTRAINT comunidadjugador_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
 );
 
-INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(1, 'Uruguay', 'Salto', 'Salto', 'Uruguay', '911');
-INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(2, 'Uruguay', 'Montevideo', 'Cerro', 'Cerrito', '922');
-INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(1, '+598', '473', '911');
-INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(2, '+598', '473', '922');
-INSERT INTO usuarios(id, nombre, apellido, fechanac, telefonoid, direccionid) VALUES(1, 'Stego', 'Saurus', '1970-10-01', 1, 1);
-INSERT INTO usuarios(id, nombre, apellido, fechanac, telefonoid, direccionid) VALUES(2, 'Tyranno', 'Saurus', '1960-11-10', 1, 1);
+INSERT INTO direcciones(pais, estado, ciudad, calle, numero) VALUES('Uruguay', 'Salto', 'Salto', 'Uruguay', '911');
+INSERT INTO direcciones(pais, estado, ciudad, calle, numero) VALUES('Uruguay', 'Montevideo', 'Cerro', 'Cerrito', '922');
+INSERT INTO telefonos(codpais, codarea, numero) VALUES('+598', '473', '911');
+INSERT INTO telefonos(codpais, codarea, numero) VALUES('+598', '473', '922');
+INSERT INTO usuarios(nombre, apellido, fechanac, telefonoid, direccionid) VALUES('Stego', 'Saurus', '1970-10-01', 1, 1);
+INSERT INTO usuarios(nombre, apellido, fechanac, telefonoid, direccionid) VALUES('Tyranno', 'Saurus', '1960-11-10', 1, 1);
 INSERT INTO jugadores(usuarioid) VALUES(1); 
 INSERT INTO jugadores(usuarioid) VALUES(2);
 INSERT INTO propietarios(usuarioid) VALUES(1);
@@ -110,5 +110,5 @@ INSERT INTO propietarios(usuarioid) VALUES(2);
 INSERT INTO comunidades(id, nombre) VALUES(1, 'PruebaCom');
 INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(1, 1, '2010-05-10'); 
 INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(2, 1, '2012-08-02');
-INSERT INTO canchas(id, nombre, direccionid, canchanum, propietarioid) VALUES(1, 'Cancha 1', 1, 1, 1);
-INSERT INTO canchas(id, nombre, direccionid, canchanum, propietarioid) VALUES(2, 'Cancha 2', 2, 2, 2);
+INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 1', 1, 1, 1);
+INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 2', 2, 2, 2);
