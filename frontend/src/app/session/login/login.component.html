@@ -1,0 +1,24 @@
+<div class="bg-gray-200 h-screen flex flex-col justify-center">
+  <header class="text-center p-4">
+    <h1 class="text-5xl font-bold font-serif text-gray-600">Iniciar sesión</h1>
+  </header>
+  <div class="grid grid-cols-12 gap-4 p-4 place-items-center">
+    <form class="w-full md:col-start-5 md:col-span-4 bg-gray-100 grid gap-y-4 rounded p-10 shadow-md" (ngSubmit)="login()">
+      <div class="grid grid-cols-5 gap-7">
+        <label class="col-span-2" for="username" class="font-semibold text-gray-500">Nombre de usuario</label>
+        <input class="col-span-3 p-2 rounded" [(ngModel)]="username" name="username" type="text" placeholder="username">
+      </div>
+      <div class="grid grid-cols-5 gap-7">
+        <label class="col-span-2" for="password" class="font-semibold text-gray-500">Contraseña</label>
+        <input class="col-span-3 p-2 rounded" [(ngModel)]="password" name="password" type="password" placeholder="*********">
+      </div>
+      <button class="p-4 bg-green-500 shadow rounded-md text-white" type="submit">Iniciar sesión</button>
+    </form>
+    <div class="md:col-span-2 md:col-start-10 shadow h-32 border border-gray-50 bg-gray-100 rounded flex justify-center items-center">
+      <div class="p-4 text-center">
+        <span class="font-semibold text-gray-500">¿Eres nuevo?</span>
+        <span class="block"><a routerLink="/" class="text-green-500">Registrate</a></span>
+      </div>
+    </div>
+  </div>
+</div>
