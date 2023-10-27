@@ -9,13 +9,15 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
+    //Por ahora dejo esto aca, hay que meterlo en un modulo aislado despues
     RouterModule.forRoot([
       {path: 'login', component: LoginComponent},
+      {path: '**', redirectTo: ''}
     ]),
     FormsModule
   ]
