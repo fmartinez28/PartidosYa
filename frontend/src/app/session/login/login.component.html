@@ -4,8 +4,8 @@
   </header>
   <div class="container mx-auto">
     <div class="grid grid-cols-12 gap-4 p-4 items-center">
-      <form class="col-span-12 sm:col-start-2 sm:col-span-10 md:col-start-3 md:col-span-8 lg:col-start-4 lg:col-span-6 xl:col-start-5 xl:col-span-4 bg-gray-100 grid gap-y-4 rounded p-10 shadow-md" (ngSubmit)="login()">
-        <div class="grid grid-cols-8 gap-4">
+      <form class="col-span-12 sm:col-start-2 sm:col-span-10 md:col-start-3 md:col-span-8 lg:col-start-4 lg:col-span-6 xl:col-start-5 xl:col-span-4 bg-gray-100 grid gap-y-4 rounded p-10 shadow-md items-center" (ngSubmit)="login()">
+        <div class="grid grid-cols-8 gap-4 items-center">
           <div class="col-span-3 sm:col-span-2">
             <label for="username" class="font-semibold text-gray-500">Nombre de usuario</label>
           </div>
@@ -13,7 +13,7 @@
             <input class="p-2 w-full rounded" [(ngModel)]="username" name="username" type="text" placeholder="miladepollo123">
           </div>
         </div>
-        <div class="grid grid-cols-8 gap-7">
+        <div class="grid grid-cols-8 gap-7 items-center">
           <div class="col-span-3 sm:col-span-2">
             <label for="password" class="font-semibold text-gray-500">Contraseña</label>
           </div>
