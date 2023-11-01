@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GeocodeService } from '../../services/geocode.service';
+import { GeocodeService } from 'src/app/shared/services/geocode/geocode.service';	
 
 @Component({
   selector: 'app-signup',
