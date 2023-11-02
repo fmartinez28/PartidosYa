@@ -22,7 +22,7 @@ export default async function (fastify, opts) {
 
     fastify.post('/', { schema: userSchemas.postSchema }, async function (req, reply) {
         const { nombre, apellido, email, username, password, fechanac, telefonoid, direccionid } = req.body;
-        const queryresult = await query('INSERT INTO "usuarios" ("nombre", "apellido", "email", "username", "password", "fechanac", "telefonoid", "direccionid") VALUES ($1, $2, $3, $4, crypt($5, gen_salt(`bf`)), $6, $6, $7, $8) RETURNING "nombre", "apellido", "email", "username", "fechanac", "telefonoid", "direccionid"', [nombre, apellido, email, username, password, fechanac, telefonoid, direccionid]);
+        const queryresult = await query('INSERT INTO "usuarios" ("nombre", "apellido", "email", "username", "password", "fechanac", "telefonoid", "direccionid") VALUES ($1, $2, $3, $4, crypt($5, gen_salt(\'bf\')), $6, $7, $8) RETURNING "id", "nombre", "apellido", "email", "username", "fechanac", "telefonoid", "direccionid"', [nombre, apellido, email, username, password, fechanac, telefonoid, direccionid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ message: 'Error al crear el usuario' });
         return reply.status(201).send(queryresult.rows[0]);
@@ -34,7 +34,7 @@ export default async function (fastify, opts) {
         try {
             if (paramId != bodyId) return reply.status(409).send({ message: 'La id del parámetro no puede ser diferente a la id del cuerpo de la request.' });
             const { nombre, apellido, fechanac, email, username, password, telefonoid, direccionid } = req.body;
-            const queryresult = await query('UPDATE "usuarios" SET "nombre" = $1, "apellido" = $2, "email" = $3, "username" = $4, "password" = crypt($5, gen_salt(`bf`)), "fechanac" = $6, "telefonoid" = $7, "direccionid" = $8 WHERE "id" = $9 RETURNING "nombre", "apellido", "email", "username", "fechanac", "telefonoid", "direccionid"', [nombre, apellido, email, username, password, fechanac, telefonoid, direccionid, paramId]);
+            const queryresult = await query('UPDATE "usuarios" SET "nombre" = $1, "apellido" = $2, "email" = $3, "username" = $4, "password" = crypt($5, gen_salt(\'bf\')), "fechanac" = $6, "telefonoid" = $7, "direccionid" = $8 WHERE "id" = $9 RETURNING "id", "nombre", "apellido", "email", "username", "fechanac", "telefonoid", "direccionid"', [nombre, apellido, email, username, password, fechanac, telefonoid, direccionid, paramId]);
             if (queryresult.rows.length === 0)
                 return reply.status(500).send({ message: 'Error al actualizar el usuario' });
             return reply.status(200).send(queryresult.rows[0]);

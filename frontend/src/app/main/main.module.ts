@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './components/home/home.component';
+import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 
 
 @NgModule({
   declarations: [
   
-    HomeComponent
+    HomeComponent,
+       CanchasPlaceholderComponent
   ],
   imports: [
     CommonModule,
