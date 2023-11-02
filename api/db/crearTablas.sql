@@ -8,6 +8,9 @@ DROP TABLE IF EXISTS jugadores;
 DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS telefonos;
 DROP TABLE IF EXISTS direcciones;
+DROP EXTENSION IF EXISTS pgcrypto;
+
+CREATE EXTENSION pgcrypto;
 
 CREATE TABLE public.direcciones (
 	id serial4 NOT NULL,
@@ -31,6 +34,9 @@ CREATE TABLE public.usuarios (
 	id serial4 NOT NULL,
 	nombre varchar NOT NULL,
 	apellido varchar NOT NULL,
+	email varchar UNIQUE NOT NULL,
+	username varchar UNIQUE NOT NULL,
+	password text NOT NULL,
 	fechanac date NOT NULL,
 	telefonoid int8 NOT NULL,
 	direccionid int8 NOT NULL,
@@ -101,8 +107,10 @@ INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(1, 'Urug
 INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(2, 'Uruguay', 'Montevideo', 'Cerro', 'Cerrito', '922');
 INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(1, '+598', '473', '911');
 INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(2, '+598', '473', '922');
-INSERT INTO usuarios(id, nombre, apellido, fechanac, telefonoid, direccionid) VALUES(1, 'Stego', 'Saurus', '1970-10-01', 1, 1);
-INSERT INTO usuarios(id, nombre, apellido, fechanac, telefonoid, direccionid) VALUES(2, 'Tyranno', 'Saurus', '1960-11-10', 1, 1);
+INSERT INTO usuarios(id, nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
+VALUES(1, 'Stego', 'Saurus', 'stegosaurus@dino.saur','stegoSTFUsaurus1970', crypt('stego123', gen_salt('bf')), '1970-10-01', 1, 1);
+INSERT INTO usuarios(id, nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
+VALUES(2, 'Tyranno', 'Saurus', 'tyronS60@dino.saur','tyranoSAURtyron1960', crypt('tyron123', gen_salt('bf')),'1960-11-10', 1, 1);
 INSERT INTO jugadores(usuarioid) VALUES(1); 
 INSERT INTO jugadores(usuarioid) VALUES(2);
 INSERT INTO propietarios(usuarioid) VALUES(1);
