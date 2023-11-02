@@ -5,18 +5,17 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: MainLayoutPageComponent,
-    loadChildren: () => import('../session/session.module').then(m => m.SessionModule)
+    path: 'home',
+    component: HomeComponent,
   },
   {
-    path: 'home',
-    component: MainLayoutPageComponent,
-    children: [
-      { path: '', component: HomeComponent },
-    ]
+    path: 'session',
+    loadChildren: () => import('../session/session.module').then(m => m.SessionModule)
   },
-  { path: '**', redirectTo: 'home' }
+
+  { path: 'login', redirectTo: 'session/login' },
+  { path: 'signup', redirectTo: 'session/signup' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
