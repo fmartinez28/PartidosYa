@@ -42,14 +42,21 @@
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
 
-                        <a href="home"
+                        <a [routerLink]="['/home']" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{exact: true}"
                             [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Home') ? 'bg-gray-900 text-white' : '']">Home</a>
 
-                        <a href="session/login"
+                        <a [routerLink]="['/session/login']" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{exact: true}"
                             [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Login') ? 'bg-gray-900 text-white' : '']">Login</a>
 
-                        <a href="session/signup"
+                        <a [routerLink]="['/session/signup']" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{exact: true}"
                             [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Signup') ? 'bg-gray-900 text-white' : '']">Signup</a>
+
+                        <a [routerLink]="['/canchas']" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Canchas') ? 'bg-gray-900 text-white' : '']">Canchas</a>
 
                     </div>
                 </div>
@@ -61,17 +68,17 @@
     <div class="sm:hidden" id="mobile-menu">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="home"
-                [ngClass]="[(title == 'Home') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
+            <a [ngClass]="[(title == 'Home') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
                 [routerLink]="['/home']" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
 
-            <a href="session/login"
-                [ngClass]="[(title == 'Login') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
+            <a [ngClass]="[(title == 'Login') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
                 [routerLink]="['/session/login']" class="block px-3 py-2 rounded-md text-base font-medium">Login</a>
 
-            <a href="session/signup"
-                [ngClass]="[(title == 'Signup') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
+            <a [ngClass]="[(title == 'Signup') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
                 [routerLink]="['/session/signup']" class="block px-3 py-2 rounded-md text-base font-medium">Signup</a>
+
+            <a [ngClass]="[(title == 'Canchas') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
+                [routerLink]="['/canchas']" class="block px-3 py-2 rounded-md text-base font-medium">Canchas</a>
 
         </div>
     </div>
