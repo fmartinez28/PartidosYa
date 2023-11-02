@@ -1,78 +1,73 @@
-<main class="min-h-screen bg-gray-200 flex flex-col justify-center items-center">
-  <header>
-    <h2 class="text-4xl text-gray-600 font-bold font-serif">Registrarse</h2>
-  </header>
-  <div class="container mx-auto">
-    <div class="flex items-center justify-center m-8">
-      <div class="lg:w-3/4 xl:w-1/2 w-full">
-          <form (ngSubmit)="signup()" class="bg-gray-100 grid gap-y-4 rounded p-10 shadow-md">
-            <div class="grid grid-cols-4 gap-4 items-center">
-              <div class="col-span-4 sm:col-span-1">
-                <label for="name" class="font-semibold text-gray-500">Nombre</label>
-              </div>
-              <div class="col-span-4 sm:col-span-3">
-                <input class="p-2 w-full rounded" [(ngModel)]="name" name="name" type="text" placeholder="Mario" required>
-              </div>
+<div class="container mx-auto">
+  <div class="flex items-center justify-center m-8">
+    <div class="lg:w-3/4 xl:w-1/2 w-full">
+        <form (ngSubmit)="signup()" class="bg-gray-100 grid gap-y-4 rounded p-10 shadow-md">
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="col-span-4 sm:col-span-1">
+              <label for="name" class="font-semibold text-gray-500">Nombre</label>
             </div>
-            <div class="grid grid-cols-4 gap-4 items-center">
-              <div class="col-span-4 sm:col-span-1">
-                <label for="lastname" class="font-semibold text-gray-500">Apellido</label>
-              </div>
-              <div class="col-span-4 sm:col-span-3">
-                <input class="p-2 w-full rounded" [(ngModel)]="lastname" name="lastname" type="text" placeholder="Mario" required>
-              </div>
+            <div class="col-span-4 sm:col-span-3">
+              <input class="p-2 w-full rounded" [(ngModel)]="name" name="name" type="text" placeholder="Mario" required>
             </div>
-            <div class="grid grid-cols-4 gap-4 items-center">
-              <div class="col-span-4 sm:col-span-1">
-                <label for="birthdate" class="font-semibold text-gray-500">Fecha de nacimiento</label>
-              </div>
-              <div class="col-span-4 sm:col-span-3">
-                <input class="p-2 w-full rounded" [(ngModel)]="birthdate" name="birthdate" type="date" placeholder="Mario" required>
-              </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="col-span-4 sm:col-span-1">
+              <label for="lastname" class="font-semibold text-gray-500">Apellido</label>
             </div>
-            <div class="grid grid-cols-4 gap-4 items-center">
-              <div class="col-span-4 sm:col-span-1">
-                <label for="email" class="font-semibold text-gray-500">Email</label>
-              </div>
-              <div class="col-span-4 sm:col-span-3">
-                <input class="p-2 w-full rounded" [(ngModel)]="email" name="email" type="email" placeholder="mario_mario@hotmail.com" required>
-              </div>
+            <div class="col-span-4 sm:col-span-3">
+              <input class="p-2 w-full rounded" [(ngModel)]="lastname" name="lastname" type="text" placeholder="Mario" required>
             </div>
-            <div class="grid grid-cols-4 gap-4 items-center">
-              <div class="col-span-4 sm:col-span-1">
-                <label for="password" class="font-semibold text-gray-500">Contraseña</label>
-              </div>
-              <div class="col-span-4 sm:col-span-3">
-                <input class="p-2 w-full rounded" [(ngModel)]="password" name="password" type="password" placeholder="********NOTMARIO" required>
-              </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="col-span-4 sm:col-span-1">
+              <label for="birthdate" class="font-semibold text-gray-500">Fecha de nacimiento</label>
             </div>
-            <div class="grid grid-cols-4 gap-4 items-center">
-              <div class="col-span-4 sm:col-span-1">
-                <label for="address" class="font-semibold text-gray-500">Dirección</label>
-              </div>
-              <div class="col-span-4 sm:col-span-3">
-                <input class="p-2 w-full rounded" [(ngModel)]="address" name="address" type="text" placeholder="Calle 123" required>
-              </div>
+            <div class="col-span-4 sm:col-span-3">
+              <input class="p-2 w-full rounded" [(ngModel)]="birthdate" name="birthdate" type="date" placeholder="Mario" required>
             </div>
-            <div class="grid grid-cols-4 gap-4 items-center">
-              <div class="col-span-4 sm:col-span-1">
-                <label for="role" class="font-semibold text-gray-500">Rol</label>
-              </div>
-              <div class="col-span-4 sm:col-span-3">
-                <select class="p-2 w-full rounded" [(ngModel)]="role" name="role" placeholder="Calle 123" required>
-                  <option value="Jugador">Jugador</option>
-                  <option value="Propietario">Propietario</option>
-                </select>
-              </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="col-span-4 sm:col-span-1">
+              <label for="email" class="font-semibold text-gray-500">Email</label>
             </div>
-            <div class="flex flex-row justify-center m-2">
-              <button class="p-4 bg-green-500 hover:bg-green-600 hover:shadow-md shadow rounded-md text-white" type="submit">Registrarse</button>
+            <div class="col-span-4 sm:col-span-3">
+              <input class="p-2 w-full rounded" [(ngModel)]="email" name="email" type="email" placeholder="mario_mario@hotmail.com" required>
             </div>
-          </form>
-        <div class="col-span-2">
-          <div class="map"></div>
-        </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="col-span-4 sm:col-span-1">
+              <label for="password" class="font-semibold text-gray-500">Contraseña</label>
+            </div>
+            <div class="col-span-4 sm:col-span-3">
+              <input class="p-2 w-full rounded" [(ngModel)]="password" name="password" type="password" placeholder="********NOTMARIO" required>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="col-span-4 sm:col-span-1">
+              <label for="address" class="font-semibold text-gray-500">Dirección</label>
+            </div>
+            <div class="col-span-4 sm:col-span-3">
+              <input class="p-2 w-full rounded" [(ngModel)]="address" name="address" type="text" placeholder="Calle 123" required>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 gap-4 items-center">
+            <div class="col-span-4 sm:col-span-1">
+              <label for="role" class="font-semibold text-gray-500">Rol</label>
+            </div>
+            <div class="col-span-4 sm:col-span-3">
+              <select class="p-2 w-full rounded" [(ngModel)]="role" name="role" placeholder="Calle 123" required>
+                <option value="Jugador">Jugador</option>
+                <option value="Propietario">Propietario</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-row justify-center m-2">
+            <button class="p-4 bg-green-500 hover:bg-green-600 hover:shadow-md shadow rounded-md text-white" type="submit">Registrarse</button>
+          </div>
+        </form>
+      <div class="col-span-2">
+        <div class="map"></div>
       </div>
     </div>
   </div>
-</main>
+</div>

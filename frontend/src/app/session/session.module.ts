@@ -4,11 +4,13 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
 import { SessionRoutingModule } from './session-routing.module';
+import { SessionPageComponent } from './pages/session-page/session-page.component';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SessionPageComponent
   ],
   imports: [
     CommonModule,
