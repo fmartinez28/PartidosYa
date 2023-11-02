@@ -1,70 +1,109 @@
 <div class="container mx-auto">
   <div class="flex items-center justify-center m-8">
     <div class="lg:w-3/4 w-full">
-        <form (ngSubmit)="signup()" class="bg-gray-100 grid gap-y-4 rounded p-10 shadow-md">
-          <div class="grid grid-cols-4 gap-4 items-center">
-            <div class="col-span-4 sm:col-span-1">
-              <label for="name" class="font-semibold text-gray-500">Nombre</label>
-            </div>
-            <div class="col-span-4 sm:col-span-3">
-              <input class="p-2 w-full rounded" [(ngModel)]="name" name="name" type="text" placeholder="Mario" required>
+      <form [formGroup]="signupForm" (ngSubmit)="signup()" class="bg-gray-100 grid gap-y-4 rounded p-10 shadow-md">
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="name" class="font-semibold text-gray-500">Nombre <span class="text-red-500">* </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="name" name="name" type="text" placeholder="Mario"
+              required>
+            <div *ngIf="signupForm.get('name')?.touched && signupForm.get('name')?.errors?.['required']"
+              class="text-red-500">
+              El nombre es obligatorio.
             </div>
           </div>
-          <div class="grid grid-cols-4 gap-4 items-center">
-            <div class="col-span-4 sm:col-span-1">
-              <label for="lastname" class="font-semibold text-gray-500">Apellido</label>
-            </div>
-            <div class="col-span-4 sm:col-span-3">
-              <input class="p-2 w-full rounded" [(ngModel)]="lastname" name="lastname" type="text" placeholder="Mario" required>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="lastname" class="font-semibold text-gray-500">Apellido <span class="text-red-500">*
+              </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="lastname" name="lastname" type="text" placeholder="Mario"
+              required>
+            <div *ngIf="signupForm.get('lastname')?.touched && signupForm.get('lastname')?.errors?.['required']"
+              class="text-red-500">
+              El apellido es obligatorio.
             </div>
           </div>
-          <div class="grid grid-cols-4 gap-4 items-center">
-            <div class="col-span-4 sm:col-span-1">
-              <label for="birthdate" class="font-semibold text-gray-500">Fecha de nacimiento</label>
-            </div>
-            <div class="col-span-4 sm:col-span-3">
-              <input class="p-2 w-full rounded" [(ngModel)]="birthdate" name="birthdate" type="date" placeholder="Mario" required>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="birthdate" class="font-semibold text-gray-500">Fecha de nacimiento <span class="text-red-500">*
+              </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="birthdate" name="birthdate" type="date"
+              placeholder="Mario" required>
+            <div *ngIf="signupForm.get('birthdate')?.touched && signupForm.get('birthdate')?.errors?.['required']"
+              class="text-red-500">
+              La fecha de nacimiento es obligatoria.
             </div>
           </div>
-          <div class="grid grid-cols-4 gap-4 items-center">
-            <div class="col-span-4 sm:col-span-1">
-              <label for="email" class="font-semibold text-gray-500">Email</label>
-            </div>
-            <div class="col-span-4 sm:col-span-3">
-              <input class="p-2 w-full rounded" [(ngModel)]="email" name="email" type="email" placeholder="mario_mario@hotmail.com" required>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="email" class="font-semibold text-gray-500">Email <span class="text-red-500">* </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="email" name="email" type="email"
+              placeholder="mario_mario@hotmail.com" required>
+            <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors?.['required']"
+              class="text-red-500">
+              El mail es obligatorio.
             </div>
           </div>
-          <div class="grid grid-cols-4 gap-4 items-center">
-            <div class="col-span-4 sm:col-span-1">
-              <label for="password" class="font-semibold text-gray-500">Contraseña</label>
-            </div>
-            <div class="col-span-4 sm:col-span-3">
-              <input class="p-2 w-full rounded" [(ngModel)]="password" name="password" type="password" placeholder="********NOTMARIO" required>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="password" class="font-semibold text-gray-500">Contraseña <span class="text-red-500">*
+              </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="password" name="password" type="password"
+              placeholder="********NOTMARIO" required>
+            <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['required']"
+              class="text-red-500">
+              La contraseña es obligatoria.
             </div>
           </div>
-          <div class="grid grid-cols-4 gap-4 items-center">
-            <div class="col-span-4 sm:col-span-1">
-              <label for="address" class="font-semibold text-gray-500">Dirección</label>
-            </div>
-            <div class="col-span-4 sm:col-span-3">
-              <input class="p-2 w-full rounded" [(ngModel)]="address" name="address" type="text" placeholder="Calle 123" required>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="address" class="font-semibold text-gray-500">Dirección <span class="text-red-500">*
+              </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="address" name="address" type="text"
+              placeholder="Calle 123" required>
+            <div *ngIf="signupForm.get('address')?.touched && signupForm.get('address')?.errors?.['required']"
+              class="text-red-500">
+              La dirección es obligatoria.
             </div>
           </div>
-          <div class="grid grid-cols-4 gap-4 items-center">
-            <div class="col-span-4 sm:col-span-1">
-              <label for="role" class="font-semibold text-gray-500">Rol</label>
-            </div>
-            <div class="col-span-4 sm:col-span-3">
-              <select class="p-2 w-full rounded" [(ngModel)]="role" name="role" placeholder="Calle 123" required>
-                <option value="Jugador">Jugador</option>
-                <option value="Propietario">Propietario</option>
-              </select>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="role" class="font-semibold text-gray-500">Rol <span class="text-red-500">* </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <select class="p-2 w-full rounded" formControlName="role" name="role" placeholder="Calle 123" required>
+              <option value="Jugador">Jugador</option>
+              <option value="Propietario">Propietario</option>
+            </select>
+            <div *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.errors?.['required']"
+              class="text-red-500">
+              El rol es obligatorio.
             </div>
           </div>
-          <div class="flex flex-row justify-center m-2">
-            <button class="p-4 bg-green-500 hover:bg-green-600 hover:shadow-md shadow rounded-md text-white" type="submit">Registrarse</button>
-          </div>
-        </form>
+        </div>
+        <div class="flex flex-row justify-center m-2">
+          <button class="p-4 bg-green-500 hover:bg-green-600 hover:shadow-md shadow rounded-md text-white"
+            type="submit">Registrarse</button>
+        </div>
+      </form>
       <div class="col-span-2">
         <div class="map"></div>
       </div>
