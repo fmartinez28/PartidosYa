@@ -10,7 +10,7 @@ export default fp(function (fastify, opts, done) {
         try {
             await request.jwtVerify();
         } catch (err) {
-            reply.status(401).send(err);
+            reply.status(401).send({error: "No autorizado, inicie sesión de no haberlo hecho."});
         }
     });
     done();

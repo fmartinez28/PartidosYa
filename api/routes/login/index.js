@@ -41,7 +41,7 @@ export default async function(fastify, opts){
             const token = fastify.jwt.sign({id, role}, {
                 expiresIn: '1h'
             });
-            return reply.status(201).send(token);
+            return reply.status(201).send({ token: token});
         } catch (error) {
             return reply.status(500).send({ message: error });
         }
