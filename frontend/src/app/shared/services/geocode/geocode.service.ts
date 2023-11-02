@@ -8,8 +8,8 @@ export class GeocodeService {
 
   constructor(private client: HttpClient) {
   }
-  private url:string = 'https://geocode.maps.co/';
-  public fetchDataAsync(address:string) {
+  private url: string = 'https://geocode.maps.co/';
+  public fetchDataAsync(address: string) {
     return this.client.get(`${this.url}search?q=${address}`);
   }
 }

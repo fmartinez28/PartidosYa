@@ -72,20 +72,6 @@
         </div>
         <div class="grid grid-cols-4 gap-4 items-center">
           <div class="col-span-4 sm:col-span-1">
-            <label for="address" class="font-semibold text-gray-500">Dirección <span class="text-red-500">*
-              </span></label>
-          </div>
-          <div class="col-span-4 sm:col-span-3">
-            <input class="p-2 w-full rounded" formControlName="address" name="address" type="text"
-              placeholder="Calle 123" required>
-            <div *ngIf="signupForm.get('address')?.touched && signupForm.get('address')?.errors?.['required']"
-              class="text-red-500">
-              La dirección es obligatoria.
-            </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-4 gap-4 items-center">
-          <div class="col-span-4 sm:col-span-1">
             <label for="role" class="font-semibold text-gray-500">Rol <span class="text-red-500">* </span></label>
           </div>
           <div class="col-span-4 sm:col-span-3">
@@ -96,6 +82,62 @@
             <div *ngIf="signupForm.get('role')?.touched && signupForm.get('role')?.errors?.['required']"
               class="text-red-500">
               El rol es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="country" class="font-semibold text-gray-500">País <span class="text-red-500">*
+              </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="country" name="country" type="text" placeholder="Uruguay"
+              required>
+            <div *ngIf="signupForm.get('country')?.touched && signupForm.get('country')?.errors?.['required']"
+              class="text-red-500">
+              El país es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="department" class="font-semibold text-gray-500">Departamento <span class="text-red-500">*
+              </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="department" name="department" type="text"
+              placeholder="Salto" required>
+            <div *ngIf="signupForm.get('department')?.touched && signupForm.get('department')?.errors?.['required']"
+              class="text-red-500">
+              El departamento es obligatorio.
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="city" class="font-semibold text-gray-500">Ciudad <span class="text-red-500">*
+              </span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="city" name="city" type="text" placeholder="Salto"
+              required>
+            <div *ngIf="signupForm.get('city')?.touched && signupForm.get('city')?.errors?.['required']"
+              class="text-red-500">
+              La ciudad es obligatoria.
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 gap-4 items-center" *ngIf="signupForm.get('role')?.value === 'Propietario'">
+          <div class="col-span-4 sm:col-span-1">
+            <label for="address" class="font-semibold text-gray-500">Dirección <span
+                class="text-red-500">*</span></label>
+          </div>
+          <div class="col-span-4 sm:col-span-3">
+            <input class="p-2 w-full rounded" formControlName="address" name="address" type="text"
+              placeholder="Calle 123" [required]="signupForm.get('role')?.value === 'Propietario'">
+            <div *ngIf="signupForm.get('address')?.touched && signupForm.get('address')?.errors?.['required']"
+              class="text-red-500">
+              La dirección es obligatoria.
             </div>
           </div>
         </div>

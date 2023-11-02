@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { GeocodeService } from 'src/app/shared/services/geocode/geocode.service';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +20,8 @@ export class SignupComponent {
   public role: 'Jugador' | 'Propietario' = 'Jugador';
   public signupForm!: FormGroup;
 
-  constructor(private geocodeService: GeocodeService, private titleService: Title, private formBuilder: FormBuilder) {
+  constructor(private geocodeService: GeocodeService, private titleService: Title, private formBuilder: FormBuilder,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -31,8 +33,22 @@ export class SignupComponent {
       birthdate: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      address: ['', Validators.required],
-      role: ['', Validators.required]
+      role: ['', Validators.required],
+      country: ['', Validators.required],
+      department: ['', Validators.required],
+      city: ['', Validators.required],
+      address: [{ value: '', disabled: true }] // Se inicia en disabled ya que lo verificamos solo si el rol es de propietario
+    });
+
+    this.signupForm.get('role')?.valueChanges.subscribe(role => {
+      if (role === 'Propietario') {
+        this.signupForm.get('address')?.enable();
+        this.signupForm.get('address')?.setValidators(Validators.required);
+      } else {
+        this.signupForm.get('address')?.disable();
+        this.signupForm.get('address')?.clearValidators();
+      }
+      this.signupForm.get('address')?.updateValueAndValidity();
     });
   }
 
@@ -42,13 +58,15 @@ export class SignupComponent {
     let apiData;
     const addr = this.geocodeService.fetchDataAsync(this.address).subscribe(data => {
       apiData = data;
-      console.log(data);
+      console.log("address data", data);
     });
 
     if (this.signupForm.valid) {
-      console.log("value", this.signupForm.value);
-
+      this.router.navigate(['/canchas']);
     } else {
+      // En caso de que el form no sea válido por x motivo
+      // Se va a recorrer cada campo para buscar los errores y mostrarlo en caso de que exista
+      // El onlySelf es para que no afecte "sub campos" del mismo
       Object.keys(this.signupForm.controls).forEach(field => {
         const control = this.signupForm.get(field);
         control?.markAsTouched({ onlySelf: true });
