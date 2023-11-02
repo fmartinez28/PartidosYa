@@ -2,6 +2,10 @@
     <h1 class="text-5xl font-bold font-serif text-gray-600">{{title}}</h1>
 </header>
 <div class="text-center p-4 mb-8">
-    <p style="color:blue;"><a href="/session/login">Click para ver el login</a></p>
-    <p style="color:blue;"><a href="/session/signup">Click para ver el signup</a></p>
+    <div class="flex flex-row items-center justify-center">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+            routerLink="/session/login">Ver el login</button>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-2"
+            routerLink="/session/signup">Ver el signup</button>
+    </div>
 </div>

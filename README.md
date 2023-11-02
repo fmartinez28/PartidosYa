@@ -21,9 +21,12 @@ FASTIFY_PORT = [puerto de la api, 9000 en este caso]
 
 ## Ver documentación
 
+### Documentación REST
 Para ver la documentación se debe ejecutar el programa en /api y acceder a la URL `/docs` del server que se muestre en la terminal (por defecto [http://127.0.0.1:9000/docs](http://127.0.0.1:9000/docs)).
 Alternativamente, también se puede optar por ver el diseño por modelo de entidades de la base de datos en el directorio design.
 
+### Documentación Front
+La documentación del frontend se encuentra disponible en la ruta design/frontend. Los archivos .excalidraw se pueden abrir con la extensión de Visual Studio Code de [Excalidraw](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor) o desde su versión web [https://excalidraw.com/](https://excalidraw.com/).
 
 ## Base de datos
 
