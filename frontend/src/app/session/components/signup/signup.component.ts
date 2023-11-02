@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { GeocodeService } from '../../services/geocode.service';
+import { GeocodeService } from 'src/app/shared/services/geocode/geocode.service';	
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-signup',
@@ -7,6 +8,7 @@ import { GeocodeService } from '../../services/geocode.service';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
+
   public name: string = '';
   public lastname: string = '';
   public email: string = '';
@@ -16,7 +18,12 @@ export class SignupComponent {
   /**
    *
    */
-  constructor(private geocodeService: GeocodeService) {
+
+  ngOnInit(): void {
+    this.titleService.setTitle('Signup');
+  }
+
+  constructor(private geocodeService: GeocodeService, private titleService: Title) {
   }
 
   public role: 'Jugador' | 'Propietario' = 'Jugador';
