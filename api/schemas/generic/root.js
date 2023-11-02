@@ -5,6 +5,8 @@ const genericSingleUserSchema = {
         id: { type: 'number' },
         nombre: { type: 'string' },
         apellido: { type: 'string' },
+        email: { type: 'string' },
+        username: { type: 'string' },
         telefonoid: { type: 'number' },
         direccionid: { type: 'number' },
         fechanac: {
@@ -12,7 +14,7 @@ const genericSingleUserSchema = {
             format: 'date'
         },
     },
-    required: ['id', 'nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
+    required: ['id', 'nombre', 'apellido', 'email', 'username','fechanac', 'telefonoid', 'direccionid']
 }
 
 const genericErrorMessageSchema = {

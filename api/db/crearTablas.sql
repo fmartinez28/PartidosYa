@@ -103,14 +103,14 @@ CREATE TABLE public.comunidadjugador (
 	CONSTRAINT comunidadjugador_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
 );
 
-INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(1, 'Uruguay', 'Salto', 'Salto', 'Uruguay', '911');
-INSERT INTO direcciones(id, pais, estado, ciudad, calle, numero) VALUES(2, 'Uruguay', 'Montevideo', 'Cerro', 'Cerrito', '922');
-INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(1, '+598', '473', '911');
-INSERT INTO telefonos(id, codpais, codarea, numero) VALUES(2, '+598', '473', '922');
-INSERT INTO usuarios(id, nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
-VALUES(1, 'Stego', 'Saurus', 'stegosaurus@dino.saur','stegoSTFUsaurus1970', crypt('stego123', gen_salt('bf')), '1970-10-01', 1, 1);
-INSERT INTO usuarios(id, nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
-VALUES(2, 'Tyranno', 'Saurus', 'tyronS60@dino.saur','tyranoSAURtyron1960', crypt('tyron123', gen_salt('bf')),'1960-11-10', 1, 1);
+INSERT INTO direcciones(pais, estado, ciudad, calle, numero) VALUES('Uruguay', 'Salto', 'Salto', 'Uruguay', '911');
+INSERT INTO direcciones(pais, estado, ciudad, calle, numero) VALUES('Uruguay', 'Montevideo', 'Cerro', 'Cerrito', '922');
+INSERT INTO telefonos(codpais, codarea, numero) VALUES('+598', '473', '911');
+INSERT INTO telefonos(codpais, codarea, numero) VALUES('+598', '473', '922');
+INSERT INTO usuarios(nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
+VALUES('Stego', 'Saurus', 'stegosaurus@dino.saur','stegoSTFUsaurus1970', crypt('stego123', gen_salt('bf')), '1970-10-01', 1, 1);
+INSERT INTO usuarios(nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
+VALUES('Tyranno', 'Saurus', 'tyronS60@dino.saur','tyranoSAURtyron1960', crypt('tyron123', gen_salt('bf')),'1960-11-10', 1, 1);
 INSERT INTO jugadores(usuarioid) VALUES(1); 
 INSERT INTO jugadores(usuarioid) VALUES(2);
 INSERT INTO propietarios(usuarioid) VALUES(1);
