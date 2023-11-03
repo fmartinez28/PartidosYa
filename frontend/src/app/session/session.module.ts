@@ -11,7 +11,7 @@ import { SessionPageComponent } from './pages/session-page/session-page.componen
   declarations: [
     LoginComponent,
     SignupComponent,
-    SessionPageComponent
+    SessionPageComponent,
   ],
   imports: [
     CommonModule,
