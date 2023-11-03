@@ -4,7 +4,7 @@ import { MainLayoutPageComponent } from '../shared/pages/main-layout-page/main-l
 import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { isUserLogged } from '../session/guards/auth.guard';
+import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +14,8 @@ const routes: Routes = [
 
   {
     path: 'session',
-    loadChildren: () => import('../session/session.module').then(m => m.SessionModule)
+    loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
+    canMatch: [isUserNotLogged]
   },
 
   {

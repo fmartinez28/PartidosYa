@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../../session/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +9,17 @@ import { Title } from '@angular/platform-browser';
 })
 export class NavbarComponent {
 
-  constructor(private titleService: Title) { }
+  constructor(
+    private titleService: Title,
+    private authService: AuthService,
+    ) { }
 
   get title(): string {
     return this.titleService.getTitle();
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authService.checkIfLoggedIn();
   }
 
 }
