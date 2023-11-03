@@ -13,6 +13,10 @@
               class="text-red-500">
               El nombre es obligatorio.
             </div>
+            <div *ngIf="signupForm.get('name')?.touched && signupForm.get('name')?.errors?.['minlength']"
+              class="text-red-500">
+              El nombre debe tener por lo menos 2 caracteres.
+            </div>
           </div>
         </div>
         <div class="grid grid-cols-4 gap-4 items-center">
@@ -21,11 +25,13 @@
               </span></label>
           </div>
           <div class="col-span-4 sm:col-span-3">
-            <input class="p-2 w-full rounded" formControlName="lastname" name="lastname" type="text" placeholder="Mario"
-              required>
+            <input class="p-2 w-full rounded" formControlName="lastname" name="lastname" type="text" placeholder="Mario" required minlength="2">
             <div *ngIf="signupForm.get('lastname')?.touched && signupForm.get('lastname')?.errors?.['required']"
               class="text-red-500">
               El apellido es obligatorio.
+            </div>
+            <div *ngIf="signupForm.get('lastname')?.touched && signupForm.get('lastname')?.errors?.['minlength']" class="text-red-500">
+              El apellido debe tener por lo menos 2 caracteres.
             </div>
           </div>
         </div>
@@ -54,6 +60,10 @@
               class="text-red-500">
               El mail es obligatorio.
             </div>
+            <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors?.['email']"
+              class="text-red-500">
+              El formato del mail es incorrecto. Ejemplo: 'alguien@example.com'
+            </div>
           </div>
         </div>
         <div class="grid grid-cols-4 gap-4 items-center">
@@ -66,6 +76,10 @@
             <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.errors?.['required']"
               class="text-red-500">
               El nombre de usuario es obligatorio.
+            </div>
+            <div *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.errors?.['minlength']"
+              class="text-red-500">
+              El nombre de usuario debe tener por lo menos 5 caracteres.
             </div>
           </div>
         </div>
@@ -80,6 +94,10 @@
             <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['required']"
               class="text-red-500">
               La contraseña es obligatoria.
+            </div>
+            <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors?.['minlength']"
+              class="text-red-500">
+              La contraseña debe tener por lo menos 8 caracteres.
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ export class SignupComponent {
       birthdate: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       username: ['', [Validators.required, Validators.minLength(5)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       role: ['', Validators.required],
       country: ['', Validators.required],
       department: ['', Validators.required],
