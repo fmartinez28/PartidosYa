@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/session/services/auth.service';
 
@@ -8,8 +9,10 @@ import { AuthService } from 'src/app/session/services/auth.service';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  constructor(private authService: AuthService) {
-  }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    ) { }
   isLoggedIn$!: Observable<boolean>;
   username?: string;
   pictureurl = 'https://picsum.photos/200/300';
@@ -21,5 +24,6 @@ export class UserComponent {
   }
   public onLogout(){
     this.authService.onLogout();
+    this.router.navigate(['/home']);
   }
 }
