@@ -25,7 +25,7 @@ export default async function(fastify, opts){
             */
             const res = await query(
             `
-            SELECT u.id, 
+            SELECT u.id, u.username, 
                 CASE 
                     WHEN j.usuarioid IS NOT NULL THEN 'jugador'
                     WHEN p.usuarioid IS NOT NULL THEN 'propietario'
@@ -41,7 +41,15 @@ export default async function(fastify, opts){
             const token = fastify.jwt.sign({id, role}, {
                 expiresIn: '1h'
             });
-            return reply.status(201).send({ token: token});
+            const userData = {
+                id,
+                username,
+                role
+            }
+            return reply.status(201).send({
+                ...userData,
+                token: token
+            });
         } catch (error) {
             return reply.status(500).send({ message: error });
         }
