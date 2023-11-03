@@ -9,11 +9,19 @@ import { ILoginRequest } from 'src/interfaces/ILoginRequest';
   providedIn: 'root'
 })
 export class AuthService {
+  private userKey: string = 'user';
   constructor(
     private httpClient: HttpClient
   ){}
   public saveUser(user: ILoginResponse): void {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+  }
+  public checkIfLoggedIn(): boolean {
+    if (localStorage.getItem(this.userKey)) {
+      return true;
+    } else {
+      return false;
+    }
   }
   public onLogin(loginReq: ILoginRequest): Observable<ILoginResponse>{
     return this.httpClient.post<ILoginResponse>(`${environment.apiUrl}/login`, loginReq).pipe(
