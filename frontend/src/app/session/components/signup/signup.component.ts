@@ -3,6 +3,8 @@ import { GeocodeService } from 'src/app/shared/services/geocode/geocode.service'
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { RegisterService } from '../../services/register.service';
+import { ISignupRequest } from 'src/interfaces/ISignupRequest';
 
 @Component({
   selector: 'app-signup',
@@ -10,28 +12,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent {
-
-  public name: string = '';
-  public lastname: string = '';
-  public email: string = '';
-  public password: string = '';
-  public birthdate: string = `${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`;
-  public address: string = '';
-  public role: 'Jugador' | 'Propietario' = 'Jugador';
   public signupForm!: FormGroup;
 
-  constructor(private geocodeService: GeocodeService, private titleService: Title, private formBuilder: FormBuilder,
-    private router: Router) {
+  constructor(
+    private geocodeService: GeocodeService,
+    private titleService: Title,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private registerService: RegisterService
+    ) {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Signup');
+    this.titleService.setTitle('Registro');
 
     this.signupForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(2)]],
       lastname: ['', [Validators.required, Validators.minLength(2)]],
       birthdate: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(5)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       role: ['', Validators.required],
       country: ['', Validators.required],
@@ -52,17 +52,23 @@ export class SignupComponent {
     });
   }
 
-  public signup(): void {
-    console.log('signup');
-    console.log(`${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`);
-    let apiData;
-    const addr = this.geocodeService.fetchDataAsync(this.address).subscribe(data => {
-      apiData = data;
-      console.log("address data", data);
-    });
-
+  public onSignup(): void {
     if (this.signupForm.valid) {
-      this.router.navigate(['/canchas']);
+      const signupReq: ISignupRequest = {
+        nombre: this.signupForm.get('name')!.value,
+        apellido: this.signupForm.get('lastname')!.value,
+        email: this.signupForm.get('email')!.value,
+        fechanac: this.signupForm.get('birthdate')!.value,
+        username: this.signupForm.get('username')!.value,
+        password: this.signupForm.get('password')!.value,
+        //Hardcodeados por ahora
+        telefonoid: 1,
+        direccionid: 1
+      };
+      this.registerService.onSignup(signupReq).subscribe((res) => {
+        console.log(res);
+      });
+      this.router.navigate(['/login']);
     } else {
       // En caso de que el form no sea válido por x motivo
       // Se va a recorrer cada campo para buscar los errores y mostrarlo en caso de que exista
