@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from "@angular/platform-browser";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../auth.service';
 import { ILoginRequest } from '../../../../interfaces/ILoginRequest';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +37,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const loginReq: ILoginRequest = this.loginForm.value;
       this.authService.onLogin(loginReq).subscribe({
-        next: res => console.log(res),
+        next: res => {
+          console.log(res);
+          this.authService.saveUser(res);
+        },
         complete: () => {
           console.log('Login completado');
           this.router.navigate(['/canchas']);
