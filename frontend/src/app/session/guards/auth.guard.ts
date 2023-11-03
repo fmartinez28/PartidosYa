@@ -13,3 +13,14 @@ export const isUserLogged: CanMatchFn = (route: Route, segments: UrlSegment[]) =
             })
         );
 }
+
+export const isUserNotLogged: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+    const router = inject(Router);
+    const authService = inject(AuthService);
+    return of(authService.checkIfLoggedIn())
+        .pipe(
+            tap((isLogged) => {
+                if (isLogged) router.navigate(['/home']);
+            })
+        );
+}
