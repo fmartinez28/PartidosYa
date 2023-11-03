@@ -1,8 +1,7 @@
 <div class="container mx-auto">
   <div class="grid grid-cols-12 gap-4 p-4 items-center">
-    <form [formGroup]="loginForm" (ngSubmit)="login()"
-      class="col-span-12 sm:col-start-2 sm:col-span-10 md:col-start-3 md:col-span-8 lg:col-start-4 lg:col-span-6 xl:col-start-5 xl:col-span-4 bg-gray-100 grid gap-y-4 rounded p-10 shadow-md items-center"
-      (ngSubmit)="login()">
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()"
+      class="col-span-12 sm:col-start-2 sm:col-span-10 md:col-start-3 md:col-span-8 lg:col-start-4 lg:col-span-6 xl:col-start-5 xl:col-span-4 bg-gray-100 grid gap-y-4 rounded p-10 shadow-md items-center">
       <div class="grid grid-cols-8 gap-4 items-center">
         <div class="col-span-3 sm:col-span-2">
           <label for="username" class="font-semibold text-gray-500">Nombre de usuario <span class="text-red-500">*

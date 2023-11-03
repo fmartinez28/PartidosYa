@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from "@angular/platform-browser";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
+import { ILoginRequest } from '../../../../interfaces/ILoginRequest';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,12 @@ export class LoginComponent implements OnInit {
   public signUpLink: string = "/signup";
   public loginForm!: FormGroup;
 
-  constructor(private titleService: Title, private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private titleService: Title,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+    ) {
   }
 
   ngOnInit(): void {
@@ -26,9 +33,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public login(): void {
+  public onLogin(): void {
     if (this.loginForm.valid) {
-      this.router.navigate(['/canchas']);
+      const loginReq: ILoginRequest = this.loginForm.value;
+      this.authService.onLogin(loginReq).subscribe({
+        next: res => console.log(res),
+        complete: () => {
+          console.log('Login completado');
+          this.router.navigate(['/canchas']);
+        },
+        error: err => {
+          alert('Error en el login');
+          console.log('Ocurrió un error con el login:', err)
+        }
+      }
+      );
     } else {
       // En caso de que el form no sea válido por x motivo
       // Se va a recorrer cada campo para buscar los errores y mostrarlo en caso de que exista
