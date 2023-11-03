@@ -37,9 +37,6 @@ const postSchema = {
         properties: {
             nombre: { type: 'string' },
             apellido: { type: 'string' },
-            email: { type: 'string' },
-            username: { type: 'string' },
-            password: { type: 'string' },
             fechanac: {
                 type: 'string',
                 format: 'date'
@@ -47,7 +44,7 @@ const postSchema = {
             telefonoid: { type: 'number' },
             direccionid: { type: 'number' },
         },
-        required: ['nombre', 'apellido', 'fechanac', 'email', 'username', 'password', 'telefonoid', 'direccionid']
+        required: ['nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
     },
     response: {
         201: {
@@ -67,9 +64,6 @@ const putSchema = {
             id: { type: 'number' },
             nombre: { type: 'string' },
             apellido: { type: 'string' },
-            email: { type: 'string' },
-            username: { type: 'string' },
-            password: { type: 'string' },
             fechanac: {
                 type: 'string',
                 format: 'date'
@@ -77,7 +71,7 @@ const putSchema = {
             telefonoid: { type: 'number' },
             direccionid: { type: 'number' },
         },
-        required: ['id', 'nombre', 'apellido', 'email', 'username', 'password', 'fechanac', 'telefonoid', 'direccionid']
+        required: ['id', 'nombre', 'apellido', 'fechanac', 'telefonoid', 'direccionid']
     },
     response: {
         200: {

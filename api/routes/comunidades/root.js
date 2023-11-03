@@ -38,13 +38,7 @@ export default async function (fastify, opts) {
         return reply.status(204).send(rows[0]);
     });
 
-    fastify.post('/', { 
-        schema: communitySchemas.postSchema,
-        onRequest: [
-            fastify.auth
-        ]
-    }, async function (request, reply) {
-        if (request.user.role !== 'jugador') return reply.status(401).send({ message: 'No autorizado, debe ser un jugador para crear una comunidad.' });
+    fastify.post('/', { schema: communitySchemas.postSchema }, async function (request, reply) {
         const { nombre } = request.body;
         const queryresult = await query('INSERT INTO "comunidades" ("nombre") VALUES ($1) RETURNING *', [nombre]);
         if (queryresult.rows.length === 0)
