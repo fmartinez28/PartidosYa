@@ -35,65 +35,42 @@
             "scripts": []
           },
           "configurations": {
-            "staging": {
-              "fileReplacements": [
-              {
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.staging.ts"
-              }
-             ]
-            },
-          "testing": {
-            "fileReplacements": [
-            {
-              "replace": "src/environments/environment.ts",
-              "with": "src/environments/environment.testing.ts"
-            }
-           ]
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
           },
-          "production": {
-            "fileReplacements": [
-            {
-              "replace": "src/environments/environment.ts",
-              "with": "src/environments/environment.prod.ts"
-            }
-           ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "buildOptimizer": true,
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "10kb"
-            }
-           ]
-           }
-          },
+          "development": {
+            "buildOptimizer": false,
+            "optimization": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "sourceMap": true,
+            "namedChunks": true
+          }
+        },
           "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "testing": {
-              "browserTarget": "frontend:build:testing"
+            "production": {
+              "browserTarget": "frontend:build:production"
             },
-            "staging": {
-              "browserTarget": "frontend:build:staging"
-            },
-              "production": {
-                "browserTarget": "frontend:build:production"
-              }
-            },
+            "development": {
+              "browserTarget": "frontend:build:development"
+            }
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
