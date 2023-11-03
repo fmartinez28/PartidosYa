@@ -6,6 +6,22 @@ Antes de ejecutar, es importante tener la base de datos en condiciones, para est
 
 ## Ejecutar
 
+### Frontend
+
+Para ejecutar /frontend se se debe hacer `CD` a la carpeta y correr `ng serve`.
+Se necesita disponer de un archivo `/src/environments/environment.ts` que tenga el siguiente formato:
+
+```ts
+export const environment = {
+    apiUrl: "http://localhost:9000",
+    geocodingKey: "63b2d54934bf9c86f264b783aff5c027",
+    production: false,
+}
+```
+Reemplazar la apiUrl por la URL en la que tenga la API.
+
+### API
+
 Para ejecutar /api se debe hacer `CD` a la carpeta y correr `npm run dev`.
 Se necesita disponer de un archivo .env en la carpeta /api que tenga el siguiente formato:
 

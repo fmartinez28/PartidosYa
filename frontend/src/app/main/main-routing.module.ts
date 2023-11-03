@@ -4,6 +4,7 @@ import { MainLayoutPageComponent } from '../shared/pages/main-layout-page/main-l
 import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { isUserLogged } from '../session/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   {
     path: 'canchas',
     component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
+    canMatch: [isUserLogged]
   },
 
   { path: 'login', redirectTo: 'session/login' },
