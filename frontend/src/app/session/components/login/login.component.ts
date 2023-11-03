@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
   public signUpLink: string = "/signup";
   public loginForm!: FormGroup;
 
+  get title () {
+    return this.titleService.getTitle();
+  }
+
   constructor(
     private titleService: Title,
     private formBuilder: FormBuilder,

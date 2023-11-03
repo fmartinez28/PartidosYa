@@ -17,7 +17,7 @@ import { SessionPageComponent } from './pages/session-page/session-page.componen
     CommonModule,
     SessionRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class SessionModule { }

@@ -23,6 +23,10 @@ export class SignupComponent {
     ) {
   }
 
+  get title () {
+    return this.titleService.getTitle();
+  }
+
   ngOnInit(): void {
     this.titleService.setTitle('Registro');
 
