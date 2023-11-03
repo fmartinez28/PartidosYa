@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Login");
+    this.titleService.setTitle("Inicio de Sesión");
 
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
