@@ -14,7 +14,6 @@ Se necesita disponer de un archivo `/src/environments/environment.ts` que tenga 
 ```ts
 export const environment = {
     apiUrl: "http://localhost:9000",
-    geocodingKey: "63b2d54934bf9c86f264b783aff5c027",
     production: false,
 }
 ```
@@ -33,6 +32,7 @@ DB_PORT = [el puerto de la base de datos]
 DB_HOST = [el host de la base de datos]
 FASTIFY_HOST = [localhost en este caso]
 FASTIFY_PORT = [puerto de la api, 9000 en este caso]
+JWT_SECRET = [Secret para el plugin de jwt]
 ```
 
 ## Ver documentación
