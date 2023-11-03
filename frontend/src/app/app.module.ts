@@ -8,6 +8,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { MainLayoutPageComponent } from './shared/pages/main-layout-page/main-layout-page.component';
+import { UserComponent } from './shared/components/user/user.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MainLayoutPageComponent } from './shared/pages/main-layout-page/main-la
     AppComponent,
     NavbarComponent,
     MainLayoutPageComponent,
-    FooterComponent
+    FooterComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
