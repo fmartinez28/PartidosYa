@@ -8,9 +8,6 @@ DROP TABLE IF EXISTS jugadores;
 DROP TABLE IF EXISTS usuarios;
 DROP TABLE IF EXISTS telefonos;
 DROP TABLE IF EXISTS direcciones;
-DROP EXTENSION IF EXISTS pgcrypto;
-
-CREATE EXTENSION pgcrypto;
 
 CREATE TABLE public.direcciones (
 	id serial4 NOT NULL,
@@ -34,9 +31,6 @@ CREATE TABLE public.usuarios (
 	id serial4 NOT NULL,
 	nombre varchar NOT NULL,
 	apellido varchar NOT NULL,
-	email varchar UNIQUE NOT NULL,
-	username varchar UNIQUE NOT NULL,
-	password text NOT NULL,
 	fechanac date NOT NULL,
 	telefonoid int8 NOT NULL,
 	direccionid int8 NOT NULL,
@@ -107,10 +101,8 @@ INSERT INTO direcciones(pais, estado, ciudad, calle, numero) VALUES('Uruguay', '
 INSERT INTO direcciones(pais, estado, ciudad, calle, numero) VALUES('Uruguay', 'Montevideo', 'Cerro', 'Cerrito', '922');
 INSERT INTO telefonos(codpais, codarea, numero) VALUES('+598', '473', '911');
 INSERT INTO telefonos(codpais, codarea, numero) VALUES('+598', '473', '922');
-INSERT INTO usuarios(nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
-VALUES('Stego', 'Saurus', 'stegosaurus@dino.saur','stegoSTFUsaurus1970', crypt('stego123', gen_salt('bf')), '1970-10-01', 1, 1);
-INSERT INTO usuarios(nombre, apellido, email, username, password, fechanac, telefonoid, direccionid) 
-VALUES('Tyranno', 'Saurus', 'tyronS60@dino.saur','tyranoSAURtyron1960', crypt('tyron123', gen_salt('bf')),'1960-11-10', 1, 1);
+INSERT INTO usuarios(nombre, apellido, fechanac, telefonoid, direccionid) VALUES('Stego', 'Saurus', '1970-10-01', 1, 1);
+INSERT INTO usuarios(nombre, apellido, fechanac, telefonoid, direccionid) VALUES('Tyranno', 'Saurus', '1960-11-10', 1, 1);
 INSERT INTO jugadores(usuarioid) VALUES(1); 
 INSERT INTO jugadores(usuarioid) VALUES(2);
 INSERT INTO propietarios(usuarioid) VALUES(1);
@@ -118,5 +110,5 @@ INSERT INTO propietarios(usuarioid) VALUES(2);
 INSERT INTO comunidades(id, nombre) VALUES(1, 'PruebaCom');
 INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(1, 1, '2010-05-10'); 
 INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(2, 1, '2012-08-02');
-INSERT INTO canchas(id, nombre, direccionid, canchanum, propietarioid) VALUES(1, 'Cancha 1', 1, 1, 1);
-INSERT INTO canchas(id, nombre, direccionid, canchanum, propietarioid) VALUES(2, 'Cancha 2', 2, 2, 2);
+INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 1', 1, 1, 1);
+INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 2', 2, 2, 2);
