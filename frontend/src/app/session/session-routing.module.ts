@@ -11,8 +11,8 @@ const routes: Routes = [
         path: '',
         component: SessionPageComponent,
         children: [
-            { path: 'login', component: LoginComponent, canMatch: [isUserNotLogged] },
-            { path: 'signup', component: SignupComponent, canMatch: [isUserNotLogged] },
+            { path: 'login', component: LoginComponent },
+            { path: 'signup', component: SignupComponent },
         ],
     }
 ];

@@ -15,6 +15,7 @@ const routes: Routes = [
   {
     path: 'session',
     loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
+    canMatch: [isUserNotLogged]
   },
 
   {
