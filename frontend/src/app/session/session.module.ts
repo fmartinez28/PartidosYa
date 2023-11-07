@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './components/signup/signup.component';
 import { SessionRoutingModule } from './session-routing.module';
 import { SessionPageComponent } from './pages/session-page/session-page.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
