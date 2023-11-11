@@ -21,7 +21,6 @@ CREATE TABLE public.roles (
 	CONSTRAINT roles_un UNIQUE (nombre)
 );
 
-
 CREATE TABLE public.direcciones (
 	id serial4 NOT NULL,
 	pais varchar NOT NULL,
