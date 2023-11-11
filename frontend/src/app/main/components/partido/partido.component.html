@@ -15,7 +15,7 @@
 </div>
 -->
 
-<div id="card" [ngClass]="(this.playerLimit/2 > this.playerCount) ? 'border-lime-100':'border-orange-100'" class="rounded p-4 shadow-md bg-slate-50 border flex flex-row items-center justify-center gap-6">
+<div id="card" [ngClass]="(this.playerLimit/2 > this.playerCount) ? 'border-lime-100':'border-orange-100'" class="rounded p-4 shadow-md bg-slate-50 border flex flex-row lg:flex-col items-center justify-center gap-12">
   <div id="cardheader" class="flex flex-col place-items-center gap-2">
     <div id="cardmainheader" [ngClass]="((this.playerLimit/2 > this.playerCount) ? 'text-lime-500' : 'text-orange-500')" class="text-center rounded-2xl outline p-2">
       <p>{{this.playerCount}}/{{this.playerLimit}}</p>
@@ -24,29 +24,29 @@
       Jugadores
     </p>
   </div>
-  <div id="cardbody" class="flex flex-col items-end font-mono">
-    <div>
+  <div id="cardbody" class="flex flex-col items-start font-mono">
+    <div class="flex flex-row justify-center items-center gap-2">
+      <i class="fa-regular fa-calendar"></i>
       <p>
         {{this.scheduledDate?.getDate()}}/{{this.scheduledDate?.getMonth()}}/{{this.scheduledDate?.getFullYear()}}
-        <i class="fa-regular fa-calendar"></i>
       </p>
     </div>
-    <div>
+    <div class="flex flex-row justify-center items-center gap-2">
+      <i class="fa-regular fa-clock"></i>
       <p>
         {{this.scheduledDate?.getHours()}}:{{this.scheduledDate?.getMinutes()}}
-        <i class="fa-regular fa-clock"></i>
       </p>
     </div>
-    <div>
+    <div class="flex flex-row justify-center items-center gap-2">
+      <i class="fa-regular fa-user"></i>
       <p>
         {{this.community}}
-        <i class="fa-regular fa-user"></i>
       </p>
     </div>
-    <div>
+    <div class="flex flex-row justify-center items-center gap-2">
+      <i class="fa-regular fa-building"></i>
       <p>
         {{this.pitch}}
-        <i class="fa-regular fa-building"></i>
       </p>
     </div>
   </div>
