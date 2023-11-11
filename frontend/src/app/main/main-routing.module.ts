@@ -6,30 +6,33 @@ import { CanchasPlaceholderComponent } from './components/canchas-placeholder/ca
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
 
-const routes: Routes = [
-  {
-    path: 'home',
-    component: HomeComponent,
-  },
-
-  {
-    path: 'session',
-    loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
-    canMatch: [isUserNotLogged]
-  },
-
-  {
-    path: 'canchas',
-    component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
-    canMatch: [isUserLogged]
-  },
-
-  { path: 'login', redirectTo: 'session/login' },
-  { path: 'signup', redirectTo: 'session/signup' },
-  { path: 'notfound', component: NotFoundComponent },
-
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
+const routes: Routes = [{
+  path: '',
+  component: MainLayoutPageComponent,
+  children: [
+    {
+      path: 'home',
+      component: HomeComponent,
+    },
+  
+    {
+      path: 'session',
+      loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
+      canMatch: [isUserNotLogged]
+    },
+  
+    {
+      path: 'canchas',
+      component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
+      canMatch: [isUserLogged]
+    },
+  
+    { path: 'login', redirectTo: 'session/login' },
+    { path: 'signup', redirectTo: 'session/signup' },
+    { path: 'notfound', component: NotFoundComponent },
+  
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+  ]}
 ];
 
 @NgModule({
