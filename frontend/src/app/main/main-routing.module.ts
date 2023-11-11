@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
+import { ComunitiesListComponent } from '../comunities/components/comunitieslist/comunitieslist.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,25 +15,27 @@ const routes: Routes = [{
       path: 'home',
       component: HomeComponent,
     },
-  
+
     {
       path: 'session',
       loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
       canMatch: [isUserNotLogged]
     },
-  
+
     {
       path: 'canchas',
       component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
       canMatch: [isUserLogged]
     },
-  
+
     { path: 'login', redirectTo: 'session/login' },
     { path: 'signup', redirectTo: 'session/signup' },
+    { path: 'comunities', component: ComunitiesListComponent },
     { path: 'notfound', component: NotFoundComponent },
-  
+
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-  ]}
+  ]
+}
 ];
 
 @NgModule({

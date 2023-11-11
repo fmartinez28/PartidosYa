@@ -8,11 +8,15 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { UserComponent } from './shared/components/user/user.component';
+import { ComunitiesListComponent } from './comunities/components/comunitieslist/comunitieslist.component';
+import { ComunitiesPageComponent } from './comunities/pages/comunities-page/comunities-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ComunitiesListComponent,
+    ComunitiesPageComponent,
   ],
   imports: [
     BrowserModule,
