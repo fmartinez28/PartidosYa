@@ -1,1 +1,56 @@
-<p>partido works!</p>
+<!--
+  <div id="card" class="p-6 bg-slate-50 rounded">
+  <div id="cardheader" class="border-b-2 text-yellow-500 p-2">
+    7/11
+  </div>
+  <div id="cardbody" class="text-center py-4">
+    <div class="text-gray-600">22 de noviembre de 2023</div>
+    <div class="text-indigo-500">Comunidad Salto</div>
+    <div class="text-purple-500">Cancha María Auxiliadora (ver más)</div>
+    <div class="text-blue-500">7/11 jugadores</div>
+  </div>
+  <div id="cardfooter" class="border-t-2  flex justify-center p-2">
+    <button class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 border border-indigo-700 rounded">Unirse</button>
+  </div>
+</div>
+-->
+
+<div id="card" [ngClass]="(this.playerLimit/2 > this.playerCount) ? 'border-lime-100':'border-orange-100'" class="rounded p-4 shadow-md bg-slate-50 border flex flex-row items-center justify-center gap-6">
+  <div id="cardheader" class="flex flex-col place-items-center gap-2">
+    <div id="cardmainheader" [ngClass]="((this.playerLimit/2 > this.playerCount) ? 'text-lime-500' : 'text-orange-500')" class="text-center rounded-2xl outline p-2">
+      <p>{{this.playerCount}}/{{this.playerLimit}}</p>
+    </div>
+    <p class="font-mono text-xs">
+      Jugadores
+    </p>
+  </div>
+  <div id="cardbody" class="flex flex-col items-end font-mono">
+    <div>
+      <p>
+        {{this.scheduledDate?.getDate()}}/{{this.scheduledDate?.getMonth()}}/{{this.scheduledDate?.getFullYear()}}
+        <i class="fa-regular fa-calendar"></i>
+      </p>
+    </div>
+    <div>
+      <p>
+        {{this.scheduledDate?.getHours()}}:{{this.scheduledDate?.getMinutes()}}
+        <i class="fa-regular fa-clock"></i>
+      </p>
+    </div>
+    <div>
+      <p>
+        {{this.community}}
+        <i class="fa-regular fa-user"></i>
+      </p>
+    </div>
+    <div>
+      <p>
+        {{this.pitch}}
+        <i class="fa-regular fa-building"></i>
+      </p>
+    </div>
+  </div>
+  <div id="cardfooter" class="flex flex-row justify-center">
+    <button [ngClass]="(!this.playerHasJoined) ? 'bg-blue-500 hover:bg-blue-700 border-blue-700' : 'bg-red-500 hover:bg-red-700 border-red-700'" class="text-white font-bold py-2 px-4 rounded">{{(this.playerHasJoined) ? 'Abandonar' : 'Unirse'}}</button>
+  </div>
+</div>
