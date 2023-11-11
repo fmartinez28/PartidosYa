@@ -21,7 +21,6 @@ CREATE TABLE public.roles (
 	CONSTRAINT roles_un UNIQUE (nombre)
 );
 
-
 CREATE TABLE public.direcciones (
 	id serial4 NOT NULL,
 	pais varchar NOT NULL,
@@ -62,6 +61,9 @@ CREATE TABLE public.usuarios (
 CREATE TABLE public.comunidades (
 	id serial4 NOT NULL,
 	nombre varchar NOT NULL,
+	memberscount int NOT NULL default 0,
+	memberslimit int NOT NULL default 50,
+	descripcion varchar NULL,
 	CONSTRAINT comunidades_pk PRIMARY KEY (id)
 );
 
@@ -79,9 +81,11 @@ CREATE TABLE public.canchas (
 CREATE TABLE public.partido (
 	id serial4 NOT NULL,
 	canchaid int8 NOT NULL,
+	playerscount int NOT NULL default 0,
+	playerslimit int NOT NULL default 10,
 	fechacreacion date NOT NULL,
 	fechaprogramada date NOT NULL,
-	comunidadid int8 NOT NULL,
+	comunidadid int8 NULL,
 	CONSTRAINT partido_pk PRIMARY KEY (id),
 	CONSTRAINT partido_fk FOREIGN KEY (canchaid) REFERENCES public.canchas(id),
 	CONSTRAINT partido_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
@@ -112,6 +116,56 @@ CREATE TABLE public.comunidadmoderador (
 	CONSTRAINT comunidadmoderador_fk_1 FOREIGN KEY (usuarioid) REFERENCES public.usuarios(id)
 );
 
+-- FUNCIONES Y TRIGGERS PARA MANEJO DEL CONTADOR DE MIEMBROS EN UNA COMUNIDAD --
+CREATE OR REPLACE FUNCTION incrementar_memberscount() RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE comunidades SET memberscount = memberscount + 1 WHERE id = NEW.comunidadid;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER incrementar_memberscount_trigger
+AFTER INSERT ON comunidadjugador
+FOR EACH ROW
+EXECUTE FUNCTION incrementar_memberscount();
+
+CREATE OR REPLACE FUNCTION decrementar_memberscount() RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE comunidades SET memberscount = memberscount - 1 WHERE id = OLD.comunidadid;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER decrementar_memberscount_trigger
+AFTER DELETE ON comunidadjugador
+FOR EACH ROW
+EXECUTE FUNCTION decrementar_memberscount();
+
+-- FUNCIONES Y TRIGGERS PARA MANEJO DEL CONTADOR DE MIEMBROS DE UN PARTIDO --
+CREATE OR REPLACE FUNCTION incrementar_playerscount() RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE partido SET playerscount = playerscount + 1 WHERE id = NEW.partidoid;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER incrementar_playerscount_trigger
+AFTER INSERT ON participacionpartido
+FOR EACH ROW
+EXECUTE FUNCTION incrementar_playerscount();
+
+CREATE OR REPLACE FUNCTION decrementar_playerscount() RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE partido SET playerscount = playerscount - 1 WHERE id = OLD.partidoid;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER decrementar_contador_partidos_trigger
+AFTER DELETE ON participacionpartido
+FOR EACH ROW
+EXECUTE FUNCTION decrementar_playerscount();
+
 INSERT INTO roles(nombre) VALUES('jugador');
 INSERT INTO roles(nombre) VALUES('propietario');
 INSERT INTO roles(nombre) VALUES('administrador');
@@ -129,4 +183,3 @@ INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(1, 1,
 INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(2, 1, '2012-08-02');
 INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 1', 1, 1, 3);
 INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 2', 2, 2, 4);
-
