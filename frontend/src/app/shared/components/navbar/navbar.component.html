@@ -46,7 +46,8 @@
 
                         <a *ngIf="!isLoggedIn" [routerLink]="['/session/login']" [routerLinkActive]="['active']"
                             [routerLinkActiveOptions]="{exact: true}"
-                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Inicio de Sesión') ? 'bg-gray-900 text-white' : '']">Inicio de Sesión</a>
+                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Inicio de Sesión') ? 'bg-gray-900 text-white' : '']">Inicio
+                            de Sesión</a>
 
                         <a *ngIf="!isLoggedIn" [routerLink]="['/session/signup']" [routerLinkActive]="['active']"
                             [routerLinkActiveOptions]="{exact: true}"
@@ -56,6 +57,10 @@
                             [routerLinkActiveOptions]="{exact: true}"
                             [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Canchas') ? 'bg-gray-900 text-white' : '']">Canchas</a>
 
+
+                        <a [routerLink]="['/comunities']" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Comunidades') ? 'bg-gray-900 text-white' : '']">Comunidades</a>
                     </div>
                 </div>
 
@@ -81,6 +86,9 @@
 
             <a [ngClass]="[(title == 'Canchas') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
                 [routerLink]="['/canchas']" class="block px-3 py-2 rounded-md text-base font-medium">Canchas</a>
+
+            <a [ngClass]="[(title == 'Comunidades') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
+                [routerLink]="['/comunities']" class="block px-3 py-2 rounded-md text-base font-medium">Canchas</a>
 
         </div>
     </div>
