@@ -47,7 +47,14 @@ export default async function (fastify, opts) {
         const queryresult = await query('SELECT * FROM "comunidades" WHERE id IN (SELECT comunidadid FROM comunidadjugador WHERE jugadorid = $1)', [req.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(204).send({ message: 'No hay entradas para la colección comunidades.' });
+            return reply.status(204).send({ message: 'No hay entradas para su solicitud.' });
+        return reply.send(rows);
+    });
+    fastify.get('/:id/partidos', { schema: communitySchemas.getAllSchema }, async function (req, reply) {
+        const queryresult = await query('SELECT * FROM "partidos" WHERE id IN (SELECT partidoid FROM participacionpartido WHERE jugadorid = $1)', [req.params.id]);
+        const rows = queryresult.rows;
+        if (rows.length === 0)
+            return reply.status(204).send({ message: 'No hay entradas para su solicitud.' });
         return reply.send(rows);
     });
 
