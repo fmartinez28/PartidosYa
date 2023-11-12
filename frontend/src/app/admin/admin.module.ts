@@ -16,6 +16,9 @@ import { ComunidadesListViewComponent } from './pages/comunidades-list-view/comu
 import { PartidosListComponent } from './components/partidos-list/partidos-list.component';
 import { PartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
 import { PartidosListItemComponent } from './components/partidos-list/partidos-list-item/partidos-list-item.component';
+import { CanchasListViewComponent } from './pages/canchas-list-view/canchas-list-view.component';
+import { CanchasListComponent } from './components/canchas-list/canchas-list.component';
+import { CanchasListItemComponent } from './components/canchas-list/canchas-list-item/canchas-list-item.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { PartidosListItemComponent } from './components/partidos-list/partidos-l
     PartidosListComponent,
     PartidosListViewComponent,
     PartidosListItemComponent,
+    CanchasListViewComponent,
+    CanchasListComponent,
+    CanchasListItemComponent,
   ],
   imports: [
     CommonModule,

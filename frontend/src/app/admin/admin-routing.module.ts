@@ -5,6 +5,7 @@ import { AdminHomeComponent } from './components/admin-home/admin-home.component
 import { UsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-list-view.component';
 import { ComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
 import { PartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
+import { CanchasListViewComponent } from './pages/canchas-list-view/canchas-list-view.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosListViewComponent, pathMatch: 'full'},
       { path: 'comunidades', component: ComunidadesListViewComponent, pathMatch: 'full'},
       { path: 'partidos', component: PartidosListViewComponent, pathMatch: 'full'},
+      { path: 'canchas', component: CanchasListViewComponent, pathMatch: 'full'},
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IComunidad } from 'src/app/admin/interfaces/IComunidad';
 
 @Component({
@@ -6,7 +6,7 @@ import { IComunidad } from 'src/app/admin/interfaces/IComunidad';
   templateUrl: './comunidades-list-item.component.html',
   styleUrls: ['./comunidades-list-item.component.scss']
 })
-export class ComunidadesListItemComponent {
+export class ComunidadesListItemComponent implements OnInit {
 
   @Input()
   public comunidad!: IComunidad;
