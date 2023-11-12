@@ -13,6 +13,9 @@ import { UsuarioListItemComponent } from './components/usuarios-list/usuario-lis
 import { ComunidadesListComponent } from './components/comunidades-list/comunidades-list.component';
 import { ComunidadesListItemComponent } from './components/comunidades-list/comunidades-list-item/comunidades-list-item.component';
 import { ComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
+import { PartidosListComponent } from './components/partidos-list/partidos-list.component';
+import { PartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
+import { PartidosListItemComponent } from './components/partidos-list/partidos-list-item/partidos-list-item.component';
 
 
 @NgModule({
@@ -27,6 +30,9 @@ import { ComunidadesListViewComponent } from './pages/comunidades-list-view/comu
     ComunidadesListComponent,
     ComunidadesListItemComponent,
     ComunidadesListViewComponent,
+    PartidosListComponent,
+    PartidosListViewComponent,
+    PartidosListItemComponent,
   ],
   imports: [
     CommonModule,
