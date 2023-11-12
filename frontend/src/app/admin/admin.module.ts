@@ -7,13 +7,17 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { UsuariosListComponent } from './components/usuarios-list/usuarios-list.component';
 import { UsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-list-view.component';
-import { UsuarioListItemComponent } from './components/usuario-list-item/usuario-list-item.component';
+import { AdminSidebarItemComponent } from './components/admin-sidebar/admin-sidebar-item/admin-sidebar-item.component';
+import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
+import { UsuarioListItemComponent } from './components/usuarios-list/usuario-list-item/usuario-list-item.component';
 
 
 @NgModule({
   declarations: [
     AdminLayoutPageComponent,
     AdminHomeComponent,
+    AdminSidebarComponent,
+    AdminSidebarItemComponent,
     UsuariosListComponent,
     UsuariosListViewComponent,
     UsuarioListItemComponent,
