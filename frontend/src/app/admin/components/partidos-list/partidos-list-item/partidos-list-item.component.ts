@@ -6,7 +6,7 @@ import { IPartido } from 'src/app/admin/interfaces/IPartido';
   templateUrl: './partidos-list-item.component.html',
   styleUrls: ['./partidos-list-item.component.scss']
 })
-export class PartidosListItemComponent {
+export class AdminPartidosListItemComponent {
   @Input()
   public partido!: IPartido;
 

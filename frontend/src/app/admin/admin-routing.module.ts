@@ -2,10 +2,10 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutPageComponent } from './pages/admin-layout-page/admin-layout-page.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
-import { UsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-list-view.component';
-import { ComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
-import { PartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
-import { CanchasListViewComponent } from './pages/canchas-list-view/canchas-list-view.component';
+import { AdminUsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-list-view.component';
+import { AdminComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
+import { AdminPartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
+import { AdminCanchasListViewComponent } from './pages/canchas-list-view/canchas-list-view.component';
 
 const routes: Routes = [
   {
@@ -13,10 +13,10 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'home', component: AdminHomeComponent, pathMatch: 'full' },
-      { path: 'usuarios', component: UsuariosListViewComponent, pathMatch: 'full'},
-      { path: 'comunidades', component: ComunidadesListViewComponent, pathMatch: 'full'},
-      { path: 'partidos', component: PartidosListViewComponent, pathMatch: 'full'},
-      { path: 'canchas', component: CanchasListViewComponent, pathMatch: 'full'},
+      { path: 'usuarios', component: AdminUsuariosListViewComponent, pathMatch: 'full' },
+      { path: 'comunidades', component: AdminComunidadesListViewComponent, pathMatch: 'full' },
+      { path: 'partidos', component: AdminPartidosListViewComponent, pathMatch: 'full' },
+      { path: 'canchas', component: AdminCanchasListViewComponent, pathMatch: 'full' },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]

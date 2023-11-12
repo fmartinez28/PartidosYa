@@ -8,7 +8,7 @@ import { CanchasService } from '../../services/canchas.service';
   templateUrl: './canchas-list.component.html',
   styleUrls: ['./canchas-list.component.scss']
 })
-export class CanchasListComponent implements OnInit {
+export class AdminCanchasListComponent implements OnInit {
   canchas: ICancha[] = [];
 
   private searchTerms = new Subject<string>();

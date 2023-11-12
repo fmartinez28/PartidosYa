@@ -6,7 +6,7 @@ import { IUsuario } from '../../../interfaces/IUsuario';
   templateUrl: './usuario-list-item.component.html',
   styleUrls: ['./usuario-list-item.component.scss']
 })
-export class UsuarioListItemComponent implements OnInit {
+export class AdminUsuarioListItemComponent implements OnInit {
 
   @Input()
   public usuario!: IUsuario;

@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './canchas-list-view.component.html',
   styleUrls: ['./canchas-list-view.component.scss']
 })
-export class CanchasListViewComponent {
+export class AdminCanchasListViewComponent {
   constructor(
     private titleService: Title
   ) { }
@@ -15,7 +15,7 @@ export class CanchasListViewComponent {
     this.titleService.setTitle("Canchas");
   }
 
-  get title () {
+  get title() {
     return this.titleService.getTitle();
   }
 }

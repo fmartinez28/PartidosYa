@@ -5,7 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
-import { ComunitiesListComponent } from '../comunities/components/comunitieslist/comunitieslist.component';
+import { ComunidadesLayoutPageComponent } from '../comunidades/pages/comunidades-layout-page/comunidades-layout-page.component';
 
 const routes: Routes = [{
   path: '',
@@ -30,7 +30,7 @@ const routes: Routes = [{
 
     { path: 'login', redirectTo: 'session/login' },
     { path: 'signup', redirectTo: 'session/signup' },
-    { path: 'comunities', component: ComunitiesListComponent },
+    { path: 'comunidades', component: ComunidadesLayoutPageComponent },
     { path: 'notfound', component: NotFoundComponent },
 
     { path: '', redirectTo: 'home', pathMatch: 'full' },

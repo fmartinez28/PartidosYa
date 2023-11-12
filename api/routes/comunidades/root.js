@@ -38,7 +38,7 @@ export default async function (fastify, opts) {
         return reply.status(204).send(rows[0]);
     });
 
-    fastify.post('/', { 
+    fastify.post('/', {
         schema: communitySchemas.postSchema,
         onRequest: [
             fastify.auth

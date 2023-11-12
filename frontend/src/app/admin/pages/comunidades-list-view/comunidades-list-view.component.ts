@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './comunidades-list-view.component.html',
   styleUrls: ['./comunidades-list-view.component.scss']
 })
-export class ComunidadesListViewComponent {
+export class AdminComunidadesListViewComponent {
   constructor(
     private titleService: Title
   ) { }
@@ -15,7 +15,7 @@ export class ComunidadesListViewComponent {
     this.titleService.setTitle("Comunidades");
   }
 
-  get title () {
+  get title() {
     return this.titleService.getTitle();
   }
 }

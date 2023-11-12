@@ -6,7 +6,7 @@ import { ICancha } from 'src/app/admin/interfaces/ICancha';
   templateUrl: './canchas-list-item.component.html',
   styleUrls: ['./canchas-list-item.component.scss']
 })
-export class CanchasListItemComponent implements OnInit {
+export class AdminCanchasListItemComponent implements OnInit {
 
   @Input()
   public cancha!: ICancha;

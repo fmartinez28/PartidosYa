@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './usuarios-list-view.component.html',
   styleUrls: ['./usuarios-list-view.component.scss']
 })
-export class UsuariosListViewComponent implements OnInit{
+export class AdminUsuariosListViewComponent implements OnInit {
   constructor(
     private titleService: Title
   ) { }
@@ -15,7 +15,7 @@ export class UsuariosListViewComponent implements OnInit{
     this.titleService.setTitle("Usuarios");
   }
 
-  get title () {
+  get title() {
     return this.titleService.getTitle();
   }
 }

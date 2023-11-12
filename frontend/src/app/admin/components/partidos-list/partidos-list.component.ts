@@ -8,8 +8,8 @@ import { PartidosService } from '../../services/partidos.service';
   templateUrl: './partidos-list.component.html',
   styleUrls: ['./partidos-list.component.scss']
 })
-export class PartidosListComponent {
-  partidos: IPartido[]  = [];
+export class AdminPartidosListComponent {
+  partidos: IPartido[] = [];
 
   private searchTerms = new Subject<string>();
 
@@ -17,18 +17,18 @@ export class PartidosListComponent {
     private PartidosService: PartidosService
   ) {
 
-      this.searchTerms.pipe(
-        // wait 300ms after each keystroke before considering the term
-        debounceTime(300),
+    this.searchTerms.pipe(
+      // wait 300ms after each keystroke before considering the term
+      debounceTime(300),
 
-        // ignore new term if same as previous term
-        distinctUntilChanged(),
+      // ignore new term if same as previous term
+      distinctUntilChanged(),
 
-        // switch to new search observable each time the term changes
-        switchMap((term: string) => this.PartidosService.searchPartido(term)),
-      ).subscribe(Partidos => this.partidos = Partidos);
+      // switch to new search observable each time the term changes
+      switchMap((term: string) => this.PartidosService.searchPartido(term)),
+    ).subscribe(Partidos => this.partidos = Partidos);
 
-   }
+  }
 
   ngOnInit(): void {
     this.getPartidos();
