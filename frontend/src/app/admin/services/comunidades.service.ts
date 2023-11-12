@@ -9,15 +9,13 @@ export class ComunidadesService {
 
   constructor() { }
 
-  private _comunidades: IComunidad[] = []
-
   private cachedSearch: IComunidad[] = [];
 
-  getUsuarios(): Observable<IComunidad[]> {
+  getComunidades(): Observable<IComunidad[]> {
     return of(this._comunidades);
   }
 
-  getUsuario(id: number): Observable<IComunidad> | undefined {
+  getComunidad(id: number): Observable<IComunidad> | undefined {
     const comunidad = this._comunidades.find(comunidad => comunidad.id === id);
     if (comunidad) {
       return of(comunidad);
@@ -25,16 +23,32 @@ export class ComunidadesService {
     return undefined;
   } 
 
-  searchUsuarios(term: string): Observable<IComunidad[]> {
+  searchComunidad(term: string): Observable<IComunidad[]> {
     if (!term.trim()) {
       this.cachedSearch = this._comunidades;
     } else {
-      const filteredUsuarios = this._comunidades.filter(comunidad => comunidad.nombre.toLowerCase().includes(term.toLowerCase()));
-      if (filteredUsuarios.length) {
-        this.cachedSearch = filteredUsuarios;
+      const filteredComunidades = this._comunidades.filter(comunidad => comunidad.nombre.toLowerCase().includes(term.toLowerCase()));
+      if (filteredComunidades.length) {
+        this.cachedSearch = filteredComunidades;
       }
     }
     return of(this.cachedSearch);
   }
+
+  private _comunidades: IComunidad[] =
+  [
+    {
+      id: 1,
+      nombre: 'Comunidad 1'
+    },
+    {
+      id: 2,
+      nombre: 'Comunidad 2'
+    },
+    {
+      id: 3,
+      nombre: 'Comunidad 3'
+    }
+  ];
 
 }

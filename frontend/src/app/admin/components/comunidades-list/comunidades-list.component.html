@@ -1,0 +1,11 @@
+<div class="mt-10">
+    <p>Buscar:</p>
+    
+    <input type="text" class="border-2 border-gray-300 p-2 rounded-lg" placeholder="Buscar comunidad" #searchBox id="search-box" (input)="search(searchBox.value)">
+
+</div>
+
+<ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
+   <app-comunidades-list-item *ngFor="let comunidad of comunidades" [comunidad]="comunidad"></app-comunidades-list-item>
+</ul>
+ 

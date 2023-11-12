@@ -10,6 +10,9 @@ import { UsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-l
 import { AdminSidebarItemComponent } from './components/admin-sidebar/admin-sidebar-item/admin-sidebar-item.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { UsuarioListItemComponent } from './components/usuarios-list/usuario-list-item/usuario-list-item.component';
+import { ComunidadesListComponent } from './components/comunidades-list/comunidades-list.component';
+import { ComunidadesListItemComponent } from './components/comunidades-list/comunidades-list-item/comunidades-list-item.component';
+import { ComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
 
 
 @NgModule({
@@ -21,6 +24,9 @@ import { UsuarioListItemComponent } from './components/usuarios-list/usuario-lis
     UsuariosListComponent,
     UsuariosListViewComponent,
     UsuarioListItemComponent,
+    ComunidadesListComponent,
+    ComunidadesListItemComponent,
+    ComunidadesListViewComponent,
   ],
   imports: [
     CommonModule,
