@@ -5,9 +5,9 @@ name: Node.js API CI
 
 on:
   push:
-    branches: [ "gh-action" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "gh-action" ]
+    branches: [ "main" ]
 
 jobs:
   build:
