@@ -55,3 +55,4 @@ Todos los tests se encuentran dentro del directorio /api/tests, para ejecutarlos
 npm run test
 ```
 Las transacciones efectuadas durante los tests no se verán reflejadas en la base de datos, pero es imperativo cumplir con los prerrequisitos antes de ejecutar los tests.
+asdfjasdk
