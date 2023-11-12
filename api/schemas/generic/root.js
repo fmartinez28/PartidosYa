@@ -13,8 +13,9 @@ const genericSingleUserSchema = {
             type: 'string',
             format: 'date'
         },
+        rolid: { type: 'number' },
     },
-    required: ['id', 'nombre', 'apellido', 'email', 'username','fechanac', 'telefonoid', 'direccionid']
+    required: ['id', 'nombre', 'apellido', 'email', 'username','fechanac', 'telefonoid', 'direccionid', 'rolid']
 }
 
 const genericErrorMessageSchema = {

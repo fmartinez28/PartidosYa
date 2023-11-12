@@ -46,8 +46,9 @@ const postSchema = {
             },
             telefonoid: { type: 'number' },
             direccionid: { type: 'number' },
+            rolid: { type: 'number' },
         },
-        required: ['nombre', 'apellido', 'fechanac', 'email', 'username', 'password', 'telefonoid', 'direccionid']
+        required: ['nombre', 'apellido', 'fechanac', 'email', 'username', 'password', 'telefonoid', 'direccionid', 'rolid']
     },
     response: {
         201: {

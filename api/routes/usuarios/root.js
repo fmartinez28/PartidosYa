@@ -21,8 +21,8 @@ export default async function (fastify, opts) {
     });
 
     fastify.post('/', { schema: userSchemas.postSchema }, async function (req, reply) {
-        const { nombre, apellido, email, username, password, fechanac, telefonoid, direccionid } = req.body;
-        const queryresult = await query('INSERT INTO "usuarios" ("nombre", "apellido", "email", "username", "password", "fechanac", "telefonoid", "direccionid") VALUES ($1, $2, $3, $4, crypt($5, gen_salt(\'bf\')), $6, $7, $8) RETURNING "id", "nombre", "apellido", "email", "username", "fechanac", "telefonoid", "direccionid"', [nombre, apellido, email, username, password, fechanac, telefonoid, direccionid]);
+        const { nombre, apellido, email, username, password, fechanac, telefonoid, direccionid, rolid } = req.body;
+        const queryresult = await query('INSERT INTO "usuarios" ("nombre", "apellido", "email", "username", "password", "fechanac", "telefonoid", "direccionid", "rolid") VALUES ($1, $2, $3, $4, crypt($5, gen_salt(\'bf\')), $6, $7, $8, $9) RETURNING "id", "nombre", "apellido", "email", "username", "fechanac", "telefonoid", "direccionid", "rolid"', [nombre, apellido, email, username, password, fechanac, telefonoid, direccionid, rolid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ message: 'Error al crear el usuario' });
         return reply.status(201).send(queryresult.rows[0]);
