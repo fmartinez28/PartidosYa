@@ -80,7 +80,6 @@ CREATE TABLE public.usuarios (
 	CONSTRAINT usuarios_username_key UNIQUE (username),
 	CONSTRAINT usuarios_direccionid_fkey FOREIGN KEY (direccionid) REFERENCES public.direcciones(id),
 	CONSTRAINT usuarios_rolid_fk FOREIGN KEY (rolid) REFERENCES public.roles(id),
-	CONSTRAINT usuarios_rolid_fk FOREIGN KEY (rolid) REFERENCES public.roles(id),
 	CONSTRAINT usuarios_telefonoid_fkey FOREIGN KEY (telefonoid) REFERENCES public.telefonos(id)
 );
 
@@ -101,7 +100,6 @@ CREATE TABLE public.canchas (
 	propietarioid int8 NOT NULL,
 	CONSTRAINT canchas_pk PRIMARY KEY (id),
 	CONSTRAINT canchas_fk FOREIGN KEY (direccionid) REFERENCES public.direcciones(id),
-	CONSTRAINT canchas_fk1 FOREIGN KEY (propietarioid) REFERENCES public.usuarios(id)
 	CONSTRAINT canchas_fk1 FOREIGN KEY (propietarioid) REFERENCES public.usuarios(id)
 );
 
@@ -128,7 +126,6 @@ CREATE TABLE public.participacionpartido (
 	CONSTRAINT participacionpartido_pk PRIMARY KEY (partidoid, jugadorid),
 	CONSTRAINT participacionpartido_fk FOREIGN KEY (partidoid) REFERENCES public.partido(id),
 	CONSTRAINT participacionpartido_fk_1 FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id)
-	CONSTRAINT participacionpartido_fk_1 FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id)
 );
 
 CREATE TABLE public.comunidadjugador (
@@ -136,7 +133,6 @@ CREATE TABLE public.comunidadjugador (
 	comunidadid int8 NOT NULL,
 	fecharegistro date NULL,
 	CONSTRAINT comunidadjugador_pk PRIMARY KEY (jugadorid, comunidadid),
-	CONSTRAINT comunidadjugador_fk FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id),
 	CONSTRAINT comunidadjugador_fk FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id),
 	CONSTRAINT comunidadjugador_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
 );
