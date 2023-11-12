@@ -4,6 +4,7 @@ import { AdminLayoutPageComponent } from './pages/admin-layout-page/admin-layout
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { UsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-list-view.component';
 import { ComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
+import { PartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
       { path: 'home', component: AdminHomeComponent, pathMatch: 'full' },
       { path: 'usuarios', component: UsuariosListViewComponent, pathMatch: 'full'},
       { path: 'comunidades', component: ComunidadesListViewComponent, pathMatch: 'full'},
+      { path: 'partidos', component: PartidosListViewComponent, pathMatch: 'full'},
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: '**', redirectTo: 'home', pathMatch: 'full' }
     ]
