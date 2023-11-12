@@ -12,7 +12,7 @@ export class NavbarComponent {
   constructor(
     private titleService: Title,
     private authService: AuthService,
-    ) { }
+  ) { }
 
   get title(): string {
     return this.titleService.getTitle();
