@@ -25,26 +25,19 @@ export default async function(fastify, opts){
             */
             const res = await query(
             `
-            SELECT u.id, u.username, 
-                CASE 
-                    WHEN j.usuarioid IS NOT NULL THEN 'jugador'
-                    WHEN p.usuarioid IS NOT NULL THEN 'propietario'
-                    ELSE 'administrador'
-                END AS role
-            FROM usuarios u
-            LEFT JOIN jugadores j ON u.id = j.usuarioid
-            LEFT JOIN propietarios p ON u.id = p.usuarioid
-            where u.username = $1 and u.password = crypt($2, u.password);
+            SELECT id, username, rolid
+            FROM usuarios
+            WHERE username = $1 and password = crypt($2, password);
             `, [username, password]);
             if (res.rows.length === 0) return reply.status(401).send({ message: 'Credenciales incorrectas' });
-            const { id, role } = res.rows[0];
-            const token = fastify.jwt.sign({id, role}, {
+            const { id, rolid } = res.rows[0];
+            const token = fastify.jwt.sign({id, rolid}, {
                 expiresIn: '1h'
             });
             const userData = {
                 id,
                 username,
-                role
+                rolid
             }
             return reply.status(201).send({
                 ...userData,
