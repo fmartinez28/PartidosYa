@@ -5,6 +5,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserComponent } from './components/user/user.component';
 import { RouterModule } from '@angular/router';
 import { MainLayoutPageComponent } from './pages/main-layout-page/main-layout-page.component';
+import { BasicUserNavbarComponent } from './components/basic-user-navbar/basic-user-navbar.component';
 
 
 
@@ -13,7 +14,8 @@ import { MainLayoutPageComponent } from './pages/main-layout-page/main-layout-pa
     FooterComponent,
     NavbarComponent,
     UserComponent,
-    MainLayoutPageComponent
+    MainLayoutPageComponent,
+    BasicUserNavbarComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { MainLayoutPageComponent } from './pages/main-layout-page/main-layout-pa
   exports: [
     FooterComponent,
     NavbarComponent,
-    UserComponent
+    UserComponent,
+    BasicUserNavbarComponent
   ]
 })
 export class SharedModule { }
