@@ -34,7 +34,6 @@ export class ComunidadesService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-    console.log("TOKEN", token, "HEADERS", headers)
     return this.http.post(`${environment.apiUrl}/comunidades`, comunidad, { headers: headers });
   }
 
