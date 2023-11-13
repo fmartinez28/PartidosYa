@@ -96,8 +96,8 @@ CREATE TABLE public.participacionpartido (
 	jugadorid int8 NOT NULL,
 	participacionfecha date NULL,
 	CONSTRAINT participacionpartido_pk PRIMARY KEY (partidoid, jugadorid),
-	CONSTRAINT participacionpartido_fk FOREIGN KEY (partidoid) REFERENCES public.partido(id),
-	CONSTRAINT participacionpartido_fk_1 FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id)
+	CONSTRAINT participacionpartido_fk FOREIGN KEY (partidoid) REFERENCES public.partido(id) ON DELETE CASCADE,
+	CONSTRAINT participacionpartido_fk_1 FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id) ON DELETE CASCADE
 );
 
 CREATE TABLE public.comunidadjugador (
@@ -105,15 +105,15 @@ CREATE TABLE public.comunidadjugador (
 	comunidadid int8 NOT NULL,
 	fecharegistro date NULL,
 	CONSTRAINT comunidadjugador_pk PRIMARY KEY (jugadorid, comunidadid),
-	CONSTRAINT comunidadjugador_fk FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id),
-	CONSTRAINT comunidadjugador_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
+	CONSTRAINT comunidadjugador_fk FOREIGN KEY (jugadorid) REFERENCES public.usuarios(id) ON DELETE CASCADE,
+	CONSTRAINT comunidadjugador_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id) ON DELETE CASCADE
 );
 
 CREATE TABLE public.comunidadmoderador (
 	comunidadid int8 NOT NULL,
 	usuarioid int8 NOT NULL,
-	CONSTRAINT comunidadmoderador_fk FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id),
-	CONSTRAINT comunidadmoderador_fk_1 FOREIGN KEY (usuarioid) REFERENCES public.usuarios(id)
+	CONSTRAINT comunidadmoderador_fk FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id) ON DELETE CASCADE,
+	CONSTRAINT comunidadmoderador_fk_1 FOREIGN KEY (usuarioid) REFERENCES public.usuarios(id) ON DELETE CASCADE
 );
 
 -- FUNCIONES Y TRIGGERS PARA MANEJO DEL CONTADOR DE MIEMBROS EN UNA COMUNIDAD --
