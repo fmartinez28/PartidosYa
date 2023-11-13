@@ -74,8 +74,8 @@ CREATE TABLE public.canchas (
 	canchanum int8 NULL,
 	propietarioid int8 NOT NULL,
 	CONSTRAINT canchas_pk PRIMARY KEY (id),
-	CONSTRAINT canchas_fk FOREIGN KEY (direccionid) REFERENCES public.direcciones(id),
-	CONSTRAINT canchas_fk1 FOREIGN KEY (propietarioid) REFERENCES public.usuarios(id)
+	CONSTRAINT canchas_fk FOREIGN KEY (direccionid) REFERENCES public.direcciones(id) ON DELETE CASCADE,
+	CONSTRAINT canchas_fk1 FOREIGN KEY (propietarioid) REFERENCES public.usuarios(id) ON DELETE CASCADE
 );
 
 CREATE TABLE public.partido (
