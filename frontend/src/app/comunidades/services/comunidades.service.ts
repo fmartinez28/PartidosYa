@@ -3,10 +3,7 @@ import { Observable, of } from 'rxjs';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-<<<<<<< HEAD
 import { AuthService } from 'src/app/session/services/auth.service';
-=======
->>>>>>> 6a10cfd (funciona agregar una nueva comunidad)
 
 @Injectable({
   providedIn: 'root'
@@ -37,8 +34,7 @@ export class ComunidadesService {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
-<<<<<<< HEAD
-    console.log("TOKEN", token, "HEADERS", headers)
+
     return this.http.post(`${environment.apiUrl}/comunidades`, comunidad, { headers: headers });
   }
 
@@ -70,9 +66,5 @@ export class ComunidadesService {
       }
     }
     return -1;
-=======
-
-    return this.http.post(`${environment.apiUrl}/comunidades`, comunidad, { headers: headers });
->>>>>>> 6a10cfd (funciona agregar una nueva comunidad)
   }
 }
