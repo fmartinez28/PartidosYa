@@ -6,6 +6,7 @@
 </div>
 
 <ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
-   <app-admin-comunidades-list-item *ngFor="let comunidad of comunidades" [comunidad]="comunidad"></app-admin-comunidades-list-item>
+   <app-admin-comunidades-list-item (onDeleteComunidad)="deleteComunidad($event)"
+    *ngFor="let comunidad of comunidades" [comunidad]="comunidad"></app-admin-comunidades-list-item>
 </ul>
  
