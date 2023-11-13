@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from '../../services/usuario.service';
+import { AdminUsuarioService } from '../../services/admin-usuario.service';
 import { IUsuario } from '../../../../interfaces/IUsuario';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
@@ -15,7 +15,7 @@ export class AdminUsuariosListComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private usuarioService: UsuarioService
+    private usuarioService: AdminUsuarioService
   ) {
 
     this.searchTerms.pipe(

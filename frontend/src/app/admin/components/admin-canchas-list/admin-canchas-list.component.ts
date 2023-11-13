@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICancha } from '../../../../interfaces/ICancha';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
-import { CanchasService } from '../../services/canchas.service';
+import { AdminCanchasService } from '../../services/admin-canchas.service';
 
 @Component({
   selector: 'app-admin-canchas-list',
@@ -14,7 +14,7 @@ export class AdminCanchasListComponent implements OnInit {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private canchasService: CanchasService
+    private canchasService: AdminCanchasService
   ) {
 
     this.searchTerms.pipe(

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CanchasService } from './canchas.service';
+import { AdminCanchasService } from './admin-canchas.service';
 
 describe('CanchasService', () => {
-  let service: CanchasService;
+  let service: AdminCanchasService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CanchasService);
+    service = TestBed.inject(AdminCanchasService);
   });
 
   it('should be created', () => {

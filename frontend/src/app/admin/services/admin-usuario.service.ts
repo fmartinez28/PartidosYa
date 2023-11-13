@@ -5,7 +5,7 @@ import { IUsuario } from '../../../interfaces/IUsuario';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class AdminUsuarioService {
 
   constructor() { }
 

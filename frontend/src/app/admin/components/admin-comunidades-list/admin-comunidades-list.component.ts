@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IComunidad } from '../../../../interfaces/IComunidad';
-import { ComunidadesService } from '../../services/comunidades.service';
+import { AdminComunidadesService } from '../../services/admin-comunidades.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
@@ -14,7 +14,7 @@ export class AdminComunidadesListComponent {
   private searchTerms = new Subject<string>();
 
   constructor(
-    private comunidadesService: ComunidadesService
+    private comunidadesService: AdminComunidadesService
   ) {
 
     this.searchTerms.pipe(

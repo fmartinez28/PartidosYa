@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PartidosService } from './partidos.service';
+import { AdminPartidosService } from './admin-partidos.service';
 
 describe('PartidosService', () => {
-  let service: PartidosService;
+  let service: AdminPartidosService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PartidosService);
+    service = TestBed.inject(AdminPartidosService);
   });
 
   it('should be created', () => {

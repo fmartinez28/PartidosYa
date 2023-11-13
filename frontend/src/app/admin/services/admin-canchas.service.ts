@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class CanchasService {
+export class AdminCanchasService {
 
   constructor() { }
 
