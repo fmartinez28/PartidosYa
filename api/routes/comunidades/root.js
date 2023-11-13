@@ -44,9 +44,10 @@ export default async function (fastify, opts) {
             fastify.auth
         ]
     }, async function (request, reply) {
-        if (request.user.role !== 'jugador') return reply.status(401).send({ message: 'No autorizado, debe ser un jugador para crear una comunidad.' });
-        const { nombre } = request.body;
-        const queryresult = await query('INSERT INTO "comunidades" ("nombre") VALUES ($1) RETURNING *', [nombre]);
+        console.log("request", request.user)
+        if (request.user.rolid != 1) return reply.status(401).send({ message: 'No autorizado, debe ser un jugador para crear una comunidad.' });
+        const { nombre, descripcion, memberslimit } = request.body;
+        const queryresult = await query('INSERT INTO "comunidades" ("nombre", "descripcion", "memberslimit") VALUES ($1, $2, $3) RETURNING *', [nombre, descripcion, memberslimit]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ message: 'Error al crear la comunidad' });
         return reply.status(201).send(queryresult.rows[0]);
