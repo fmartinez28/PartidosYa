@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
 import { IComunidad } from '../../../interfaces/IComunidad';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminComunidadesService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  private _comunidades: IComunidad[] = [];
 
   private cachedSearch: IComunidad[] = [];
 
   getComunidades(): Observable<IComunidad[]> {
-    return of(this._comunidades);
+    const res = this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades`);
+    res.subscribe(comunidades => this._comunidades = comunidades);
+    return res;
   }
 
   getComunidad(id: number): Observable<IComunidad> | undefined {
-    const comunidad = this._comunidades.find(comunidad => comunidad.id === id);
-    if (comunidad) {
-      return of(comunidad);
-    }
-    return undefined;
+    return this.http.get<IComunidad>(`${environment.apiUrl}/comunidades/${id}`);
   }
 
   searchComunidad(term: string): Observable<IComunidad[]> {
@@ -34,21 +38,5 @@ export class AdminComunidadesService {
     }
     return of(this.cachedSearch);
   }
-
-  private _comunidades: IComunidad[] =
-    [
-      {
-        id: 1,
-        nombre: 'Comunidad 1'
-      },
-      {
-        id: 2,
-        nombre: 'Comunidad 2'
-      },
-      {
-        id: 3,
-        nombre: 'Comunidad 3'
-      }
-    ];
 
 }

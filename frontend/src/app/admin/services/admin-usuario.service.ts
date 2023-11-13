@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
 import { IUsuario } from '../../../interfaces/IUsuario';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminUsuarioService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  private _usuarios: IUsuario[] = [];
 
   private cachedSearch: IUsuario[] = [];
 
   getUsuarios(): Observable<IUsuario[]> {
-    return of(this._usuarios);
+    const res = this.http.get<IUsuario[]>(`${environment.apiUrl}/usuarios`);
+    res.subscribe(usuarios => this._usuarios = usuarios);
+    return res;
   }
 
-  getUsuario(id: number): Observable<IUsuario> | undefined {
-    const usuario = this._usuarios.find(usuario => usuario.id === id);
-    if (usuario) {
-      return of(usuario);
-    }
-    return undefined;
+  getUsuario(id: number): Observable<IUsuario> | undefined {  
+    return this.http.get<IUsuario>(`${environment.apiUrl}/usuarios/${id}`);
   }
 
   searchUsuarios(term: string): Observable<IUsuario[]> {
@@ -35,28 +39,4 @@ export class AdminUsuarioService {
     return of(this.cachedSearch);
   }
 
-  private _usuarios: IUsuario[] = [{
-    id: 1,
-    nombre: 'Juan',
-    apellido: 'Perez',
-    email: 'juan@test.com',
-    username: 'test',
-    rol: 'Jugador'
-  },
-  {
-    id: 2,
-    nombre: 'Maria',
-    apellido: 'Gomez',
-    email: 'maria@test.com',
-    username: 'maria',
-    rol: 'Jugador'
-  },
-  {
-    id: 3,
-    nombre: 'Pedro',
-    apellido: 'Gonzalez',
-    email: 'pedro@test.com',
-    username: 'pedro',
-    rol: 'Propietario'
-  },];
 }
