@@ -24,3 +24,14 @@ export const isUserNotLogged: CanMatchFn = (route: Route, segments: UrlSegment[]
             })
         );
 }
+
+export const isUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+    const router = inject(Router);
+    const authService = inject(AuthService);
+    return of(authService.checkIfAdmin())
+        .pipe(
+            tap((isAdmin) => {
+                if (!isAdmin) router.navigate(['/']);
+            })
+        );
+}
