@@ -1,4 +1,4 @@
 <p>comunidades-list works!</p>
-<ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
-    <app-comunidades-list-item *ngFor="let comunidad of comunidades" [comunidad]="comunidad"></app-comunidades-list-item>
-</ul>
+
+<app-comunidades-list-item *ngFor="let comunidad of comunidades | async"
+    [comunidad]="comunidad"></app-comunidades-list-item>

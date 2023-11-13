@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { IComunidad } from 'src/app/admin/interfaces/IComunidad';
-import { ComunidadesService } from '../../services/comunidades.service';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IComunidad } from 'src/interfaces/IComunidad';
 
 @Component({
   selector: 'app-comunidades-list',
@@ -8,17 +8,8 @@ import { ComunidadesService } from '../../services/comunidades.service';
   styleUrls: ['./comunidades-list.component.scss']
 })
 export class ComunidadesListComponent {
-  comunidades: IComunidad[] = [];
+  @Input()
+  comunidades!: Observable<IComunidad[]> | null;
 
-  constructor(
-    private comunidadesService: ComunidadesService
-  ) { }
-
-  ngOnInit(): void {
-    this.getComunidades();
-  }
-
-  getComunidades(): void {
-    this.comunidadesService.getComunidades().subscribe(comunidades => this.comunidades = comunidades);
-  }
+  constructor() { }
 }

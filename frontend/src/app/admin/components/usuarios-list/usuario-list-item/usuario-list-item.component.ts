@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IUsuario } from '../../../interfaces/IUsuario';
+import { IUsuario } from '../../../../../interfaces/IUsuario';
 
 @Component({
   selector: 'app-usuario-list-item',

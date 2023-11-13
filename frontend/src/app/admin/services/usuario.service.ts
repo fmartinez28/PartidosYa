@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, tap } from 'rxjs';
-import { IUsuario } from '../interfaces/IUsuario';
+import { IUsuario } from '../../../interfaces/IUsuario';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class UsuarioService {
       return of(usuario);
     }
     return undefined;
-  } 
+  }
 
   searchUsuarios(term: string): Observable<IUsuario[]> {
     if (!term.trim()) {

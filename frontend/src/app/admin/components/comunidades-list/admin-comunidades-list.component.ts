@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IComunidad } from '../../interfaces/IComunidad';
+import { IComunidad } from '../../../../interfaces/IComunidad';
 import { ComunidadesService } from '../../services/comunidades.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 

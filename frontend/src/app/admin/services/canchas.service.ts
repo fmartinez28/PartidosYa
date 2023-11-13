@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ICancha } from '../interfaces/ICancha';
+import { ICancha } from '../../../interfaces/ICancha';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -36,28 +36,28 @@ export class CanchasService {
   }
 
   private _canchas: ICancha[] =
-  [
-    {
-      id: 1,
-      nombre: 'Cancha 1',
-      propietarioId: 1,
-      direccionId: 1,
-      canchaNum: 1
-    },
-    {
-      id: 2,
-      nombre: 'Cancha 2',
-      propietarioId: 2,
-      direccionId: 2,
-      canchaNum: 2
-    },
-    {
-      id: 3,
-      nombre: 'Cancha 3',
-      propietarioId: 3,
-      direccionId: 3,
-      canchaNum: 3
-    },
-  ]
+    [
+      {
+        id: 1,
+        nombre: 'Cancha 1',
+        propietarioId: 1,
+        direccionId: 1,
+        canchaNum: 1
+      },
+      {
+        id: 2,
+        nombre: 'Cancha 2',
+        propietarioId: 2,
+        direccionId: 2,
+        canchaNum: 2
+      },
+      {
+        id: 3,
+        nombre: 'Cancha 3',
+        propietarioId: 3,
+        direccionId: 3,
+        canchaNum: 3
+      },
+    ]
 
 }

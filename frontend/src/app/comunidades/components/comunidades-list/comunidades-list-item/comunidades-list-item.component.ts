@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IComunidad } from 'src/app/admin/interfaces/IComunidad';
+import { IComunidad } from 'src/interfaces/IComunidad';
 
 @Component({
   selector: 'app-comunidades-list-item',

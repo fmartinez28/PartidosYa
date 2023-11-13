@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IPartido } from 'src/app/admin/interfaces/IPartido';
+import { IPartido } from 'src/interfaces/IPartido';
 
 @Component({
   selector: 'app-partidos-list-item',

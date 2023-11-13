@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ICancha } from 'src/app/admin/interfaces/ICancha';
+import { ICancha } from 'src/interfaces/ICancha';
 
 @Component({
   selector: 'app-canchas-list-item',

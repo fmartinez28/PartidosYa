@@ -46,4 +46,13 @@ export default async function (fastify, opts) {
             return reply.status(500).send({ message: error });
         }
     });
+
+    fastify.get('/comunidades/:id', async function (request, reply) {
+        const id = request.params.id;
+        const queryresult = await query('SELECT * FROM "comunidades" c JOIN "comunidadjugador" cj ON c.id = cj.comunidadid WHERE cj.jugadorid = $1', [id]);
+        const rows = queryresult.rows;
+        if (rows.length === 0)
+            return reply.status(204).send({ message: 'No se comunidades para el jugador' });
+        return reply.send(queryresult.rows);
+    });
 }

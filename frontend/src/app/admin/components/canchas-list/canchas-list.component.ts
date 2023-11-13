@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICancha } from '../../interfaces/ICancha';
+import { ICancha } from '../../../../interfaces/ICancha';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { CanchasService } from '../../services/canchas.service';
 

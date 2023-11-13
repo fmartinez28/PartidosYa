@@ -1,1 +1,45 @@
-<p>comunidades-form works!</p>
+<header class="text-center p-4 mb-8 mt-20">
+    <h1 class="text-5xl font-bold font-serif text-gray-600">{{title}}</h1>
+</header>
+
+<div class="container mx-auto">
+    <div class="grid grid-cols-12 gap-4 p-4 items-center">
+        <form [formGroup]="comunidadForm"
+            class="col-span-12 sm:col-start-2 sm:col-span-10 md:col-start-3 md:col-span-8 lg:col-start-4 lg:col-span-6 xl:col-start-5 xl:col-span-4 bg-gray-100 grid gap-y-4 rounded p-10 shadow-md items-center">
+            <div class="grid grid-cols-8 gap-12 items-center">
+                <div class="col-span-3 sm:col-span-2">
+                    <label for="name" class="font-semibold text-gray-500">Nombre<span
+                            class="text-red-500">*</span></label>
+                </div>
+                <div class="col-span-5 sm:col-span-6">
+                    <input class="p-2 w-full rounded" formControlName="name" name="name" type="text">
+                    <div *ngIf="comunidadForm.get('name')?.touched && comunidadForm.get('name')?.errors?.['required']"
+                        class="text-red-500">
+                        El nombre es obligatorio.
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-8 gap-7 items-center">
+                <div class="col-span-3 sm:col-span-2">
+                    <label for="description" class="font-semibold text-gray-500">Descripcion</label>
+                </div>
+                <div class="col-span-5 sm:col-span-6">
+                    <textarea class="p-2 w-full rounded" formControlName="description" name="description"
+                        type="text"></textarea>
+                </div>
+            </div>
+            <div class="grid grid-cols-8 gap-12 items-center">
+                <div class="col-span-3 sm:col-span-2">
+                    <label for="maxMembers" class="font-semibold text-gray-500">Cantidad máx.</label>
+                </div>
+                <div class="col-span-5 sm:col-span-6">
+                    <input class="p-2 w-full rounded" formControlName="maxMembers" name="maxMembers" type="number">
+                </div>
+            </div>
+            <div class="flex flex-row justify-center m-2">
+                <button class="p-4 bg-green-500 hover:bg-green-600 hover:shadow-md shadow rounded-md text-white"
+                    type="submit">Crear</button>
+            </div>
+        </form>
+    </div>
+</div>

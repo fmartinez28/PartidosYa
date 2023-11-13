@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IComunidad } from '../interfaces/IComunidad';
+import { IComunidad } from '../../../interfaces/IComunidad';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class ComunidadesService {
       return of(comunidad);
     }
     return undefined;
-  } 
+  }
 
   searchComunidad(term: string): Observable<IComunidad[]> {
     if (!term.trim()) {
@@ -36,19 +36,19 @@ export class ComunidadesService {
   }
 
   private _comunidades: IComunidad[] =
-  [
-    {
-      id: 1,
-      nombre: 'Comunidad 1'
-    },
-    {
-      id: 2,
-      nombre: 'Comunidad 2'
-    },
-    {
-      id: 3,
-      nombre: 'Comunidad 3'
-    }
-  ];
+    [
+      {
+        id: 1,
+        nombre: 'Comunidad 1'
+      },
+      {
+        id: 2,
+        nombre: 'Comunidad 2'
+      },
+      {
+        id: 3,
+        nombre: 'Comunidad 3'
+      }
+    ];
 
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
-import { IPartido } from '../../interfaces/IPartido';
+import { IPartido } from '../../../../interfaces/IPartido';
 import { PartidosService } from '../../services/partidos.service';
 
 @Component({

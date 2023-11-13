@@ -5,7 +5,8 @@ import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
-import { ComunidadesLayoutPageComponent } from '../comunidades/pages/comunidades-layout-page/comunidades-layout-page.component';
+import { ComunidadesHomeComponent } from '../comunidades/components/comunidades-home/comunidades-home.component';
+import { ComunidadesModule } from '../comunidades/comunidades.module';
 
 const routes: Routes = [{
   path: '',
@@ -27,10 +28,14 @@ const routes: Routes = [{
       component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
       canMatch: [isUserLogged]
     },
+    {
+      path: 'comunidades',
+      loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
+      canMatch: [isUserLogged]
+    },
 
     { path: 'login', redirectTo: 'session/login' },
     { path: 'signup', redirectTo: 'session/signup' },
-    { path: 'comunidades', component: ComunidadesLayoutPageComponent },
     { path: 'notfound', component: NotFoundComponent },
 
     { path: '', redirectTo: 'home', pathMatch: 'full' },

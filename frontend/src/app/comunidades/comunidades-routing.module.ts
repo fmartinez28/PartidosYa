@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ComunidadesLayoutPageComponent } from './pages/comunidades-layout-page/comunidades-layout-page.component';
 import { ComunidadesHomeComponent } from './components/comunidades-home/comunidades-home.component';
 import { ComunidadesFormComponent } from './components/comunidades-form/comunidades-form.component';
+import { ComunidadesSearchComponent } from './components/comunidades-search/comunidades-search.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ComunidadesLayoutPageComponent,
     children: [
-      { path: 'comunidades', component: ComunidadesHomeComponent, pathMatch: 'full' },
-      { path: 'comunidades/new', component: ComunidadesFormComponent, pathMatch: 'full' }
+      { path: '', component: ComunidadesHomeComponent, pathMatch: 'full' },
+      { path: 'new', component: ComunidadesFormComponent, pathMatch: 'full' },
+      { path: 'search', component: ComunidadesSearchComponent, pathMatch: 'full' }
     ],
   }
 ];

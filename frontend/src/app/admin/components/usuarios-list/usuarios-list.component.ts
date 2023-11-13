@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
-import { IUsuario } from '../../interfaces/IUsuario';
+import { IUsuario } from '../../../../interfaces/IUsuario';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
