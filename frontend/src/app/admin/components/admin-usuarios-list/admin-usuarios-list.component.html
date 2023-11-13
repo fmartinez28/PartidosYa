@@ -6,6 +6,7 @@
 </div>
 
 <ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
-   <app-admin-usuario-list-item *ngFor="let usuario of usuarios" [usuario]="usuario"></app-admin-usuario-list-item>
+    <app-admin-usuario-list-item (onDeleteUsuario)="deleteUsuario($event)"
+        *ngFor="let usuario of usuarios" [usuario]="usuario"></app-admin-usuario-list-item>
 </ul>
  
