@@ -5,20 +5,20 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminLayoutPageComponent } from './pages/admin-layout-page/admin-layout-page.component';
 import { SharedModule } from '../shared/shared.module';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
-import { AdminUsuariosListComponent } from './components/usuarios-list/usuarios-list.component';
-import { AdminUsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-list-view.component';
+import { AdminUsuariosListComponent } from './components/admin-usuarios-list/admin-usuarios-list.component';
+import { AdminUsuariosListViewComponent } from './pages/admin-usuarios-list-view/admin-usuarios-list-view.component';
 import { AdminSidebarItemComponent } from './components/admin-sidebar/admin-sidebar-item/admin-sidebar-item.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
-import { AdminUsuarioListItemComponent } from './components/usuarios-list/usuario-list-item/usuario-list-item.component';
-import { AdminComunidadesListComponent } from './components/comunidades-list/admin-comunidades-list.component';
-import { AdminComunidadesListItemComponent } from './components/comunidades-list/comunidades-list-item/admin-comunidades-list-item.component';
-import { AdminComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
-import { AdminPartidosListComponent } from './components/partidos-list/partidos-list.component';
-import { AdminPartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
-import { AdminPartidosListItemComponent } from './components/partidos-list/partidos-list-item/partidos-list-item.component';
-import { AdminCanchasListViewComponent } from './pages/canchas-list-view/canchas-list-view.component';
-import { AdminCanchasListComponent } from './components/canchas-list/canchas-list.component';
-import { AdminCanchasListItemComponent } from './components/canchas-list/canchas-list-item/canchas-list-item.component';
+import { AdminUsuarioListItemComponent } from './components/admin-usuarios-list/admin-usuario-list-item/admin-usuario-list-item.component';
+import { AdminComunidadesListComponent } from './components/admin-comunidades-list/admin-comunidades-list.component';
+import { AdminComunidadesListItemComponent } from './components/admin-comunidades-list/admin-comunidades-list-item/admin-comunidades-list-item.component';
+import { AdminComunidadesListViewComponent } from './pages/admin-comunidades-list-view/admin-comunidades-list-view.component';
+import { AdminPartidosListComponent } from './components/admin-partidos-list/admin-partidos-list.component';
+import { AdminPartidosListViewComponent } from './pages/admin-partidos-list-view/admin-partidos-list-view.component';
+import { AdminPartidosListItemComponent } from './components/admin-partidos-list/admin-partidos-list-item/admin-partidos-list-item.component';
+import { AdminCanchasListViewComponent } from './pages/admin-canchas-list-view/admin-canchas-list-view.component';
+import { AdminCanchasListComponent } from './components/admin-canchas-list/admin-canchas-list.component';
+import { AdminCanchasListItemComponent } from './components/admin-canchas-list/admin-canchas-list-item/admin-canchas-list-item.component';
 
 
 @NgModule({

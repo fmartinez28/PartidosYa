@@ -2,10 +2,10 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminLayoutPageComponent } from './pages/admin-layout-page/admin-layout-page.component';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
-import { AdminUsuariosListViewComponent } from './pages/usuarios-list-view/usuarios-list-view.component';
-import { AdminComunidadesListViewComponent } from './pages/comunidades-list-view/comunidades-list-view.component';
-import { AdminPartidosListViewComponent } from './pages/partidos-list-view/partidos-list-view.component';
-import { AdminCanchasListViewComponent } from './pages/canchas-list-view/canchas-list-view.component';
+import { AdminUsuariosListViewComponent } from './pages/admin-usuarios-list-view/admin-usuarios-list-view.component';
+import { AdminComunidadesListViewComponent } from './pages/admin-comunidades-list-view/admin-comunidades-list-view.component';
+import { AdminPartidosListViewComponent } from './pages/admin-partidos-list-view/admin-partidos-list-view.component';
+import { AdminCanchasListViewComponent } from './pages/admin-canchas-list-view/admin-canchas-list-view.component';
 
 const routes: Routes = [
   {
