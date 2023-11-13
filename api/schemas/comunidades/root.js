@@ -30,7 +30,9 @@ const postSchema = {
     body: {
         type: 'object',
         properties: {
-            nombre: { type: 'string' }
+            nombre: { type: 'string' },
+            descripcion: { type: 'string' },
+            memberslimit: { type: 'number' }
         },
         required: ['nombre']
     },
