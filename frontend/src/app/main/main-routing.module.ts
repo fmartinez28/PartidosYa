@@ -5,8 +5,11 @@ import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
+<<<<<<< HEAD
 import { ComunidadesHomeComponent } from '../comunidades/components/comunidades-home/comunidades-home.component';
 import { ComunidadesModule } from '../comunidades/comunidades.module';
+=======
+>>>>>>> c74da364edfc8ba97bb85d8d18e752b4459ebecc
 import { PartidosComponent } from './components/partidos/partidos.component';
 
 const routes: Routes = [{
@@ -30,10 +33,13 @@ const routes: Routes = [{
       canMatch: [isUserLogged]
     },
     {
+<<<<<<< HEAD
       path: 'comunidades',
       loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
     },
     {
+=======
+>>>>>>> c74da364edfc8ba97bb85d8d18e752b4459ebecc
       path: 'partidos',
       component: PartidosComponent,
       canMatch: [isUserLogged]
