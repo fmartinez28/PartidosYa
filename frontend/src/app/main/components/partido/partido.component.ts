@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-import { Time } from '@angular/common';
-import { Component, Input } from '@angular/core';
-=======
 import { Component } from '@angular/core';
 >>>>>>> fe8e129 (setup partidos)
 
@@ -11,7 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./partido.component.scss']
 })
 export class PartidoComponent {
-<<<<<<< HEAD
   @Input() public playerCount: number = 0;
   @Input() public playerLimit: number = 10;
   @Input() public scheduledDate?: Date = new Date(2023, 11, 22, 18, 15);
@@ -21,7 +16,4 @@ export class PartidoComponent {
   //Esto quizá hacer primero un fetch de todos los partidos a los que el usuario pertenece primero
   @Input() public playerHasJoined: boolean = true;
   @Input() public community: string = 'PartidosYaTeam';
-=======
-
->>>>>>> fe8e129 (setup partidos)
 }
