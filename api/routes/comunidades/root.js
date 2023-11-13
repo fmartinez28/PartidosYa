@@ -1,19 +1,18 @@
 import { query } from "../../db/index.js";
 import * as communitySchemas from '../../schemas/comunidades/root.js';
 import { getAllSchema } from '../../schemas/jugadores/root.js';
+import { paginateQuery } from "../../utils/pagination.js";
 
 export default async function (fastify, opts) {
     // una comunidad tiene nombre
     fastify.get('/', { schema: communitySchemas.getAllSchema }, async function (request, reply) {
         const queryParams = request.query;
         console.log(queryParams);
+
         let queryString = 'SELECT * FROM "comunidades" ';
-        if (queryParams){
-            if (queryParams.search) {
-                queryString += `WHERE "nombre" ILIKE '%${queryParams.search}%'`;
-            };
-        }
-        console.log(queryString);
+        if (queryParams.search) queryString += `WHERE "nombre" ILIKE '%${queryParams.search}%'`;
+        queryString = paginateQuery(queryString, queryParams.page, queryParams.limit);
+        
         const queryResult = await query(queryString);
         const rows = queryResult.rows;
         console.log(rows);
