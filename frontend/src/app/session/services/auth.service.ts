@@ -30,8 +30,7 @@ export class AuthService {
   public checkIfAdmin(): boolean {
     const user = this.getUser();
     if (user) {
-      const userObj = JSON.parse(user);
-      return userObj.roleid === 3;
+      return JSON.parse(user).rolid == '3';
     }
     return false;
   }
