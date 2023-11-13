@@ -15,7 +15,6 @@ const routes: Routes = [{
       path: 'home',
       component: HomeComponent,
     },
-
     {
       path: 'session',
       loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
@@ -27,10 +26,11 @@ const routes: Routes = [{
       component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
       canMatch: [isUserLogged]
     },
+
     {
       path: 'comunidades',
       loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
-      canMatch: [isUserLogged]
+      canMatch: [isUserNotLogged]
     },
 
     { path: 'login', redirectTo: 'session/login' },
