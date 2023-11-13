@@ -27,6 +27,14 @@ export class AuthService {
     return !!localStorage.getItem(this.userKey);
   }
 
+  public checkIfAdmin(): boolean {
+    const user = this.getUser();
+    if (user) {
+      return JSON.parse(user).rolid == '3';
+    }
+    return false;
+  }
+
   public getUser(): string | null {
     return localStorage.getItem(this.userKey);
   }

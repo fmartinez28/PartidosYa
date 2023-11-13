@@ -1,9 +1,10 @@
 import { query } from "../../db/index.js";
 import * as userSchemas from '../../schemas/usuarios/root.js';
+import * as communitySchemas from '../../schemas/comunidades/root.js'
 
 export default async function (fastify, opts) {
     fastify.get('/', { schema: userSchemas.getAllSchema }, async function (req, reply) {
-        const queryresult = await query('SELECT nombre, apellido, email, username, fechanac, telefonoid, direccionid FROM "usuarios"');
+        const queryresult = await query('SELECT * FROM "usuarios"');
         if (queryresult.rows.length === 0)
             return reply.status(204).send({ message: 'No hay entradas para la colección usuarios.' });
         return reply.send(queryresult.rows);
@@ -12,7 +13,7 @@ export default async function (fastify, opts) {
     fastify.get('/:id', { schema: userSchemas.getByIdSchema }, async function (req, reply) {
         const id = req.params.id;
         try {
-            const res = await query('SELECT id, nombre, apellido, email, username, fechanac, telefonoid, direccionid FROM "usuarios" WHERE id = $1', [id]);
+            const res = await query('SELECT * FROM "usuarios" WHERE id = $1', [id]);
             if (res.rows.length === 0) return reply.status(404).send({ message: 'No existe el usuario solicitado' });
             return reply.send(res.rows[0]);
         } catch (error) {
@@ -41,6 +42,20 @@ export default async function (fastify, opts) {
         } catch (error) {
             return reply.status(500).send(error);
         }
+    });
+    fastify.get('/:id/comunidades', { schema: communitySchemas.getAllSchema }, async function (req, reply) {
+        const queryresult = await query('SELECT * FROM "comunidades" WHERE id IN (SELECT comunidadid FROM comunidadjugador WHERE jugadorid = $1)', [req.params.id]);
+        const rows = queryresult.rows;
+        if (rows.length === 0)
+            return reply.status(204).send({ message: 'No hay entradas para su solicitud.' });
+        return reply.send(rows);
+    });
+    fastify.get('/:id/partidos', { schema: communitySchemas.getAllSchema }, async function (req, reply) {
+        const queryresult = await query('SELECT * FROM "partidos" WHERE id IN (SELECT partidoid FROM participacionpartido WHERE jugadorid = $1)', [req.params.id]);
+        const rows = queryresult.rows;
+        if (rows.length === 0)
+            return reply.status(204).send({ message: 'No hay entradas para su solicitud.' });
+        return reply.send(rows);
     });
 
     fastify.delete('/:id', { schema: userSchemas.deleteSchema }, async function (req, reply) {
