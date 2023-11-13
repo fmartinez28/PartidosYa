@@ -26,11 +26,10 @@ const routes: Routes = [{
       component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
       canMatch: [isUserLogged]
     },
-
     {
       path: 'comunidades',
       loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
-      canMatch: [isUserNotLogged]
+      canMatch: [isUserLogged]
     },
 
     { path: 'login', redirectTo: 'session/login' },
