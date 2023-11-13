@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
->>>>>>> fe8e129 (setup partidos)
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-partido',
