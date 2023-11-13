@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../../session/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,6 +13,7 @@ export class NavbarComponent {
   constructor(
     private titleService: Title,
     private authService: AuthService,
+    public router: Router
   ) { }
 
   get title(): string {
