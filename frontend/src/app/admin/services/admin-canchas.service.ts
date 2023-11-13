@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
 import { ICancha } from '../../../interfaces/ICancha';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminCanchasService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  private _canchas: ICancha[] = []
 
   private cachedSearch: ICancha[] = [];
 
   getCanchas(): Observable<ICancha[]> {
-    return of(this._canchas);
+    const res = this.http.get<ICancha[]>(`${environment.apiUrl}/canchas`);
+    res.subscribe(canchas => this._canchas = canchas);
+    return res;
   }
 
   getCancha(id: number): Observable<ICancha> | undefined {
-    const cancha = this._canchas.find(cancha => cancha.id === id);
-    if (cancha) {
-      return of(cancha);
-    }
-    return undefined;
+    return this.http.get<ICancha>(`${environment.apiUrl}/canchas/${id}`);
   }
 
   searchCanchas(term: string): Observable<ICancha[]> {
@@ -34,30 +38,5 @@ export class AdminCanchasService {
     }
     return of(this.cachedSearch);
   }
-
-  private _canchas: ICancha[] =
-    [
-      {
-        id: 1,
-        nombre: 'Cancha 1',
-        propietarioId: 1,
-        direccionId: 1,
-        canchaNum: 1
-      },
-      {
-        id: 2,
-        nombre: 'Cancha 2',
-        propietarioId: 2,
-        direccionId: 2,
-        canchaNum: 2
-      },
-      {
-        id: 3,
-        nombre: 'Cancha 3',
-        propietarioId: 3,
-        direccionId: 3,
-        canchaNum: 3
-      },
-    ]
 
 }

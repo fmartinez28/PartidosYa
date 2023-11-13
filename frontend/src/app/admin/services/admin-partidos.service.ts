@@ -1,26 +1,30 @@
 import { Injectable } from '@angular/core';
 import { IPartido } from '../../../interfaces/IPartido';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminPartidosService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  private _partidos: IPartido[] = [];
 
   private cachedSearch: IPartido[] = [];
 
   getPartidos(): Observable<IPartido[]> {
-    return of(this._partidos);
+    const res = this.http.get<IPartido[]>(`${environment.apiUrl}/partidos`);
+    res.subscribe(partidos => this._partidos = partidos);
+    return res;
   }
 
   getPartido(id: number): Observable<IPartido> | undefined {
-    const partido = this._partidos.find(partido => partido.id === id);
-    if (partido) {
-      return of(partido);
-    }
-    return undefined;
+    return this.http.get<IPartido>(`${environment.apiUrl}/partidos/${id}`);
   }
 
   searchPartido(term: string): Observable<IPartido[]> {
@@ -35,29 +39,4 @@ export class AdminPartidosService {
     return of(this.cachedSearch);
   }
 
-  private _partidos: IPartido[] =
-    [
-      {
-        id: 1,
-        canchaId: 1,
-        comunidadId: 1,
-        fechaCreacion: '01/01/2020',
-        fechaProgramada: '01/01/2020'
-      },
-      {
-        id: 2,
-        canchaId: 2,
-        comunidadId: 2,
-        fechaCreacion: '01/01/2020',
-        fechaProgramada: '01/01/2020'
-      },
-      {
-        id: 3,
-        canchaId: 3,
-        comunidadId: 3,
-        fechaCreacion: '01/01/2020',
-        fechaProgramada: '01/01/2020'
-      }
-
-    ]
 }
