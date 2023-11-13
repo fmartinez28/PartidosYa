@@ -5,10 +5,20 @@ import { getAllSchema } from '../../schemas/jugadores/root.js';
 export default async function (fastify, opts) {
     // una comunidad tiene nombre
     fastify.get('/', { schema: communitySchemas.getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "comunidades"');
-        const rows = queryresult.rows;
+        const queryParams = request.query;
+        console.log(queryParams);
+        let queryString = 'SELECT * FROM "comunidades" ';
+        if (queryParams){
+            if (queryParams.search) {
+                queryString += `WHERE "nombre" ILIKE '%${queryParams.search}%'`;
+            };
+        }
+        console.log(queryString);
+        const queryResult = await query(queryString);
+        const rows = queryResult.rows;
+        console.log(rows);
         if (rows.length === 0)
-            return reply.status(204).send({ message: 'No hay entradas para la colección comunidades.' });
+            return reply.status(204).send();
         return reply.send(rows);
     });
 
