@@ -39,7 +39,6 @@ export class ComunidadesFormComponent {
   }
 
   onAdd(): void {
-    console.log("ASDASDANASHEEE", this.comunidadForm.valid)
     if (this.comunidadForm.valid) {
       console.log("form data", this.comunidadForm.value)
       const comunidadRequest: IComunidad = this.comunidadForm.value;
@@ -48,11 +47,9 @@ export class ComunidadesFormComponent {
           console.log(res);
         },
         complete: () => {
-          console.log('Comunidad agregada');
           this.router.navigate(['/comunidades']);
         },
         error: err => {
-          alert('Ocurrió un error, por favor intente nuevamente')
           console.log('Ocurrió un error con el comunidad:', err)
           this.router.navigate(['/comunidades']);
         }

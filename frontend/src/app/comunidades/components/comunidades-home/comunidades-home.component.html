@@ -1,14 +1,1 @@
-<ng-container *ngIf="tieneComunidades; else noComunidades">
-    <ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
-        <app-comunidades-list [comunidades]="this.getComunidades()"></app-comunidades-list>
-    </ul>
-</ng-container>
-
-<ng-template #noComunidades>
-    <p>No tienes comunidades</p>
-    <a [routerLink]="['/comunidades/new']"
-        class="text-sm font-semibold leading-6 text-gray-900 hover:text-lime-500">Crear</a>
-    <br>
-    <a [routerLink]="['/comunidades/search']"
-        class="text-sm font-semibold leading-6 text-gray-900 hover:text-lime-500">Únete a una!</a>
-</ng-template>
+<app-comunidades-list></app-comunidades-list>

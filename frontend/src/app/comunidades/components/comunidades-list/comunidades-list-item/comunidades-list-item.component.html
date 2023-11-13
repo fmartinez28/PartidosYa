@@ -1,17 +1,26 @@
 <li class="py-3 sm:py-4">
-    <div class="flex items-center space-x-4 rtl:space-x-reverse">
-        <div class="flex-shrink-0">
-            <img class="w-8 h-8 rounded-full" src="https://picsum.photos/300" alt="Foto">
+    <div id="card" class="rounded p-4 shadow-md bg-slate-50 border border-lime-100 items-center justify-center gap-6">
+        <div id="cardtitle" class="rounded p-4 items-center justify-center gap-6">
+            <h2>{{comunidad.nombre}}</h2>
+            <div *ngIf="comunidad.descripcion" id="cardbody" class="flex flex-col items-end font-mono">
+                <div>
+                    <p>
+                        {{comunidad.descripcion}}
+                        <i class="fa-regular fa-calendar"></i>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900 truncate">
-                Id: {{comunidad.id}} - {{comunidad.nombre}} - {{comunidad.descripcion}} -
-                {{comunidad.cantidadMiembros}}/{{comunidad.maximoMiembros}}
-            </p>
+        <div id="cardbody" class="flex flex-row items-center justify-center gap-6">
+            <div id="cardheader" class="flex flex-col place-items-center gap-2">
+                <div id="cardmainheader" class="text-center rounded-2xl outline p-2 text-lime-500">
+                    <p>{{comunidad.cantidadMiembros}}/{{comunidad.maximoMiembros}}</p>
+                </div>
+            </div>
+            <div id="cardfooter" class="flex flex-row justify-center">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded"
+                    (click)="this.joinToComunidad()">Unirse</button>
+            </div>
         </div>
-        <button type="button"
-            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
-            Unirme
-        </button>
     </div>
 </li>
