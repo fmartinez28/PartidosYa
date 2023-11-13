@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICancha } from 'src/interfaces/ICancha';
 
 @Component({
@@ -14,4 +14,12 @@ export class AdminCanchasListItemComponent implements OnInit {
   ngOnInit(): void {
     if (!this.cancha) throw new Error('Cancha is required');
   }
+
+  @Output()
+  public onDeleteCancha: EventEmitter<number> = new EventEmitter<number>();
+
+  deleteCancha(): void {
+    this.onDeleteCancha.emit(this.cancha.id);
+  }
+
 }

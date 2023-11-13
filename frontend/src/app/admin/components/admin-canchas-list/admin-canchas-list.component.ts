@@ -38,6 +38,10 @@ export class AdminCanchasListComponent implements OnInit {
     this.canchasService.getCanchas().subscribe(canchas => this.canchas = canchas);
   }
 
+  deleteCancha(id: number): void {
+    this.canchasService.deleteCancha(id).subscribe(() => this.getCanchas());
+  }
+
   search(term: string): void {
     this.searchTerms.next(term);
   }
