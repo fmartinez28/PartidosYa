@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IPartido } from 'src/interfaces/IPartido';
 
 @Component({
@@ -12,6 +12,13 @@ export class AdminPartidosListItemComponent {
 
   ngOnInit(): void {
     if (!this.partido) throw new Error('Partido is required');
+  }
+
+  @Output()
+  public onDeletePartido: EventEmitter<number> = new EventEmitter<number>();
+
+  deletePartido(): void {
+    this.onDeletePartido.emit(this.partido.id);
   }
 
 }

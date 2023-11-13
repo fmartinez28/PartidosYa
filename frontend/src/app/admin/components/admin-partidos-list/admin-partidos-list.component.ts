@@ -38,6 +38,10 @@ export class AdminPartidosListComponent {
     this.PartidosService.getPartidos().subscribe(Partidos => this.partidos = Partidos);
   }
 
+  deletePartido(id: number): void {
+    this.PartidosService.deletePartido(id).subscribe(() => this.getPartidos());
+  }
+
   search(term: string): void {
     this.searchTerms.next(term);
   }
