@@ -27,6 +27,10 @@ export class AdminComunidadesService {
     return this.http.get<IComunidad>(`${environment.apiUrl}/comunidades/${id}`);
   }
 
+  deleteComunidad(id: number): Observable<IComunidad> {
+    return this.http.delete<IComunidad>(`${environment.apiUrl}/comunidades/${id}`);
+  }
+
   searchComunidad(term: string): Observable<IComunidad[]> {
     if (!term.trim()) {
       this.cachedSearch = this._comunidades;
