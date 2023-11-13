@@ -26,4 +26,8 @@ export class UserComponent {
     this.authService.onLogout();
     this.router.navigate(['/home']);
   }
+
+  get isAdmin(): boolean {
+    return this.authService.checkIfAdmin();
+  }
 }

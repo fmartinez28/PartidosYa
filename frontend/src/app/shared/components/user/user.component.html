@@ -3,7 +3,11 @@
         <img class="w-12 h-12 rounded-full object-cover" src="{{pictureurl}}" alt="A profile picture">
     </div>
     <div>
-        <div class="font-bold text-white">{{getUsername()}}</div>
+        <div class="flex items-center">
+            <div class="font-bold text-white">{{getUsername()}}</div>
+            <i *ngIf="isAdmin"
+            class="fa-solid fa-lock-open text-red-500 mx-2 text-xs"></i>
+        </div>
         <div class="text-sm text-gray-400 hover:cursor-pointer hover:text-red-500"><a (click)="onLogout()">Logout</a></div>
     </div>
 </div>
