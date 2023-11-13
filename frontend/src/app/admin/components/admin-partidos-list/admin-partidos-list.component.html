@@ -6,6 +6,7 @@
 </div>
 
 <ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
-   <app-admin-partidos-list-item *ngFor="let partido of partidos" [partido]="partido"></app-admin-partidos-list-item>
+    <app-admin-partidos-list-item (onDeletePartido)="deletePartido($event)"
+        *ngFor="let partido of partidos" [partido]="partido"></app-admin-partidos-list-item>
 </ul>
  

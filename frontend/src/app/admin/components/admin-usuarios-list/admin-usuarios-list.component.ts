@@ -39,6 +39,10 @@ export class AdminUsuariosListComponent implements OnInit {
     this.usuarioService.getUsuarios().subscribe(usuarios => this.usuarios = usuarios);
   }
 
+  deleteUsuario(id: number): void {
+    this.usuarioService.deleteUsuario(id).subscribe(() => this.getUsuarios());
+  }
+
   search(term: string): void {
     this.searchTerms.next(term);
   }

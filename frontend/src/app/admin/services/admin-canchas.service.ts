@@ -27,6 +27,10 @@ export class AdminCanchasService {
     return this.http.get<ICancha>(`${environment.apiUrl}/canchas/${id}`);
   }
 
+  deleteCancha(id: number): Observable<ICancha> {
+    return this.http.delete<ICancha>(`${environment.apiUrl}/canchas/${id}`);
+  }
+
   searchCanchas(term: string): Observable<ICancha[]> {
     if (!term.trim()) {
       this.cachedSearch = this._canchas;

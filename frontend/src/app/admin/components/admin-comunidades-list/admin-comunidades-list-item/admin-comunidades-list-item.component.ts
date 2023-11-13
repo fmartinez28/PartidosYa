@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IComunidad } from 'src/interfaces/IComunidad';
 
 @Component({
@@ -13,5 +13,12 @@ export class AdminComunidadesListItemComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.comunidad) throw new Error('Comunidad is required');
+  }
+
+  @Output()
+  public onDeleteComunidad: EventEmitter<number> = new EventEmitter<number>();
+
+  deleteComunidad(): void {
+    this.onDeleteComunidad.emit(this.comunidad.id);
   }
 }

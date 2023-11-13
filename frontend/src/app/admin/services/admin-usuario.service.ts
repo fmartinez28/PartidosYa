@@ -27,6 +27,10 @@ export class AdminUsuarioService {
     return this.http.get<IUsuario>(`${environment.apiUrl}/usuarios/${id}`);
   }
 
+  deleteUsuario(id: number): Observable<IUsuario> {
+    return this.http.delete<IUsuario>(`${environment.apiUrl}/usuarios/${id}`);
+  }
+
   searchUsuarios(term: string): Observable<IUsuario[]> {
     if (!term.trim()) {
       this.cachedSearch = this._usuarios;

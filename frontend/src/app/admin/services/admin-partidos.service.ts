@@ -27,6 +27,10 @@ export class AdminPartidosService {
     return this.http.get<IPartido>(`${environment.apiUrl}/partidos/${id}`);
   }
 
+  deletePartido(id: number): Observable<IPartido> {
+    return this.http.delete<IPartido>(`${environment.apiUrl}/partidos/${id}`);
+  }
+
   searchPartido(term: string): Observable<IPartido[]> {
     if (!term.trim()) {
       this.cachedSearch = this._partidos;

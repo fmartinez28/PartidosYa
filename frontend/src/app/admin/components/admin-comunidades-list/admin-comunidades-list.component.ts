@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { IComunidad } from '../../../../interfaces/IComunidad';
 import { AdminComunidadesService } from '../../services/admin-comunidades.service';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
@@ -36,6 +36,10 @@ export class AdminComunidadesListComponent {
 
   getComunidades(): void {
     this.comunidadesService.getComunidades().subscribe(comunidades => this.comunidades = comunidades);
+  }
+
+  deleteComunidad(id: number): void {
+    this.comunidadesService.deleteComunidad(id).subscribe(() => this.getComunidades());
   }
 
   search(term: string): void {

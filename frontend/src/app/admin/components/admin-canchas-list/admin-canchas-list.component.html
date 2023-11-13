@@ -6,6 +6,7 @@
 </div>
 
 <ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
-   <app-admin-canchas-list-item *ngFor="let cancha of canchas" [cancha]="cancha"></app-admin-canchas-list-item>
+    <app-admin-canchas-list-item (onDeleteCancha)="deleteCancha($event)"
+        *ngFor="let cancha of canchas" [cancha]="cancha"></app-admin-canchas-list-item>
 </ul>
  

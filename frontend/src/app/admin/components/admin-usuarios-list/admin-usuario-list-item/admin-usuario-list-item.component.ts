@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IUsuario } from '../../../../../interfaces/IUsuario';
 
 @Component({
@@ -13,6 +13,13 @@ export class AdminUsuarioListItemComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.usuario) throw new Error('Usuario is required');
+  }
+
+  @Output()
+  public onDeleteUsuario: EventEmitter<number> = new EventEmitter<number>();
+
+  deleteUsuario(): void {
+    this.onDeleteUsuario.emit(this.usuario.id);
   }
 
   constructor() { }
