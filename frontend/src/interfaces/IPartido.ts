@@ -1,9 +1,9 @@
 export interface IPartido {
     id: number;
-    canchaId: number;
-    comunidadId: number;
-    fechaCreacion: string;
-    fechaProgramada: string;
+    canchaid: number;
+    comunidadid: number;
+    fechacreacion: string;
+    fechaprogramada: string;
     playerscount?: number;
     playerslimit?: number;
 }
