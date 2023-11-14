@@ -8,10 +8,10 @@
 <section class="flex flex-col justify-center items-center">
   <div class="container m-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
-      <app-partido></app-partido>
-      <app-partido></app-partido>
-      <app-partido></app-partido>
-      <app-partido></app-partido>
+      <app-partido *ngFor="let partido of partidos"
+      [id]="partido.id" [playerCount]="partido.playerscount!" [playerLimit]="partido.playerslimit!"
+      [scheduledDate]="partido.fechaprogramada"
+      ></app-partido>
     </div>
   </div>
 </section>
