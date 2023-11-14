@@ -1,1 +1,19 @@
-<p>partido-form works!</p>
+<div class="flex justify-center items-center p-4">
+  <form [formGroup]="this.form" (ngSubmit)="this.createMatch()" class="bg-slate-50 p-4 rounded flex flex-col gap-2 outline outline-1 outline-indigo-200">
+    <div class="flex flex-col gap-4">
+      <label for="fechaprogramada">Fecha</label>
+      <input type="date" name="fechaprogramada" formControlName="fechaprogramada" class="rounded outline outline-1 outline-slate-300">
+    </div>
+    <div class="flex flex-col gap-4">
+      <label for="canchaid">Cancha</label>
+      <ng-select name="canchaid" formControlName="canchaid" class="bg-white-900 rounded outline outline-1 outline-slate-300">
+        <ng-option *ngFor="let cancha of this.canchas" [value]="cancha.id">
+          {{cancha.nombre}}
+        </ng-option>
+      </ng-select>
+    </div>
+    <button class="rounded bg-lime-400 text-center">
+      Crear
+    </button>
+  </form>
+</div>
