@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./partido.component.scss']
 })
 export class PartidoComponent {
+  @Input() private id!: number;
   @Input() public playerCount: number = 0;
   @Input() public playerLimit: number = 10;
   @Input() public scheduledDate?: Date = new Date(2023, 11, 22, 18, 15);

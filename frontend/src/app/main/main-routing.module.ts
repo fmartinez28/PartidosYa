@@ -7,7 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
 import { ComunidadesHomeComponent } from '../comunidades/components/comunidades-home/comunidades-home.component';
 import { ComunidadesModule } from '../comunidades/comunidades.module';
-import { PartidosComponent } from './components/partidos/partidos.component';
+import { PartidosComponent } from '../partidos/components/partidos/partidos.component';
 
 const routes: Routes = [{
   path: '',
