@@ -7,8 +7,6 @@ import { CanchasPlaceholderComponent } from './components/canchas-placeholder/ca
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { WorspacePageComponent } from './pages/worspace-page/worspace-page.component';
 import { SharedModule } from '../shared/shared.module';
-import { PartidosComponent } from '../partidos/components/partidos/partidos.component';
-import { PartidoComponent } from '../partidos/components/partido/partido.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +14,6 @@ import { PartidoComponent } from '../partidos/components/partido/partido.compone
     CanchasPlaceholderComponent,
     NotFoundComponent,
     WorspacePageComponent,
-    PartidosComponent,
-    PartidoComponent
   ],
   imports: [
     CommonModule,
