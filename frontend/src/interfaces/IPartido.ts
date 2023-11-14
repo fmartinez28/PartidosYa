@@ -4,4 +4,6 @@ export interface IPartido {
     comunidadId: number;
     fechaCreacion: string;
     fechaProgramada: string;
+    playerscount?: number;
+    playerslimit?: number;
 }
