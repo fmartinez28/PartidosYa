@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./partidos.component.scss']
 })
 export class PartidosComponent {
+
   constructor(private titleService: Title){
     this.titleService.setTitle('Partidos');
   }
