@@ -20,10 +20,10 @@ export class SignupComponent {
     private formBuilder: FormBuilder,
     private router: Router,
     private registerService: RegisterService
-    ) {
+  ) {
   }
 
-  get title () {
+  get title() {
     return this.titleService.getTitle();
   }
 

@@ -54,7 +54,7 @@ export class AuthService {
   public getUser(): string | null {
     return localStorage.getItem(this.userKey);
   }
-  
+
   public onLogin(loginReq: ILoginRequest): Observable<ILoginResponse> {
     return this.httpClient.post<ILoginResponse>(`${environment.apiUrl}/login`, loginReq).pipe(
       catchError((err) => {

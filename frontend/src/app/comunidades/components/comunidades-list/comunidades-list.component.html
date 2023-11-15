@@ -1,4 +1,9 @@
 <ng-container *ngIf="this.comunidades; else noComunidades">
+    <div class="mt-10">
+        <p>Buscar:</p>
+        <input type="text" class="border-2 border-gray-300 p-2 rounded-lg" placeholder="Buscar comunidad" #searchBox
+            id="search-box" (input)="search(searchBox.value)">
+    </div>
     <ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
         <app-comunidades-list-item *ngFor="let comunidad of comunidades"
             [comunidad]="comunidad"></app-comunidades-list-item>
@@ -7,9 +12,4 @@
 
 <ng-template #noComunidades>
     <p>No tienes comunidades</p>
-    <a [routerLink]="['/comunidades/new']"
-        class="text-sm font-semibold leading-6 text-gray-900 hover:text-lime-500">Crear</a>
-    <br>
-    <a [routerLink]="['/comunidades/search']"
-        class="text-sm font-semibold leading-6 text-gray-900 hover:text-lime-500">Únete a una!</a>
 </ng-template>

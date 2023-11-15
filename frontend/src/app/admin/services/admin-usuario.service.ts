@@ -23,7 +23,7 @@ export class AdminUsuarioService {
     return res;
   }
 
-  getUsuario(id: number): Observable<IUsuario> | undefined {  
+  getUsuario(id: number): Observable<IUsuario> | undefined {
     return this.http.get<IUsuario>(`${environment.apiUrl}/usuarios/${id}`);
   }
 

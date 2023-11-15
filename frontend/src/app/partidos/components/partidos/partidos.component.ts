@@ -10,14 +10,14 @@ import { IPartido } from 'src/interfaces/IPartido';
 })
 export class PartidosComponent {
   public partidos?: IPartido[];
-  constructor(private titleService: Title, private partidosService: PartidosService){
+  constructor(private titleService: Title, private partidosService: PartidosService) {
     this.titleService.setTitle('Partidos');
   }
 
   get title(): string {
     return this.titleService.getTitle();
   }
-  ngOnInit(){
+  ngOnInit() {
     this.partidosService.getPartidos().subscribe({
       next: (matches) => {
         console.log(matches);

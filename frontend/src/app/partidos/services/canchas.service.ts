@@ -10,7 +10,7 @@ import { ICancha } from 'src/interfaces/ICancha';
 export class CanchasService {
 
   constructor(private httpClient: HttpClient) { }
-  public getMatchingCanchas(): Observable<ICancha[]>{
+  public getMatchingCanchas(): Observable<ICancha[]> {
     return this.httpClient.get<ICancha[]>(`${environment.apiUrl}/canchas`);
   }
 }
