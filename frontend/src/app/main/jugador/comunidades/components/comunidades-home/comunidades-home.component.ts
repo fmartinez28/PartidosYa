@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class ComunidadesHomeComponent {
 
+  routerLink: string = "/player/comunidades/"
+
   constructor(
     private componentTitle: Title,
     private router: Router) {

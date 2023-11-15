@@ -105,10 +105,11 @@ export default async function (fastify, opts) {
     fastify.get('/:id/jugadores', {
         schema: getAllSchema
     }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "usuarios" WHERE "id" IN (SELECT "jugadorid" FROM "comunidadjugador" WHERE "comunidadid" = $1)', [request.params.id]);
+        const queryString = 'SELECT * FROM "usuarios" WHERE "id" IN (SELECT "jugadorid" FROM "comunidadjugador" WHERE "comunidadid" = $1)'
+        const queryresult = await query(queryString, [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(204).send({ message: 'No hay jugadores en la comunidad' });
+            return reply.status(204);
         return reply.send(rows);
     });
 

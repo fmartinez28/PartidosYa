@@ -16,6 +16,7 @@ export class ComunidadesFormComponent {
   public memberslimit: number = 50;
   public comunidadForm!: FormGroup;
 
+  private routerLink: string = "/player/comunidades";
   constructor(
     private titleService: Title,
     private formBuilder: FormBuilder,
@@ -54,7 +55,7 @@ export class ComunidadesFormComponent {
             },
             error: err => {
               console.log({ error: err })
-              this.router.navigate(['/comunidades']);
+              this.router.navigate([this.routerLink]);
             }
           });
           this.comunidadesService.joinToComunidad(id).subscribe({
@@ -66,17 +67,17 @@ export class ComunidadesFormComponent {
             },
             error: err => {
               console.log({ error: err })
-              this.router.navigate(['/comunidades']);
+              this.router.navigate([this.routerLink]);
             }
           })
         },
         complete: () => {
           this.comunidadesService.notificarComunidadAgregada();
-          this.router.navigate(['/comunidades']);
+          this.router.navigate([this.routerLink]);
         },
         error: err => {
           alert('Ocurrió un error ' + err);
-          this.router.navigate(['/comunidades']);
+          this.router.navigate([this.routerLink]);
         }
       });
     } else {

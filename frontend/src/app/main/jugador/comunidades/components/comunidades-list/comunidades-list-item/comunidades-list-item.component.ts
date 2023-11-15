@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { ComunidadesService } from '../../../services/comunidades.service';
 
@@ -16,6 +15,7 @@ export class ComunidadesListItemComponent implements OnInit {
   @Input()
   public joinComunidad!: boolean;
 
+  private routerLink: string = "/player/comunidades";
   constructor(private comunidadesService: ComunidadesService,
     private router: Router) {
 
@@ -32,11 +32,11 @@ export class ComunidadesListItemComponent implements OnInit {
       },
       complete: () => {
         console.log({ result: "OK" })
-        this.router.navigate(["/comunidades"]);
+        this.router.navigate([this.routerLink]);
       },
       error: err => {
         console.log({ error: err })
-        this.router.navigate(['/comunidades']);
+        this.router.navigate([this.routerLink]);
       }
     });
   }
