@@ -7,6 +7,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
 import { ComunidadesModule } from '../comunidades/comunidades.module';
 import { HomeLayoutPageComponent } from '../shared/pages/home-layout-page/home-layout-page.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   
@@ -21,6 +22,7 @@ const routes: Routes = [
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'notfound', component: HomeLayoutPageComponent, children: [{ path: '', component: NotFoundComponent }] },
+  { path: 'aboutus', component: HomeLayoutPageComponent, children: [{ path: '', component: AboutComponent }] },
 
   {
     path: 'session',

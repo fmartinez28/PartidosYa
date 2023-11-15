@@ -44,27 +44,11 @@
                         <a [routerLink]="['/home']" [routerLinkActive]="['active']"
                             [routerLinkActiveOptions]="{exact: true}"
                             [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Inicio') ? 'bg-gray-900 text-white' : '']">Inicio</a>
+                        
+                        <a [routerLink]="['/aboutus']" [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{exact: true}"
+                        [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Nosotros') ? 'bg-gray-900 text-white' : '']">Nosotros</a>
 
-                        <a *ngIf="!isLoggedIn" [routerLink]="['/session/login']" [routerLinkActive]="['active']"
-                            [routerLinkActiveOptions]="{exact: true}"
-                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Inicio de Sesión') ? 'bg-gray-900 text-white' : '']">Inicio
-                            de Sesión</a>
-
-                        <a *ngIf="!isLoggedIn" [routerLink]="['/session/signup']" [routerLinkActive]="['active']"
-                            [routerLinkActiveOptions]="{exact: true}"
-                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Registro') ? 'bg-gray-900 text-white' : '']">Registro</a>
-
-                        <a [routerLink]="['/canchas']" [routerLinkActive]="['active']"
-                            [routerLinkActiveOptions]="{exact: true}"
-                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Canchas') ? 'bg-gray-900 text-white' : '']">Canchas</a>
-                        <a [routerLink]="['/partidos']" [routerLinkActive]="['active']"
-                            [routerLinkActiveOptions]="{exact: true}"
-                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Partidos') ? 'bg-gray-900 text-white' : '']">Partidos</a>
-
-
-                        <a [routerLink]="['/comunidades']" [routerLinkActive]="['active']"
-                            [routerLinkActiveOptions]="{exact: true}"
-                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Comunidades') ? 'bg-gray-900 text-white' : '']">Comunidades</a>
                     </div>
                 </div>
 
@@ -82,19 +66,8 @@
             <a [ngClass]="[(title == 'Home') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
                 [routerLink]="['/home']" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
 
-            <a [ngClass]="[(title == 'Login') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
-                [routerLink]="['/session/login']" class="block px-3 py-2 rounded-md text-base font-medium">Login</a>
-
-            <a [ngClass]="[(title == 'Signup') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
-                [routerLink]="['/session/signup']" class="block px-3 py-2 rounded-md text-base font-medium">Signup</a>
-
-            <a [ngClass]="[(title == 'Canchas') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
-                [routerLink]="['/canchas']" class="block px-3 py-2 rounded-md text-base font-medium">Canchas</a>
-            <a [ngClass]="[(title == 'Partidos') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
-                [routerLink]="['/partidos']" class="block px-3 py-2 rounded-md text-base font-medium">Partidos</a>
-
-            <a [ngClass]="[(title == 'Comunidades') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
-                [routerLink]="['/comunidades']" class="block px-3 py-2 rounded-md text-base font-medium">Canchas</a>
+            <a [ngClass]="[(title == 'Nosotros') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
+            [routerLink]="['/aboutus']" class="block px-3 py-2 rounded-md text-base font-medium">Nosotros</a>
 
         </div>
     </div>
