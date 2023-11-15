@@ -4,8 +4,7 @@ import { MainLayoutPageComponent } from '../shared/pages/main-layout-page/main-l
 import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
-import { ComunidadesModule } from '../comunidades/comunidades.module';
+import { isUserJugador, isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
 import { HomeLayoutPageComponent } from '../shared/pages/home-layout-page/home-layout-page.component';
 import { AboutComponent } from './components/about/about.component';
 
@@ -35,22 +34,14 @@ const routes: Routes = [
     path: '',
     component: MainLayoutPageComponent,
     children: [
+      
+      // Rutas
       {
-        path: 'canchas',
-        component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
-        canMatch: [isUserLogged]
-      },
-      {
-        path: 'comunidades',
-        loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
-        canMatch: [isUserLogged]
-      },
-      {
-        path: 'partidos',
-        loadChildren: () => import('../partidos/partidos.module').then(m => m.PartidosModule),
-        canMatch: [isUserLogged]
+        path: 'player', loadChildren: () => import('./jugador/jugador.module').then(m => m.JugadorModule),
+        canMatch: [isUserJugador]
       },
 
+      // Redirects por las dudas
       { path: 'login', redirectTo: 'session/login' },
       { path: 'signup', redirectTo: 'session/signup' },
       { path: '', redirectTo: 'home', pathMatch: 'full' },

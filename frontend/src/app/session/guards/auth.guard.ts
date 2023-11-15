@@ -25,7 +25,7 @@ export const isUserNotLogged: CanMatchFn = (route: Route, segments: UrlSegment[]
         );
 }
 
-export const isNotUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+export const isUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
     const router = inject(Router);
     const authService = inject(AuthService);
     return of(authService.checkIfAdmin())
@@ -36,7 +36,7 @@ export const isNotUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[])
         );
 }
 
-export const isNotUserJugador: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+export const isUserJugador: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
     const router = inject(Router);
     const authService = inject(AuthService);
     return of(authService.checkIfJugador())
@@ -47,7 +47,7 @@ export const isNotUserJugador: CanMatchFn = (route: Route, segments: UrlSegment[
         );
 }
 
-export const isNotUserPropietario: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+export const isUserPropietario: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
     const router = inject(Router);
     const authService = inject(AuthService);
     return of(authService.checkIfPropietario())

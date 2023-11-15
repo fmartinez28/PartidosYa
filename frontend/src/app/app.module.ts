@@ -8,7 +8,6 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { UserComponent } from './shared/components/user/user.component';
-import { ComunidadesModule } from './comunidades/comunidades.module';
 
 
 @NgModule({

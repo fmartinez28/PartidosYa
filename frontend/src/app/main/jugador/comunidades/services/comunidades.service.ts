@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
 import { IComunidad } from 'src/interfaces/IComunidad';
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/session/services/auth.service';
 
