@@ -34,4 +34,26 @@ export const isNotUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[])
                 if (!isAdmin) router.navigate(['/']);
             })
         );
-}   
+}
+
+export const isNotUserJugador: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+    const router = inject(Router);
+    const authService = inject(AuthService);
+    return of(authService.checkIfJugador())
+        .pipe(
+            tap((isJugador) => {
+                if (!isJugador) router.navigate(['/']);
+            })
+        );
+}
+
+export const isNotUserPropietario: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+    const router = inject(Router);
+    const authService = inject(AuthService);
+    return of(authService.checkIfPropietario())
+        .pipe(
+            tap((isPropietario) => {
+                if (!isPropietario) router.navigate(['/']);
+            })
+        );
+}
