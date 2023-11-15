@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ComunidadesService } from 'src/app/comunidades/services/comunidades.service';
 import { IComunidad } from 'src/interfaces/IComunidad';
 
@@ -22,7 +23,18 @@ export class ComunidadesListItemComponent implements OnInit {
   }
 
   joinToComunidad(): void {
-    this.comunidadesService.joinToComunidad(this.comunidad.id);
-    //this.router.navigate(["/canchas"]);
+    this.comunidadesService.joinToComunidad(this.comunidad.id).subscribe({
+      next: res => {
+        console.log({ comunidades: res });
+      },
+      complete: () => {
+        console.log({ result: "OK" })
+        this.router.navigate(["/comunidades"]);
+      },
+      error: err => {
+        console.log({ error: err })
+        this.router.navigate(['/comunidades']);
+      }
+    });
   }
 }

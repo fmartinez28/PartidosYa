@@ -3,18 +3,10 @@
         <p class="font-extrabold font-sans text-4xl text-lime-500">
             {{title}}
         </p>
+        <a routerLink="/comunidades/new" class="text-lime-500 hover:text-lime-700 transition-all">¡Crea tu
+            comunidad! </a>
+        <a routerLink="/comunidades/search" class="text-lime-500 hover:text-lime-700 transition-all">Busca
+            comunidades</a>
     </div>
 </header>
-<div class="grid grid-cols-8 gap-12 items-center">
-    <div class="col-span-5 sm:col-span-6">
-        <input class="p-2 w-full rounded" name="search" type="text">
-    </div>
-    <div class="col-span-3 sm:col-span-2">
-        <label for="search" class="font-semibold text-gray-500">Buscar</label>
-    </div>
-</div>
-<div class="flex flex-row justify-center m-2">
-    <button class="p-4 bg-green-500 hover:bg-green-600 hover:shadow-md shadow rounded-md text-white"
-        (click)="getRouter().navigate(['/comunidades/new'])">Agergar</button>
-</div>
 <app-comunidades-list></app-comunidades-list>
