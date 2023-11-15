@@ -15,9 +15,12 @@ const routes: Routes = [
     component: HomeLayoutPageComponent,
     children:
     [
-      { path: '', component: HomeComponent }
+      { path: '', component: HomeComponent },
     ]
   },
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'notfound', component: HomeLayoutPageComponent, children: [{ path: '', component: NotFoundComponent }] },
 
   {
     path: 'session',
@@ -27,32 +30,30 @@ const routes: Routes = [
   },
 
   {
-  path: '',
-  component: MainLayoutPageComponent,
-  children: [
-    {
-      path: 'canchas',
-      component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
-      canMatch: [isUserLogged]
-    },
-    {
-      path: 'comunidades',
-      loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
-      canMatch: [isUserLogged]
-    },
-    {
-      path: 'partidos',
-      loadChildren: () => import('../partidos/partidos.module').then(m => m.PartidosModule),
-      canMatch: [isUserLogged]
-    },
+    path: '',
+    component: MainLayoutPageComponent,
+    children: [
+      {
+        path: 'canchas',
+        component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
+        canMatch: [isUserLogged]
+      },
+      {
+        path: 'comunidades',
+        loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
+        canMatch: [isUserLogged]
+      },
+      {
+        path: 'partidos',
+        loadChildren: () => import('../partidos/partidos.module').then(m => m.PartidosModule),
+        canMatch: [isUserLogged]
+      },
 
-    { path: 'login', redirectTo: 'session/login' },
-    { path: 'signup', redirectTo: 'session/signup' },
-    { path: 'notfound', component: NotFoundComponent },
-
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-  ]
-}
+      { path: 'login', redirectTo: 'session/login' },
+      { path: 'signup', redirectTo: 'session/signup' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+    ]
+  }
 ];
 
 @NgModule({
