@@ -20,12 +20,28 @@ export const isUserNotLogged: CanMatchFn = (route: Route, segments: UrlSegment[]
     return of(!authService.checkIfLoggedIn())
         .pipe(
             tap((isLogged) => {
-                if (!isLogged) router.navigate(['/']);
+                if (!isLogged) {
+                    switch (authService.getUserRole()) {
+                        case 1:
+                            router.navigate(['/player/partidos']);
+                            break;
+                        case 2:
+                            router.navigate(['/owner/canchas']);
+                            break;
+                        case 3:
+                            router.navigate(['/admin']);
+                            console.log('admin')
+                            break;
+                        default:
+                            router.navigate(['/']);
+                            break;
+                    }
+                }
             })
         );
 }
 
-export const isNotUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+export const isUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
     const router = inject(Router);
     const authService = inject(AuthService);
     return of(authService.checkIfAdmin())
@@ -36,7 +52,7 @@ export const isNotUserAdmin: CanMatchFn = (route: Route, segments: UrlSegment[])
         );
 }
 
-export const isNotUserJugador: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+export const isUserJugador: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
     const router = inject(Router);
     const authService = inject(AuthService);
     return of(authService.checkIfJugador())
@@ -47,7 +63,7 @@ export const isNotUserJugador: CanMatchFn = (route: Route, segments: UrlSegment[
         );
 }
 
-export const isNotUserPropietario: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
+export const isUserPropietario: CanMatchFn = (route: Route, segments: UrlSegment[]) => {
     const router = inject(Router);
     const authService = inject(AuthService);
     return of(authService.checkIfPropietario())

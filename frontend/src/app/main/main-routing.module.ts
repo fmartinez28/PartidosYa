@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainLayoutPageComponent } from '../shared/pages/main-layout-page/main-layout-page.component';
-import { HomeComponent } from './components/home/home.component';
-import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
-import { NotFoundComponent } from './components/not-found/not-found.component';
-import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
-import { ComunidadesModule } from '../comunidades/comunidades.module';
+import { HomeComponent } from './home/components/home/home.component';
+import { CanchasPlaceholderComponent } from './propietario/components/canchas-placeholder/canchas-placeholder.component';
+import { NotFoundComponent } from './home/components/not-found/not-found.component';
+import { isUserJugador, isUserLogged, isUserNotLogged, isUserPropietario } from '../session/guards/auth.guard';
 import { HomeLayoutPageComponent } from '../shared/pages/home-layout-page/home-layout-page.component';
-import { AboutComponent } from './components/about/about.component';
+import { AboutComponent } from './home/components/about/about.component';
 
 const routes: Routes = [
   
@@ -17,7 +16,8 @@ const routes: Routes = [
     children:
     [
       { path: '', component: HomeComponent },
-    ]
+    ],
+    canMatch: [isUserNotLogged]
   },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,22 +35,18 @@ const routes: Routes = [
     path: '',
     component: MainLayoutPageComponent,
     children: [
+      
+      // Rutas
       {
-        path: 'canchas',
-        component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
-        canMatch: [isUserLogged]
+        path: 'player', loadChildren: () => import('./jugador/jugador.module').then(m => m.JugadorModule),
+        canMatch: [isUserJugador]
       },
       {
-        path: 'comunidades',
-        loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
-        canMatch: [isUserLogged]
-      },
-      {
-        path: 'partidos',
-        loadChildren: () => import('../partidos/partidos.module').then(m => m.PartidosModule),
-        canMatch: [isUserLogged]
+        path: 'owner', loadChildren: () => import('./propietario/propietario.module').then(m => m.PropietarioModule),
+        canMatch: [isUserPropietario]
       },
 
+      // Redirects por las dudas
       { path: 'login', redirectTo: 'session/login' },
       { path: 'signup', redirectTo: 'session/signup' },
       { path: '', redirectTo: 'home', pathMatch: 'full' },

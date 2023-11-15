@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   public username: string = "";
   public password: string = "";
-  public signUpLink: string = "/signup";
+  public signUpLink: string = "/session/signup";
   public loginForm!: FormGroup;
 
   get title() {
@@ -51,9 +51,9 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/admin']);
             return;
           } else if (this.authService.checkIfJugador()) {
-            this.router.navigate(['/partidos']);
+            this.router.navigate(['/player/partidos']);
           } else {
-            this.router.navigate(['/canchas']);
+            this.router.navigate(['/owner/canchas']);
           }
         },
         error: err => {

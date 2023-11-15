@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ComunidadesService } from 'src/app/comunidades/services/comunidades.service';
 import { IComunidad } from 'src/interfaces/IComunidad';
+import { ComunidadesService } from '../../../services/comunidades.service';
 
 @Component({
   selector: 'app-comunidades-list-item',

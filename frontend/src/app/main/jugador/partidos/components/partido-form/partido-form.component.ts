@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, NgSelectOption } from '@angular/for
 import { ICancha } from 'src/interfaces/ICancha';
 import { CanchasService } from '../../services/canchas.service';
 import { PartidosService } from '../../services/partidos.service';
-import { IPartido } from '../../../../interfaces/IPartido';
+import { IPartido } from 'src/interfaces/IPartido';
 import { Router } from '@angular/router';
 
 @Component({
