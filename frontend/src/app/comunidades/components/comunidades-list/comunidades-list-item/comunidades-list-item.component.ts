@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ComunidadesService } from 'src/app/comunidades/services/comunidades.service';
 import { IComunidad } from 'src/interfaces/IComunidad';
 
 @Component({
@@ -10,7 +12,17 @@ export class ComunidadesListItemComponent implements OnInit {
   @Input()
   public comunidad!: IComunidad;
 
+  constructor(private comunidadesService: ComunidadesService,
+    private router: Router) {
+
+  }
+
   ngOnInit(): void {
     if (!this.comunidad) throw new Error('Comunidad is required');
+  }
+
+  joinToComunidad(): void {
+    this.comunidadesService.joinToComunidad(this.comunidad.id);
+    //this.router.navigate(["/canchas"]);
   }
 }

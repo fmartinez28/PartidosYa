@@ -15,7 +15,7 @@ const genericSingleUserSchema = {
         },
         rolid: { type: 'number' },
     },
-    required: ['id', 'nombre', 'apellido', 'email', 'username','fechanac', 'telefonoid', 'direccionid', 'rolid']
+    required: ['id', 'nombre', 'apellido', 'email', 'username', 'fechanac', 'telefonoid', 'direccionid', 'rolid']
 }
 
 const genericErrorMessageSchema = {
@@ -46,6 +46,9 @@ const genericSingleCommunitySchema = {
     properties: {
         id: { type: 'number' },
         nombre: { type: 'string' },
+        descripcion: { type: 'string' },
+        memberscount: { type: 'number' },
+        memberslimit: { type: 'number' }
     },
     required: ['id', 'nombre']
 }

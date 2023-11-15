@@ -5,7 +5,6 @@ import { HomeComponent } from './components/home/home.component';
 import { CanchasPlaceholderComponent } from './components/canchas-placeholder/canchas-placeholder.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
-import { ComunidadesHomeComponent } from '../comunidades/components/comunidades-home/comunidades-home.component';
 import { ComunidadesModule } from '../comunidades/comunidades.module';
 
 const routes: Routes = [{
@@ -16,7 +15,6 @@ const routes: Routes = [{
       path: 'home',
       component: HomeComponent,
     },
-
     {
       path: 'session',
       loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
