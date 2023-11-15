@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comunidades-home',
@@ -9,15 +10,19 @@ import { Title } from '@angular/platform-browser';
 export class ComunidadesHomeComponent {
 
   constructor(
-    private componentTitle: Title
-  ) {
+    private componentTitle: Title,
+    private router: Router) {
   }
 
   ngOnInit(): void {
-    this.componentTitle.setTitle("Tus comunidades");
+    this.componentTitle.setTitle("Comunidades");
   }
 
   get title() {
     return this.componentTitle.getTitle();
+  }
+
+  getRouter() {
+    return this.router;
   }
 }

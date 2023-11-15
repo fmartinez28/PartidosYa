@@ -12,16 +12,20 @@ export default async function (fastify, opts) {
         let queryString = 'SELECT * FROM "comunidades" ';
         if (queryParams.search) queryString += `WHERE "nombre" ILIKE '%${queryParams.search}%'`;
         queryString = paginateQuery(queryString, queryParams.page, queryParams.limit);
-        
+
         const queryResult = await query(queryString);
         const rows = queryResult.rows;
-        console.log(rows);
         if (rows.length === 0)
             return reply.status(204).send();
         return reply.send(rows);
     });
 
-    fastify.get('/:id', { schema: communitySchemas.getByIdSchema }, async function (request, reply) {
+    fastify.get('/:id', {
+        schema: communitySchemas.getByIdSchema,
+        onRequest: [
+            fastify.auth
+        ]
+    }, async function (request, reply) {
         const queryresult = await query('SELECT * FROM "comunidades" WHERE "id" = $1', [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
@@ -31,9 +35,15 @@ export default async function (fastify, opts) {
 
     // un Usuario se puede agregar a una comunidad
     //DONE: Esto no debería ser /comunidades/idcomunidad/jugadores? También podrían tener un DELETE.
-    fastify.post('/:id/jugadores', { schema: communitySchemas.inscribirJugadorSchema }, async function (request, reply) {
-        const { jugadorid } = request.body;
-        const queryresult = await query('INSERT INTO "comunidadjugador" ("comunidadid", "jugadorid") VALUES ($1, $2) RETURNING *', [request.params.id, jugadorid]);
+    fastify.post('/:id/jugadores', {
+        schema: communitySchemas.inscribirJugadorSchema,
+        onRequest: [
+            fastify.auth
+        ]
+    }, async function (request, reply) {
+        const { jugadorid, fecharegistro } = request.body;
+        if (request.user.rolid != 1) return reply.status(401).send({ message: 'No autorizado, debe ser un jugador para crear una comunidad.' });
+        const queryresult = await query('INSERT INTO "comunidadjugador" ("comunidadid", "jugadorid", "fecharegistro") VALUES ($1, $2, $3) RETURNING *', [request.params.id, jugadorid, fecharegistro]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ message: 'Error al agregar el jugador a la comunidad' });
         return reply.status(201).send(queryresult.rows[0]);

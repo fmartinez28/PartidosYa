@@ -47,6 +47,7 @@ const genericSingleCommunitySchema = {
         id: { type: 'number' },
         nombre: { type: 'string' },
         descripcion: { type: 'string' },
+        memberscount: { type: 'number' },
         memberslimit: { type: 'number' }
     },
     required: ['id', 'nombre']

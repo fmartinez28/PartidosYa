@@ -40,7 +40,6 @@ export class ComunidadesFormComponent {
 
   onAdd(): void {
     if (this.comunidadForm.valid) {
-      console.log("form data", this.comunidadForm.value)
       const comunidadRequest: IComunidad = this.comunidadForm.value;
       this.comunidadesService.addComunidad(comunidadRequest).subscribe({
         next: res => {
@@ -50,7 +49,6 @@ export class ComunidadesFormComponent {
           this.router.navigate(['/comunidades']);
         },
         error: err => {
-          console.log('Ocurrió un error con el comunidad:', err)
           this.router.navigate(['/comunidades']);
         }
       }

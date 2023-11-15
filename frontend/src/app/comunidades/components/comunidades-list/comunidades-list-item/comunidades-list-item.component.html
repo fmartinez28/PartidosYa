@@ -14,12 +14,12 @@
         <div id="cardbody" class="flex flex-row items-center justify-center gap-6">
             <div id="cardheader" class="flex flex-col place-items-center gap-2">
                 <div id="cardmainheader" class="text-center rounded-2xl outline p-2 text-lime-500">
-                    <p>{{comunidad.cantidadMiembros}}/{{comunidad.maximoMiembros}}</p>
+                    <p>{{comunidad.memberscount}}/{{comunidad.memberslimit}}</p>
                 </div>
             </div>
             <div id="cardfooter" class="flex flex-row justify-center">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded"
-                    (click)="this.joinToComunidad()">Unirse</button>
+                    (click)="this.joinToComunidad()">Ver</button>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { ComunidadesService } from '../../services/comunidades.service';
@@ -11,15 +11,17 @@ import { ComunidadesService } from '../../services/comunidades.service';
 export class ComunidadesListComponent {
   comunidades: IComunidad[] = [];
 
-  constructor(
-    private comunidadesService: ComunidadesService
-  ) { }
+  private comunidadesService: ComunidadesService = inject(ComunidadesService);
+
+  constructor() { }
 
   ngOnInit(): void {
     this.getComunidades();
   }
 
   getComunidades(): void {
-    this.comunidadesService.getComunidades().subscribe(comunidades => this.comunidades = comunidades);
+    this.comunidadesService.getComunidades().subscribe(
+      comunidades => this.comunidades = comunidades
+    );
   }
 }
