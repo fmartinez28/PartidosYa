@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgSelectOption } from '@angular/forms';
 import { ICancha } from 'src/interfaces/ICancha';
 import { CanchasService } from '../../services/canchas.service';
+import { PartidosService } from '../../services/partidos.service';
+import { IPartido } from '../../../../interfaces/IPartido';
 
 @Component({
   selector: 'app-partido-form',
@@ -11,7 +13,9 @@ import { CanchasService } from '../../services/canchas.service';
 export class PartidoFormComponent {
   public form!: FormGroup;
   public canchas!: ICancha[];
-  constructor(public formBuilder: FormBuilder, private canchasService:CanchasService){}
+  constructor(public formBuilder: FormBuilder,
+    private canchasService: CanchasService,
+    private partidosService: PartidosService){}
   ngOnInit(){
     this.form = this.formBuilder.group({
       fechaprogramada: ['', Validators.required],
@@ -29,8 +33,17 @@ export class PartidoFormComponent {
       console.warn("Formulario no válido");
       return;
     }
-    console.log(this.form.get('fechaprogramada')!.value);
-    console.log(this.form.get('canchaid')!.value);
+    console.log(new Date().toISOString());
+    const partido: IPartido = {
+      fechacreacion: new Date().toISOString(),
+      fechaprogramada: this.form.get('fechaprogramada')!.value,
+      canchaid: this.form.get('canchaid')!.value,
+    };
+    this.partidosService.addPartido(partido).subscribe({
+      next: (res) => console.log(res),
+      error: (err) => console.warn(err, "Probablemente un error de autorización"),
+      complete: () => console.info("Se completó parece")
+    })
   }
   public markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
