@@ -35,6 +35,22 @@ export class AuthService {
     return false;
   }
 
+  public checkIfJugador(): boolean {
+    const user = this.getUser();
+    if (user) {
+      return JSON.parse(user).rolid == '1';
+    }
+    return false;
+  }
+
+  public checkIfPropietario(): boolean {
+    const user = this.getUser();
+    if (user) {
+      return JSON.parse(user).rolid == '2';
+    }
+    return false;
+  }
+
   public getUser(): string | null {
     return localStorage.getItem(this.userKey);
   }
