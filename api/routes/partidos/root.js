@@ -1,12 +1,25 @@
 import { query } from "../../db/index.js";
 import * as matchesSchemas from '../../schemas/partidos/root.js';
+import { paginateQuery } from '../../utils/pagination.js';
 
 export default async function (fastify, opts) {
     fastify.get('/', { schema: matchesSchemas.getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "partido"');
+        let queryString = 'SELECT * FROM "partido" ';
+        if (request.query.city && request.query.country){
+            //No es muy lindo esto...
+            queryString += `WHERE canchaid IN 
+            (SELECT id FROM canchas WHERE direccionid IN 
+            (SELECT id FROM direcciones
+            WHERE pais ILIKE '${request.query.country}' AND ciudad ILIKE '${request.query.city}'))`
+        }
+        queryString = (request.query.page || request.query.limit) ?
+        paginateQuery(queryString, request.query.page, request.query.limit) : queryString;
+
+        console.log(queryString);
+        const queryresult = await query(queryString);
         const rows = queryresult.rows;
         if (rows.length === 0)
-            return reply.status(204).send({ error: 'No hay entradas para la colección partidos.' });
+            return reply.status(204).send();
         return reply.send(rows);
     });
 
