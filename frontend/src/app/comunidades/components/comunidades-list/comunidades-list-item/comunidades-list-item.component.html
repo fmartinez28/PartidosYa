@@ -18,9 +18,15 @@
                 </div>
             </div>
             <div id="cardfooter" class="flex flex-row justify-center">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded"
-                    (click)="this.joinToComunidad()">Ver</button>
+                <button *ngIf="!joinComunidad"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border-blue-700 rounded"
+                    (click)="this.abrirModal()">Ver</button>
+
+                <button *ngIf="joinComunidad"
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-green-700 rounded"
+                    (click)="this.joinToComunidad()">Unirse</button>
             </div>
         </div>
     </div>
 </li>
+<app-modal [showModal]="this.showModal"></app-modal>

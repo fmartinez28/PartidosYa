@@ -5,13 +5,13 @@
             id="search-box" (input)="search(searchBox2.value)">
     </div>
     <ul class="mt-5 max-w-md divide-y divide-gray-900 bg-gray-200 p-9 rounded-lg">
-        <app-comunidades-list-item *ngFor="let comunidad of comunidades"
-            [comunidad]="comunidad"></app-comunidades-list-item>
+        <app-comunidades-list-item *ngFor="let comunidad of comunidades" [comunidad]="comunidad"
+            [joinComunidad]="true"></app-comunidades-list-item>
     </ul>
 </ng-container>
 
 <ng-template #noComunidades>
     <p>No existen comunidades que pueda unirse</p>
     <a [routerLink]="['/comunidades/new']"
-        class="text-sm font-semibold leading-6 text-gray-900 hover:text-lime-500">Crea una!</a>
+        class="text-sm font-semibold leading-6 text-gray-900 hover:text-lime-500">Empeza creando la tuya!</a>
 </ng-template>
