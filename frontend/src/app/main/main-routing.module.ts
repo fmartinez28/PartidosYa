@@ -20,15 +20,16 @@ const routes: Routes = [
   },
 
   {
+    path: 'session',
+    component: HomeLayoutPageComponent,
+    loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
+    canMatch: [isUserNotLogged]
+  },
+
+  {
   path: '',
   component: MainLayoutPageComponent,
   children: [
-    {
-      path: 'session',
-      loadChildren: () => import('../session/session.module').then(m => m.SessionModule),
-      canMatch: [isUserNotLogged]
-    },
-
     {
       path: 'canchas',
       component: CanchasPlaceholderComponent, // TODO hacer que no se pueda entrar a este si no hay login
@@ -37,6 +38,7 @@ const routes: Routes = [
     {
       path: 'comunidades',
       loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
+      canMatch: [isUserLogged]
     },
     {
       path: 'partidos',

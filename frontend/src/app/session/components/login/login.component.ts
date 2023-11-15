@@ -47,7 +47,14 @@ export class LoginComponent implements OnInit {
         },
         complete: () => {
           console.log('Login completado');
-          this.router.navigate(['/canchas']);
+          if(this.authService.checkIfAdmin()) {
+            this.router.navigate(['/admin']);
+            return;
+          } else if (this.authService.checkIfJugador()) {
+            this.router.navigate(['/partidos']);
+          } else {
+            this.router.navigate(['/canchas']);
+          }
         },
         error: err => {
           alert('Error en el login');
