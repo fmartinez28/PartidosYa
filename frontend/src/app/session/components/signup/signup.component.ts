@@ -73,7 +73,7 @@ export class SignupComponent {
       this.registerService.onSignup(signupReq).subscribe((res) => {
         console.log(res);
       });
-      this.router.navigate(['/login']);
+      this.router.navigate(['/session/login']);
     } else {
       // En caso de que el form no sea válido por x motivo
       // Se va a recorrer cada campo para buscar los errores y mostrarlo en caso de que exista
