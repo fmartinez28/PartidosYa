@@ -6,6 +6,7 @@ import { PartidosComponent } from './components/partidos/partidos.component';
 import { PartidoComponent } from './components/partido/partido.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -19,7 +20,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     CommonModule,
     PartidosRoutingModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
+    RouterModule
   ]
 })
 export class PartidosModule { }
