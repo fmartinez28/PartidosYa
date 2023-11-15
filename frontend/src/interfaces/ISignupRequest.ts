@@ -7,4 +7,5 @@ export interface ISignupRequest {
   password: string,
   telefonoid: number,
   direccionid: number,
+  rolid: number
 }

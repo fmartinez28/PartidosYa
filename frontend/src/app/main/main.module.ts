@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     HomeComponent,
     CanchasPlaceholderComponent,
     NotFoundComponent,
-    WorspacePageComponent
+    WorspacePageComponent,
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+<!-- TODO:Hay que cambiar esta navbar generica -->
 <nav class="bg-gray-800 inset-x-0 top-0 z-50">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
@@ -56,6 +57,9 @@
                         <a [routerLink]="['/canchas']" [routerLinkActive]="['active']"
                             [routerLinkActiveOptions]="{exact: true}"
                             [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Canchas') ? 'bg-gray-900 text-white' : '']">Canchas</a>
+                        <a [routerLink]="['/partidos']" [routerLinkActive]="['active']"
+                            [routerLinkActiveOptions]="{exact: true}"
+                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Partidos') ? 'bg-gray-900 text-white' : '']">Partidos</a>
 
 
                         <a [routerLink]="['/comunidades']" [routerLinkActive]="['active']"
@@ -86,6 +90,8 @@
 
             <a [ngClass]="[(title == 'Canchas') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
                 [routerLink]="['/canchas']" class="block px-3 py-2 rounded-md text-base font-medium">Canchas</a>
+            <a [ngClass]="[(title == 'Partidos') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
+                [routerLink]="['/partidos']" class="block px-3 py-2 rounded-md text-base font-medium">Partidos</a>
 
             <a [ngClass]="[(title == 'Comunidades') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
                 [routerLink]="['/comunidades']" class="block px-3 py-2 rounded-md text-base font-medium">Canchas</a>

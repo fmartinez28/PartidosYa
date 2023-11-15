@@ -67,7 +67,8 @@ export class SignupComponent {
         password: this.signupForm.get('password')!.value,
         //Hardcodeados por ahora
         telefonoid: 1,
-        direccionid: 1
+        direccionid: 1,
+        rolid: ((this.signupForm.get('role')!.value == "Jugador") ? 1 : 2),
       };
       this.registerService.onSignup(signupReq).subscribe((res) => {
         console.log(res);

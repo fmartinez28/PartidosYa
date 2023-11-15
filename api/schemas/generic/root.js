@@ -81,7 +81,9 @@ const genericSingleMatch = {
             type: 'string',
             format: 'date'
         },
-        comunidadid: { type: 'number' }
+        comunidadid: { type: 'number' },
+        playerscount: { type: 'number' },
+        playerslimit: { type: 'number' },
     },
     required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
 

@@ -29,6 +29,10 @@ const routes: Routes = [{
     {
       path: 'comunidades',
       loadChildren: () => import('../comunidades/comunidades.module').then(m => m.ComunidadesModule),
+    },
+    {
+      path: 'partidos',
+      loadChildren: () => import('../partidos/partidos.module').then(m => m.PartidosModule),
       canMatch: [isUserLogged]
     },
 
