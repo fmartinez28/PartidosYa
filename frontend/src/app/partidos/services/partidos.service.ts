@@ -19,7 +19,6 @@ export class PartidosService {
     return this.httpClient.post<IPartido>(`${environment.apiUrl}/partidos`, partido, {observe: 'response'})
     .pipe(
       map((res: HttpResponse<IPartido>) => {
-        console.log(res);
         if (res.status != 201) {
           throw new Error(res.statusText);
       }
@@ -28,5 +27,10 @@ export class PartidosService {
       return throwError(() => new Error(err));
     }
     ));
+  }
+  public joinPartido(partidoId: number): Observable<any>{
+    const localUserInfo: any = localStorage.getItem('user');
+    const userId = JSON.parse(localUserInfo).id;
+    return this.httpClient.post<any>(`${environment.apiUrl}/partidos/${partidoId}/jugadores`, {partidoid: partidoId, jugadorid: userId}, {observe: 'response'});
   }
 }
