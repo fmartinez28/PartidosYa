@@ -51,9 +51,9 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/admin']);
             return;
           } else if (this.authService.checkIfJugador()) {
-            this.router.navigate(['/partidos']);
+            this.router.navigate(['/player/partidos']);
           } else {
-            this.router.navigate(['/canchas']);
+            this.router.navigate(['/owner/canchas']);
           }
         },
         error: err => {

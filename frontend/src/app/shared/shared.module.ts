@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { MainLayoutPageComponent } from './pages/main-layout-page/main-layout-page.component';
 import { BasicUserNavbarComponent } from './components/basic-user-navbar/basic-user-navbar.component';
 import { HomeLayoutPageComponent } from './pages/home-layout-page/home-layout-page.component';
-import { JugadorSidebarComponent } from './components/jugador-sidebar/jugador-sidebar.component';
+import { UsuarioSidebarComponent } from './components/usuario-sidebar/usuario-sidebar.component';
 import { SidebarItemComponent } from './components/sidebar-item/sidebar-item.component';
 
 
@@ -20,7 +20,7 @@ import { SidebarItemComponent } from './components/sidebar-item/sidebar-item.com
     MainLayoutPageComponent,
     BasicUserNavbarComponent,
     HomeLayoutPageComponent,
-    JugadorSidebarComponent,
+    UsuarioSidebarComponent,
     SidebarItemComponent
   ],
   imports: [
