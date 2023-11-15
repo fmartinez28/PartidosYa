@@ -17,6 +17,7 @@ const routes: Routes = [
     [
       { path: '', component: HomeComponent },
     ],
+    canMatch: [isUserNotLogged]
   },
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
