@@ -4,6 +4,7 @@ import { ICancha } from 'src/interfaces/ICancha';
 import { CanchasService } from '../../services/canchas.service';
 import { PartidosService } from '../../services/partidos.service';
 import { IPartido } from '../../../../interfaces/IPartido';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-partido-form',
@@ -15,7 +16,8 @@ export class PartidoFormComponent {
   public canchas!: ICancha[];
   constructor(public formBuilder: FormBuilder,
     private canchasService: CanchasService,
-    private partidosService: PartidosService){}
+    private partidosService: PartidosService,
+    private router: Router){}
   ngOnInit(){
     this.form = this.formBuilder.group({
       fechaprogramada: ['', Validators.required],
@@ -42,9 +44,12 @@ export class PartidoFormComponent {
     this.partidosService.addPartido(partido).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err, "Probablemente un error de autorización"),
-      complete: () => console.info("Se completó parece")
+      complete: () => {
+        console.info("Se completó parece");
+        this.router.navigate(['/partidos']);
+      }
     })
-  }
+  };
   public markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
