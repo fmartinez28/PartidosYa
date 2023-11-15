@@ -3,6 +3,6 @@ export interface IUsuario {
     username: string;
     nombre: string;
     apellido: string;
-    email: string; 
+    email: string;
     rol: string;
 }

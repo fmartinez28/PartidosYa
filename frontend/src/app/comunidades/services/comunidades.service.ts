@@ -1,20 +1,19 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/session/services/auth.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComunidadesService {
   private comunidades: IComunidad[] = [];
+  private cachedSearch: IComunidad[] | null = [];
   private comunidadAgregadaSource = new Subject<void>();
   comunidadAgregada = this.comunidadAgregadaSource.asObservable();
 
-  private router: Router = inject(Router);
   private http: HttpClient = inject(HttpClient);
   private authService: AuthService = inject(AuthService);
 
@@ -25,7 +24,17 @@ export class ComunidadesService {
   }
 
   getComunidades(): Observable<IComunidad[]> {
-    return this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades`);
+    const userId = this.getUserId();
+    const res = this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades?filter=${userId}`);
+    res.subscribe({
+      next: comunidades => {
+        this.comunidades = comunidades;
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+    return res;
   }
 
   getComunidadesByUserID(): Observable<IComunidad[]> {
@@ -81,6 +90,21 @@ export class ComunidadesService {
     }
 
     return this.http.post(`${environment.apiUrl}/comunidades/${comunidadId}/moderador`, postPayload, { headers: headers })
+  }
+
+  searchComunidad(filter: string): Observable<IComunidad[] | null> {
+    if (!filter.trim()) {
+      this.cachedSearch = this.comunidades;
+    } else {
+      console.log("antes del filter", this.comunidades)
+      const filteredComunidades = this.comunidades.filter(comunidad => comunidad.nombre.toLowerCase().includes(filter.toLowerCase()));
+      if (filteredComunidades.length) {
+        this.cachedSearch = filteredComunidades;
+      } else {
+        this.cachedSearch = null;
+      }
+    }
+    return of(this.cachedSearch);
   }
 
   private getUserId(): number {

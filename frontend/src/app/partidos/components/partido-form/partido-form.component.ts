@@ -17,20 +17,20 @@ export class PartidoFormComponent {
   constructor(public formBuilder: FormBuilder,
     private canchasService: CanchasService,
     private partidosService: PartidosService,
-    private router: Router){}
-  ngOnInit(){
+    private router: Router) { }
+  ngOnInit() {
     this.form = this.formBuilder.group({
       fechaprogramada: ['', Validators.required],
       canchaid: ['', Validators.required]
     });
     this.canchasService.getMatchingCanchas().subscribe(
       {
-        next: (res) => {this.canchas = res;}
+        next: (res) => { this.canchas = res; }
       }
     )
   }
-  public createMatch(){
-    if (!this.form.valid){
+  public createMatch() {
+    if (!this.form.valid) {
       this.markFormGroupTouched(this.form);
       console.warn("Formulario no válido");
       return;
@@ -58,7 +58,7 @@ export class PartidoFormComponent {
       }
     });
   }
-  public fieldHasErrors(field: string): boolean{
+  public fieldHasErrors(field: string): boolean {
     return this.form.get(field)!.touched && this.form.get(field)!.invalid;
   }
 }

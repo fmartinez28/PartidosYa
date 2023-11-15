@@ -13,6 +13,9 @@ export class ComunidadesListItemComponent implements OnInit {
   @Input()
   public comunidad!: IComunidad;
 
+  @Input()
+  public joinComunidad!: boolean;
+
   constructor(private comunidadesService: ComunidadesService,
     private router: Router) {
 

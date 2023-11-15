@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   public signUpLink: string = "/signup";
   public loginForm!: FormGroup;
 
-  get title () {
+  get title() {
     return this.titleService.getTitle();
   }
 
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService
-    ) {
+  ) {
   }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         },
         complete: () => {
           console.log('Login completado');
-          if(this.authService.checkIfAdmin()) {
+          if (this.authService.checkIfAdmin()) {
             this.router.navigate(['/admin']);
             return;
           } else if (this.authService.checkIfJugador()) {
