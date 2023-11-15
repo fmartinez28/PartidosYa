@@ -13,7 +13,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   public username: string = "";
   public password: string = "";
-  public signUpLink: string = "/signup";
+  public signUpLink: string = "/session/signup";
   public loginForm!: FormGroup;
 
   get title() {
