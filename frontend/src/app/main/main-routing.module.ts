@@ -6,15 +6,23 @@ import { CanchasPlaceholderComponent } from './components/canchas-placeholder/ca
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { isUserLogged, isUserNotLogged } from '../session/guards/auth.guard';
 import { ComunidadesModule } from '../comunidades/comunidades.module';
+import { HomeLayoutPageComponent } from '../shared/pages/home-layout-page/home-layout-page.component';
 
-const routes: Routes = [{
+const routes: Routes = [
+  
+  {
+    path: 'home',
+    component: HomeLayoutPageComponent,
+    children:
+    [
+      { path: '', component: HomeComponent }
+    ]
+  },
+
+  {
   path: '',
   component: MainLayoutPageComponent,
   children: [
-    {
-      path: 'home',
-      component: HomeComponent,
-    },
     {
       path: 'session',
       loadChildren: () => import('../session/session.module').then(m => m.SessionModule),

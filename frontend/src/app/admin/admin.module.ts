@@ -7,7 +7,6 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminHomeComponent } from './components/admin-home/admin-home.component';
 import { AdminUsuariosListComponent } from './components/admin-usuarios-list/admin-usuarios-list.component';
 import { AdminUsuariosListViewComponent } from './pages/admin-usuarios-list-view/admin-usuarios-list-view.component';
-import { AdminSidebarItemComponent } from './components/admin-sidebar/admin-sidebar-item/admin-sidebar-item.component';
 import { AdminSidebarComponent } from './components/admin-sidebar/admin-sidebar.component';
 import { AdminUsuarioListItemComponent } from './components/admin-usuarios-list/admin-usuario-list-item/admin-usuario-list-item.component';
 import { AdminComunidadesListComponent } from './components/admin-comunidades-list/admin-comunidades-list.component';
@@ -26,7 +25,6 @@ import { AdminCanchasListItemComponent } from './components/admin-canchas-list/a
     AdminLayoutPageComponent,
     AdminHomeComponent,
     AdminSidebarComponent,
-    AdminSidebarItemComponent,
     AdminUsuariosListComponent,
     AdminUsuariosListViewComponent,
     AdminUsuarioListItemComponent,

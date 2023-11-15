@@ -8,12 +8,10 @@
  <aside id="default-sidebar" class="fixed top-0 left-0 z-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul class="space-y-2 font-medium mt-14">
-            <app-sidebar-item [label]="'Dashboard'" [url]="'/admin/home'"></app-sidebar-item>
-            <app-sidebar-item [label]="'Usuarios'" [url]="'/admin/usuarios'"></app-sidebar-item>
-            <app-sidebar-item [label]="'Comunidades'" [url]="'/admin/comunidades'"></app-sidebar-item>
-            <app-sidebar-item [label]="'Partidos'" [url]="'/admin/partidos'"></app-sidebar-item>
-            <app-sidebar-item [label]="'Canchas'" [url]="'/admin/canchas'"></app-sidebar-item>
-
+            <app-sidebar-item [label]="'Comunidades'" [url]="'/comunidades'"></app-sidebar-item>
+            <app-sidebar-item [label]="'Partidos'" [url]="'/partidos'"></app-sidebar-item>
+            <app-sidebar-item [label]="'Canchas'" [url]="'/canchas'"></app-sidebar-item>
+            <app-sidebar-item [label]="'Volver a Inicio'" [url]="'/home'"></app-sidebar-item>
         </ul>
     </div>
  </aside>
