@@ -1,19 +1,31 @@
-<div class="flex justify-center items-center p-4">
-  <form [formGroup]="this.form" (ngSubmit)="this.createMatch()" class="bg-slate-50 p-4 rounded flex flex-col gap-2 outline outline-1 outline-indigo-200">
-    <div class="flex flex-col gap-4">
-      <label for="fechaprogramada">Fecha</label>
-      <input type="date" name="fechaprogramada" formControlName="fechaprogramada" class="rounded outline outline-1 outline-slate-300">
+<div class="flex flex-col justify-center items-center p-4">
+  <header class="my-8">
+    <div class="text-center">
+      <p class="font-extrabold font-sans text-4xl text-lime-500">
+        Crear Partido
+      </p>
     </div>
-    <div class="flex flex-col gap-4">
+  </header>
+  <form [formGroup]="this.form" (ngSubmit)="this.createMatch()" class="bg-slate-50 p-4 rounded flex flex-col gap-2 outline outline-1 outline-indigo-200">
+    <div class="flex flex-col gap-2">
+      <label for="fechaprogramada">Fecha</label>
+      <input type="date" name="fechaprogramada" formControlName="fechaprogramada" class="rounded outline outline-1 outline-slate-300 p-1">
+      <span *ngIf="this.fieldHasErrors('fechaprogramada')" style="color: red">La fecha programada no es valida.</span>
+    </div>
+    <div class="flex flex-col gap-2">
       <label for="canchaid">Cancha</label>
-      <ng-select name="canchaid" formControlName="canchaid" class="bg-white-900 rounded outline outline-1 outline-slate-300">
+      <ng-select name="canchaid" formControlName="canchaid" class="bg-white-900 rounded outline outline-1 outline-slate-300 p-2">
         <ng-option *ngFor="let cancha of this.canchas" [value]="cancha.id">
+          <!-- No está aceptando estilos por alguna razón... -->
           {{cancha.nombre}}
         </ng-option>
       </ng-select>
+      <span *ngIf="this.fieldHasErrors('canchaid')" style="color: red">La cancha no es valida.</span>
     </div>
-    <button class="rounded bg-lime-400 text-center">
-      Crear
-    </button>
+    <div class="flex justify-center">
+      <button class="rounded bg-lime-500 hover:bg-lime-700 transition-colors text-center w-1/2 text-slate-50 font-mono font-bold my-2">
+        Crear
+      </button>
+    </div>
   </form>
 </div>

@@ -35,7 +35,7 @@ export class AdminPartidosService {
     if (!term.trim()) {
       this.cachedSearch = this._partidos;
     } else {
-      const filteredPartidos = this._partidos.filter((partido => partido.fechacreacion.toLowerCase().includes(term.toLowerCase())) || (partido => partido.fechaprogramada.toLowerCase().includes(term.toLowerCase())) || (partido => partido.id.toString().includes(term.toLowerCase())));
+      const filteredPartidos = this._partidos.filter((partido => partido.fechacreacion.toLowerCase().includes(term.toLowerCase())) || (partido => partido.fechaprogramada.toLowerCase().includes(term.toLowerCase())) || (partido => partido.id!.toString().includes(term.toLowerCase())));
       if (filteredPartidos.length) {
         this.cachedSearch = filteredPartidos;
       }
