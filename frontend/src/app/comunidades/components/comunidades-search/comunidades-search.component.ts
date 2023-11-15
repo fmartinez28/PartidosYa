@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ComunidadesService } from '../../services/comunidades.service';
 import { IComunidad } from 'src/interfaces/IComunidad';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comunidades-search',
@@ -11,17 +10,25 @@ import { Router } from '@angular/router';
 export class ComunidadesSearchComponent {
   comunidades: IComunidad[] = [];
 
-  constructor(
-    private comunidadesService: ComunidadesService,
-    private router: Router
-  ) { }
+  private comunidadesService: ComunidadesService = inject(ComunidadesService);
+
+  constructor() { }
 
   ngOnInit(): void {
     this.getComunidades();
   }
 
   getComunidades(): void {
-    this.comunidadesService.getComunidades().subscribe(comunidades => this.comunidades = comunidades);
-    this.router.navigate(['/comunidades']);
+    this.comunidadesService.getComunidades().subscribe({
+      next: comunidades => {
+        this.comunidades = comunidades;
+      },
+      complete: () => {
+        console.log({ result: 'OK' })
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
   }
 }

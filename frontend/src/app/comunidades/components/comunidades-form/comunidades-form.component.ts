@@ -44,15 +44,41 @@ export class ComunidadesFormComponent {
       this.comunidadesService.addComunidad(comunidadRequest).subscribe({
         next: res => {
           console.log(res);
+          let { id } = res
+          this.comunidadesService.joinToComunidadAsModerador(id).subscribe({
+            next: res => {
+              console.log({ moderador: res });
+            },
+            complete: () => {
+              console.log({ result: "OK" })
+            },
+            error: err => {
+              console.log({ error: err })
+              this.router.navigate(['/comunidades']);
+            }
+          });
+          this.comunidadesService.joinToComunidad(id).subscribe({
+            next: res => {
+              console.log({ comunidades: res });
+            },
+            complete: () => {
+              console.log({ result: "OK" })
+            },
+            error: err => {
+              console.log({ error: err })
+              this.router.navigate(['/comunidades']);
+            }
+          })
         },
         complete: () => {
+          this.comunidadesService.notificarComunidadAgregada();
           this.router.navigate(['/comunidades']);
         },
         error: err => {
+          alert('Ocurrió un error ' + err);
           this.router.navigate(['/comunidades']);
         }
-      }
-      );
+      });
     } else {
       Object.keys(this.comunidadForm.controls).forEach(field => {
         const control = this.comunidadForm.get(field);

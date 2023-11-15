@@ -117,4 +117,18 @@ export default async function (fastify, opts) {
             return reply.status(204).send({ message: 'No se comunidades para el jugador' });
         return reply.send(queryresult.rows);
     });
+
+    fastify.post('/:id/moderador', {
+        schema: communitySchemas.inscribirJugadorSchema,
+        onRequest: [
+            fastify.auth
+        ]
+    }, async function (request, reply) {
+        const { jugadorid } = request.body;
+        if (request.user.rolid != 1) return reply.status(401).send({ message: 'No autorizado, debe ser un jugador para crear una comunidad.' });
+        const queryresult = await query('INSERT INTO "comunidadmoderador" ("comunidadid", "usuarioid") VALUES ($1, $2) RETURNING *', [request.params.id, jugadorid]);
+        if (queryresult.rows.length === 0)
+            return reply.status(500).send({ message: 'Error al agregar el jugador a la comunidad' });
+        return reply.status(201).send(queryresult.rows[0]);
+    });
 }

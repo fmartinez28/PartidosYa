@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class ComunidadesService {
   private comunidades: IComunidad[] = [];
+  private comunidadAgregadaSource = new Subject<void>();
+  comunidadAgregada = this.comunidadAgregadaSource.asObservable();
 
   private router: Router = inject(Router);
   private http: HttpClient = inject(HttpClient);
@@ -18,17 +20,25 @@ export class ComunidadesService {
 
   constructor() { }
 
+  notificarComunidadAgregada(): void {
+    this.comunidadAgregadaSource.next();
+  }
+
   getComunidades(): Observable<IComunidad[]> {
-    const res = this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades`);
-    res.subscribe(comunidades => this.comunidades = comunidades);
-    this.router.navigate(['/comunidades']);
-    return res;
+    return this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades`);
   }
 
   getComunidadesByUserID(): Observable<IComunidad[]> {
     const userId = this.getUserId();
     const res = this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades/jugador/${userId}`);
-    res.subscribe(comunidades => this.comunidades = comunidades);
+    res.subscribe({
+      next: comunidades => {
+        this.comunidades = comunidades;
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
     return res;
   }
 
@@ -42,7 +52,7 @@ export class ComunidadesService {
     return this.http.post(`${environment.apiUrl}/comunidades`, comunidad, { headers: headers });
   }
 
-  joinToComunidad(comunidadId: number): void {
+  joinToComunidad(comunidadId: number): Observable<any> {
     const userId = this.getUserId();
     const token = this.getUserToken();
 
@@ -55,19 +65,22 @@ export class ComunidadesService {
       fecharegistro: this.getCurrentDateFormatted()
     }
 
-    this.http.post(`${environment.apiUrl}/comunidades/${comunidadId}/jugadores`, postPayload, { headers: headers }).subscribe({
-      next: res => {
-        console.log({ comunidades: res });
-      },
-      complete: () => {
-        console.log({ result: "OK" })
-      },
-      error: err => {
-        this.router.navigate(['/comunidades']);
-        console.log({ error: err })
-      }
+    return this.http.post(`${environment.apiUrl}/comunidades/${comunidadId}/jugadores`, postPayload, { headers: headers });
+  }
+
+  joinToComunidadAsModerador(comunidadId: number): Observable<any> {
+    const userId = this.getUserId();
+    const token = this.getUserToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
     });
-    this.router.navigate(['/comunidades']);
+
+    const postPayload = {
+      jugadorid: userId
+    }
+
+    return this.http.post(`${environment.apiUrl}/comunidades/${comunidadId}/moderador`, postPayload, { headers: headers })
   }
 
   private getUserId(): number {
