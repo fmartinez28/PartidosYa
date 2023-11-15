@@ -9,7 +9,7 @@ import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
   styleUrls: ['./comunidades-list.component.scss']
 })
 export class ComunidadesListComponent {
-  comunidades: IComunidad[] = [];
+  comunidades: IComunidad[] | null = [];
 
   private searchFilter = new Subject<string>();
   private comunidadesService: ComunidadesService = inject(ComunidadesService);
@@ -50,7 +50,6 @@ export class ComunidadesListComponent {
   }
 
   search(filter: string): void {
-    console.log("comunidades en el list", this.comunidades)
     if (filter != null) {
       this.searchFilter.next(filter);
     }

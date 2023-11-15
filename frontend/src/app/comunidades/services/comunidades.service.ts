@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/session/services/auth.service';
 })
 export class ComunidadesService {
   private comunidades: IComunidad[] = [];
-  private cachedSearch: IComunidad[] = [];
+  private cachedSearch: IComunidad[] | null = [];
   private comunidadAgregadaSource = new Subject<void>();
   comunidadAgregada = this.comunidadAgregadaSource.asObservable();
 
@@ -25,7 +25,16 @@ export class ComunidadesService {
 
   getComunidades(): Observable<IComunidad[]> {
     const userId = this.getUserId();
-    return this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades?filter=${userId}`);
+    const res = this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades?filter=${userId}`);
+    res.subscribe({
+      next: comunidades => {
+        this.comunidades = comunidades;
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+    return res;
   }
 
   getComunidadesByUserID(): Observable<IComunidad[]> {
@@ -83,13 +92,16 @@ export class ComunidadesService {
     return this.http.post(`${environment.apiUrl}/comunidades/${comunidadId}/moderador`, postPayload, { headers: headers })
   }
 
-  searchComunidad(filter: string): Observable<IComunidad[]> {
+  searchComunidad(filter: string): Observable<IComunidad[] | null> {
     if (!filter.trim()) {
       this.cachedSearch = this.comunidades;
     } else {
+      console.log("antes del filter", this.comunidades)
       const filteredComunidades = this.comunidades.filter(comunidad => comunidad.nombre.toLowerCase().includes(filter.toLowerCase()));
       if (filteredComunidades.length) {
         this.cachedSearch = filteredComunidades;
+      } else {
+        this.cachedSearch = null;
       }
     }
     return of(this.cachedSearch);
