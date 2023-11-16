@@ -83,12 +83,14 @@ CREATE TABLE public.partido (
 	canchaid int8 NOT NULL,
 	playerscount int NOT NULL default 0,
 	playerslimit int NOT NULL default 10,
-	fechacreacion date NOT NULL,
-	fechaprogramada date NOT NULL,
+	fechacreacion timestamptz NOT NULL,
+	fechaprogramada timestamptz NOT NULL,
+	creadorid int8 NOT NULL,
 	comunidadid int8 NULL,
 	CONSTRAINT partido_pk PRIMARY KEY (id),
 	CONSTRAINT partido_fk FOREIGN KEY (canchaid) REFERENCES public.canchas(id),
 	CONSTRAINT partido_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
+	CONSTRAINT usuario_fk_1 FOREIGN KEY (creadorid) REFERENCES public.usuarios(id)
 );
 
 CREATE TABLE public.participacionpartido (
