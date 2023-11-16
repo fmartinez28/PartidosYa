@@ -35,7 +35,8 @@ const genericSingleCourtSchema = {
         nombre: { type: 'string' },
         canchanum: { type: 'string' },
         direccionid: { type: 'number' },
-        propietarioid: { type: 'number' }
+        propietarioid: { type: 'number' },
+        aprobada: { type: 'boolean' },
     },
     required: ['id', 'nombre', 'canchanum', 'direccionid', 'propietarioid']
 }
