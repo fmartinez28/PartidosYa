@@ -97,4 +97,19 @@ export default async function (fastify, opts) {
         if (rows.length === 0) return reply.status(404).send({ error: 'Partido no encontrado' });
         return reply.status(204).send();
     })
+    fastify.delete('/:id/jugadores/:jugadorid', async function (request, reply) {
+        try {
+            const { id, jugadorid } = request.params;
+            const queryresult = await query('DELETE FROM "participacionpartido" WHERE "partidoid" = $1 AND "jugadorid" = $2 RETURNING *', [id, jugadorid]);
+            const rows = queryresult.rows;
+            
+            if (rows.length === 0) {
+                return reply.status(404).send({ error: 'No se encontró la participación del jugador en el partido' });
+            }
+            
+            return reply.status(204).send();
+        } catch (error) {
+            return reply.status(500).send({ error: 'Error al abandonar el partido' });
+        }
+    });
 }
