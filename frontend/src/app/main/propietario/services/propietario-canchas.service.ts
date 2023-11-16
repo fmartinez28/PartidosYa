@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { AuthService } from 'src/app/session/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ICancha } from 'src/interfaces/ICancha';
 
@@ -10,7 +11,8 @@ import { ICancha } from 'src/interfaces/ICancha';
 export class PropietarioCanchasService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private authService: AuthService
   ) { }
 
   private _canchas: ICancha[] = []
@@ -18,9 +20,14 @@ export class PropietarioCanchasService {
   private cachedSearch: ICancha[] = [];
 
   getCanchas(): Observable<ICancha[]> {
-    const res = this.http.get<ICancha[]>(`${environment.apiUrl}/canchas`);
-    res.subscribe(canchas => this._canchas = canchas);
-    return res;
+    const user = this.authService.getUser();
+    if(user){
+      const id = JSON.parse(user).id;
+      const res = this.http.get<ICancha[]>(`${environment.apiUrl}/propietarios/${id}/canchas`);
+      res.subscribe(canchas => this._canchas = canchas);
+      return res;
+    }
+    return of([])
   }
 
   getCancha(id: number): Observable<ICancha> | undefined {
