@@ -46,7 +46,7 @@ export class PartidoFormComponent {
       error: (err) => console.warn(err, "Probablemente un error de autorización"),
       complete: () => {
         console.info("Se completó parece");
-        this.router.navigate(['/partidos']);
+        this.router.navigate(['/player/partidos']);
       }
     })
   };

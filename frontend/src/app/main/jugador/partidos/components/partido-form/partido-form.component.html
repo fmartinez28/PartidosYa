@@ -15,10 +15,12 @@
     <div class="flex flex-col gap-2">
       <label for="canchaid">Cancha</label>
       <ng-select name="canchaid" formControlName="canchaid" class="bg-white-900 rounded outline outline-1 outline-slate-300 p-2">
-        <ng-option *ngFor="let cancha of this.canchas" [value]="cancha.id">
-          <!-- No está aceptando estilos por alguna razón... -->
-          {{cancha.nombre}}
-        </ng-option>
+        <div *ngFor="let cancha of this.canchas" class="bg-slate-50">
+          <ng-option [value]="cancha.id">
+            <!-- No está aceptando estilos por alguna razón... -->
+            {{cancha.nombre}}
+          </ng-option>
+        </div>
       </ng-select>
       <span *ngIf="this.fieldHasErrors('canchaid')" style="color: red">La cancha no es valida.</span>
     </div>
