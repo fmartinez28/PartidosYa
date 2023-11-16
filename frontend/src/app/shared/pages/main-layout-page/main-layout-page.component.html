@@ -1,10 +1,16 @@
-<app-basic-user-navbar></app-basic-user-navbar>
+<div class="flex flex-col min-h-screen">
+    <app-basic-user-navbar></app-basic-user-navbar>
 
-<app-usuario-sidebar></app-usuario-sidebar>
+    <div class="flex-grow">
+        <div class="flex flex-wrap">
+            <app-usuario-sidebar class="w-full md:w-1/4 xl:w-1/6"></app-usuario-sidebar>
 
-<main class="bg-slate-200 flex flex-col justify-center items-center h-screen" style="min-height: calc(100vh - 116px);">
-    <router-outlet></router-outlet>
-</main>
- 
+            <main class="flex-1 bg-slate-200 flex flex-col justify-center items-center"
+                style="min-height: calc(100vh - 116px);">
+                <router-outlet></router-outlet>
+            </main>
+        </div>
+    </div>
 
-<app-footer></app-footer>
+    <app-footer></app-footer>
+</div>

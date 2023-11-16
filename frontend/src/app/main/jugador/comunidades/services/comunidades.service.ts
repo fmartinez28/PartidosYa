@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, Subject, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/session/services/auth.service';
+import { IComunidadUser } from 'src/interfaces/IComunidadUser';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,8 @@ export class ComunidadesService {
   private cachedSearch: IComunidad[] | null = [];
   private comunidadAgregadaSource = new Subject<void>();
   comunidadAgregada = this.comunidadAgregadaSource.asObservable();
+  showModal: boolean = false;
+
 
   private http: HttpClient = inject(HttpClient);
   private authService: AuthService = inject(AuthService);
@@ -21,6 +24,10 @@ export class ComunidadesService {
 
   notificarComunidadAgregada(): void {
     this.comunidadAgregadaSource.next();
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 
   getComunidades(): Observable<IComunidad[]> {
@@ -40,6 +47,20 @@ export class ComunidadesService {
   getComunidadesByUserID(): Observable<IComunidad[]> {
     const userId = this.getUserId();
     const res = this.http.get<IComunidad[]>(`${environment.apiUrl}/comunidades/jugador/${userId}`);
+    res.subscribe({
+      next: comunidades => {
+        this.comunidades = comunidades;
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+    return res;
+  }
+
+  getComunidadUsers(comunidadId: number): Observable<IComunidadUser[]> {
+    const userId = this.getUserId();
+    const res = this.http.get<IComunidadUser[]>(`${environment.apiUrl}/comunidades/${comunidadId}/jugadores`);
     res.subscribe({
       next: comunidades => {
         this.comunidades = comunidades;

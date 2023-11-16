@@ -103,9 +103,8 @@ export default async function (fastify, opts) {
     //DONE: Las comunidades son de usuarios? O de Jugadores? El diagrama dice jugadores.
     //Los nombres de tablas y columnas sin capitalizar, siempre, tira error de lo contrario
     fastify.get('/:id/jugadores', {
-        schema: getAllSchema
     }, async function (request, reply) {
-        const queryString = 'SELECT * FROM "usuarios" WHERE "id" IN (SELECT "jugadorid" FROM "comunidadjugador" WHERE "comunidadid" = $1)'
+        const queryString = 'SELECT u.id, u.email, u.nombre, u.apellido, u.username, d.pais, d.estado, t.codpais, t.numero FROM "usuarios" u INNER JOIN direcciones d ON u.id = d.id INNER JOIN telefonos t ON u.id = t.id WHERE u.id IN (SELECT "jugadorid" FROM "comunidadjugador" WHERE comunidadid = $1)'
         const queryresult = await query(queryString, [request.params.id]);
         const rows = queryresult.rows;
         if (rows.length === 0)
