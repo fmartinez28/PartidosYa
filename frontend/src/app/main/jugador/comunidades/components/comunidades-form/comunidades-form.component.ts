@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { ComunidadesService } from '../../services/comunidades.service';
+import { showAlert } from 'src/utils/utils';
 
 @Component({
   selector: 'app-comunidades-form',
@@ -55,6 +56,7 @@ export class ComunidadesFormComponent {
             },
             error: err => {
               console.log({ error: err })
+              showAlert('danger', 'Ocurrió un error al unirse a la comunidad creada')
               this.router.navigate([this.routerLink]);
             }
           });
@@ -63,20 +65,23 @@ export class ComunidadesFormComponent {
               console.log({ comunidades: res });
             },
             complete: () => {
-              console.log({ result: "OK" })
+              showAlert('success', 'Se unió a la comunidad creada correctamente!')
             },
             error: err => {
               console.log({ error: err })
+              showAlert('danger', 'Ocurrió un error al unirse a la comunidad creada')
               this.router.navigate([this.routerLink]);
             }
           })
         },
         complete: () => {
           this.comunidadesService.notificarComunidadAgregada();
+          showAlert('success', 'Comunidad creada correctamente!')
           this.router.navigate([this.routerLink]);
         },
         error: err => {
-          alert('Ocurrió un error ' + err);
+          console.log('Ocurrió un error ' + err);
+          showAlert('danger', 'Ocurrió un error al crear la comunidad')
           this.router.navigate([this.routerLink]);
         }
       });

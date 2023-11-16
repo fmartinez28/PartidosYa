@@ -1,11 +1,10 @@
-<div class="mt-10 px-4">
-    <p>Buscar:</p>
-    <input type="text" class="border-2 border-gray-300 p-2 rounded-lg w-full" placeholder="Buscar comunidad" #searchBox
-        id="search-box" (input)="search(searchBox.value)">
-</div>
-
 <ng-container *ngIf="this.comunidades; else noComunidades">
-    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-4">
+    <div class="mt-10 px-4">
+        <p>Busca en tus comunidades</p>
+        <input type="text" class="border-2 border-gray-300 p-2 rounded-lg w-25" placeholder="Buscar comunidad"
+            #searchBox id="search-box" (input)="search(searchBox.value)">
+    </div>
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 p-2">
         <app-comunidades-list-item *ngFor="let comunidad of comunidades" [comunidad]="comunidad"
             [joinComunidad]="false"></app-comunidades-list-item>
     </ul>
