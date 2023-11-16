@@ -3,11 +3,7 @@
     <p class="font-extrabold font-sans text-4xl text-lime-500">
       Partidos
     </p>
-<<<<<<< HEAD
     <a routerLink="/player/partidos/new" class=" text-teal-600 hover:text-teal-800 transition-all">¿Agregar un partido?</a>
-=======
-    <a routerLink="/player/partidos/new" class="text-lime-500 hover:text-lime-700 transition-all">¿Agregar un partido?</a>
->>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
   </div>
 </header>
 <div class="grid grid-cols-2 justify-center m-4 rounded-3xl bg-slate-50 outline outline-1 outline-slate-400">
@@ -24,18 +20,12 @@
 </div>
 
 <div *ngIf="isMisPartidosSelected; else buscarPartidosContent">
-<<<<<<< HEAD
   <app-partidos-joined></app-partidos-joined>
-=======
-  <app-partidos></app-partidos>
->>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
 </div>
 
 <ng-template #buscarPartidosContent>
   <app-partidos-search></app-partidos-search>
 </ng-template>
-<<<<<<< HEAD
-=======
 
 
 <!--
@@ -54,4 +44,3 @@
     </div>
   </footer>
 -->
->>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)

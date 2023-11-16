@@ -9,13 +9,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { RouterModule } from '@angular/router';
 import { PartidosHomeComponent } from './pages/partidos-home/partidos-home.component';
 import { PartidosSearchComponent } from './components/partidos-search/partidos-search.component';
-<<<<<<< HEAD
 import { PartidosJoinedComponent } from './components/partidos-joined/partidos-joined.component';
 import { PartidoModalComponent } from './partido-modal/partido-modal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-=======
->>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
-
 
 
 @NgModule({
@@ -24,13 +20,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PartidosComponent,
     PartidoComponent,
     PartidosHomeComponent,
-<<<<<<< HEAD
     PartidosSearchComponent,
     PartidosJoinedComponent,
-    PartidoModalComponent
-=======
-    PartidosSearchComponent
->>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
+    PartidoModalComponent,
+    PartidosSearchComponent,
+    PartidosJoinedComponent
   ],
   imports: [
     CommonModule,
@@ -38,11 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule,
-<<<<<<< HEAD
     FormsModule,
-=======
-    FormsModule
->>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
   ]
 })
 export class PartidosModule { }

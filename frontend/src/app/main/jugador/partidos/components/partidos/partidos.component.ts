@@ -11,15 +11,14 @@ import { IPartido } from 'src/interfaces/IPartido';
 export class PartidosComponent {
   @Input() public partidos!: IPartido[];
   @Input() public partidosState!: boolean;
-  constructor(private titleService: Title) {
+  constructor(private titleService: Title, private partidosService: PartidosService) {
     this.titleService.setTitle('Partidos');
   }
 
   get title(): string {
     return this.titleService.getTitle();
   }
-<<<<<<< HEAD
-=======
+
   @Input() public city?: string;
   @Input() public country?: string;
   @Input() public userId?: number;
@@ -46,5 +45,4 @@ export class PartidosComponent {
       complete: () => console.info("Se completó parece")
     });
   }
->>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
 }
