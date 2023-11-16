@@ -91,8 +91,8 @@ CREATE TABLE public.partido (
 	aprobado boolean NOT NULL default false,
 	CONSTRAINT partido_pk PRIMARY KEY (id),
 	CONSTRAINT partido_fk FOREIGN KEY (canchaid) REFERENCES public.canchas(id),
-	CONSTRAINT partido_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
-	CONSTRAINT usuario_fk_1 FOREIGN KEY (creadorid) REFERENCES public.usuarios(id)
+	CONSTRAINT partido_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id),
+	CONSTRAINT partido_fk_2 FOREIGN KEY (creadorid) REFERENCES public.usuarios(id)
 );
 
 CREATE TABLE public.participacionpartido (
@@ -169,6 +169,35 @@ CREATE TRIGGER decrementar_contador_partidos_trigger
 AFTER DELETE ON participacionpartido
 FOR EACH ROW
 EXECUTE FUNCTION decrementar_playerscount();
+
+-- FUNCIONES Y TRIGGERS PARA MANEJO DE ENTRADAS EN PARTICIPACIONPARTIDO EN DELETE DE PARTIDO --
+CREATE OR REPLACE FUNCTION insert_into_participacionpartido()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO participacionpartido (partidoid, jugadorid)
+  VALUES (NEW.id, NEW.creadorid);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER insert_partido_trigger
+AFTER INSERT ON partido
+FOR EACH ROW
+EXECUTE FUNCTION insert_into_participacionpartido();
+
+CREATE OR REPLACE FUNCTION delete_from_participacionpartido()
+RETURNS TRIGGER AS $$
+BEGIN
+	DELETE FROM participacionpartido WHERE partidoid = OLD.id AND jugadorid = OLD.creadorid;
+	RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_partido_trigger
+AFTER DELETE ON partido
+FOR EACH ROW
+EXECUTE FUNCTION delete_from_participacionpartido();
+
 
 INSERT INTO roles(nombre) VALUES('jugador');
 INSERT INTO roles(nombre) VALUES('propietario');
