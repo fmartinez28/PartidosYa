@@ -33,9 +33,10 @@ const postSchema = {
             canchaid: { type: 'number' },
             fechacreacion: { type: 'string' },
             fechaprogramada: { type: 'string' },
-            comunidadid: { type: 'number' }
+            comunidadid: { type: 'number' },
+            creadorid: { type: 'number' }
         },
-        required: ['canchaid', 'fechacreacion', 'fechaprogramada']
+        required: ['canchaid', 'fechacreacion', 'fechaprogramada', 'creadorid']
     },
     response: {
         201: {

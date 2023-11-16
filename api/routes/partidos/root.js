@@ -32,8 +32,8 @@ export default async function (fastify, opts) {
     });
 
     fastify.post('/', { schema: matchesSchemas.postSchema }, async function (request, reply) {
-        const { canchaid, fechacreacion, fechaprogramada, comunidadid } = request.body;
-        const queryresult = await query('INSERT INTO "partido" ("canchaid", "fechacreacion", "fechaprogramada", "comunidadid") VALUES ($1, $2, $3, $4) RETURNING *', [canchaid, fechacreacion, fechaprogramada, comunidadid]);
+        const { canchaid, fechacreacion, fechaprogramada, comunidadid, creadorid } = request.body;
+        const queryresult = await query('INSERT INTO "partido" ("canchaid", "fechacreacion", "fechaprogramada", "comunidadid", "creadorid") VALUES ($1, $2, $3, $4) RETURNING *', [canchaid, fechacreacion, fechaprogramada, comunidadid, creadorid]);
         if (queryresult.rows.length === 0)
             return reply.status(500).send({ error: 'Error al crear el partido' });
         return reply.status(201).send(queryresult.rows[0]);
