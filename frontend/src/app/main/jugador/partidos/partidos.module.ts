@@ -9,6 +9,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { RouterModule } from '@angular/router';
 import { PartidosHomeComponent } from './pages/partidos-home/partidos-home.component';
 import { PartidosSearchComponent } from './components/partidos-search/partidos-search.component';
+import { PartidosJoinedComponent } from './components/partidos-joined/partidos-joined.component';
 
 
 
@@ -18,7 +19,8 @@ import { PartidosSearchComponent } from './components/partidos-search/partidos-s
     PartidosComponent,
     PartidoComponent,
     PartidosHomeComponent,
-    PartidosSearchComponent
+    PartidosSearchComponent,
+    PartidosJoinedComponent
   ],
   imports: [
     CommonModule,

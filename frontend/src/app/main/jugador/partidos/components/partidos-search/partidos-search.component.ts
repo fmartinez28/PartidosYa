@@ -17,7 +17,7 @@ export class PartidosSearchComponent {
     if (!this.city || !this.country) {
       return;
     }
-    this.partidosService.getPartidosByLocation(this.city, this.country).subscribe({
+    this.partidosService.getPartidosByLocation(this.city, this.country, true).subscribe({
       next: (matches) => {
         console.log(matches);
         this.partidos = matches;
