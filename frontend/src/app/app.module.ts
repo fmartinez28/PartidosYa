@@ -12,7 +12,7 @@ import { UserComponent } from './shared/components/user/user.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
