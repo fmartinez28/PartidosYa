@@ -5,17 +5,28 @@ import { paginateQuery } from '../../utils/pagination.js';
 export default async function (fastify, opts) {
     fastify.get('/', { schema: matchesSchemas.getAllSchema }, async function (request, reply) {
         let queryString = 'SELECT * FROM "partido" ';
-        if (request.query.city && request.query.country){
-            //No es muy lindo esto...
-            queryString += `WHERE canchaid IN 
-            (SELECT id FROM canchas WHERE direccionid IN 
-            (SELECT id FROM direcciones
-            WHERE pais ILIKE '${request.query.country}' AND ciudad ILIKE '${request.query.city}'))`
+        let queryParams = [];
+        //Esto no pasaría con un orm.............
+        if (request.query.city && request.query.country) {
+            queryString += `WHERE canchaid IN (SELECT id FROM canchas WHERE direccionid IN 
+                (SELECT id FROM direcciones WHERE pais ILIKE '${request.query.country}' AND ciudad ILIKE '${request.query.city}')) `;
+            queryParams.push(request.query.country, request.query.city);
         }
-        queryString = (request.query.page || request.query.limit) ?
-        paginateQuery(queryString, request.query.page, request.query.limit) : queryString;
-
+        if (request.query.with) {
+            queryString += `${(queryParams.length > 0 ? 'AND' : 'WHERE')} id IN
+                (SELECT partidoid FROM participacionpartido WHERE jugadorid = '${request.query.with}') `;
+            queryParams.push(request.query.with);
+        }
+    
+        if (request.query.without) {
+            queryString += `${(queryParams.length > 0 ? 'AND' : 'WHERE')} id NOT IN 
+                (SELECT partidoid FROM participacionpartido WHERE jugadorid = '${request.query.without}') `;
+            queryParams.push(request.query.without);
+        }
         console.log(queryString);
+        //queryString = (request.query.page || request.query.limit) ?
+        //paginateQuery(queryString, request.query.page, request.query.limit) : queryString;
+
         const queryresult = await query(queryString);
         const rows = queryresult.rows;
         if (rows.length === 0)
