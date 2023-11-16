@@ -1,30 +1,28 @@
-<ul class="flex flex-wrap justify-center">
-    <li class="py-3 sm:py-4">
-        <div
-            class="w-full sm:w-52 h-72 m-8 rounded-lg overflow-hidden bg-blue-300 shadow-lg hover:shadow-2xl transition-all duration-150 ease-in-out">
-            <div class="bg-white h-full rounded-lg p-4 flex flex-col justify-between">
-                <div>
-                    <h1 class="text-2xl font-bold line-clamp-2">{{comunidad.nombre}}</h1>
-                    <p *ngIf="comunidad.descripcion" class="text-sm">{{comunidad.descripcion}}</p>
-                    <hr class="my-4 border-t-2">
+<li class="py-3 sm:py-4">
+    <div
+        class="w-full sm:w-52 h-72 m-8 rounded-lg overflow-hidden bg-blue-300 shadow-lg hover:shadow-2xl transition-all duration-150 ease-in-out">
+        <div class="bg-white h-full rounded-lg p-4 flex flex-col justify-between">
+            <div>
+                <h1 class="text-2xl font-bold line-clamp-2">{{comunidad.nombre}}</h1>
+                <p *ngIf="comunidad.descripcion" class="text-sm">{{comunidad.descripcion}}</p>
+                <hr class="my-4 border-t-2">
+            </div>
+            <div>
+                <div class="text-center rounded-2xl outline p-2 text-lime-500">
+                    <p>{{comunidad.memberscount}}/{{comunidad.memberslimit}}</p>
                 </div>
-                <div>
-                    <div class="text-center rounded-2xl outline p-2 text-lime-500">
-                        <p>{{comunidad.memberscount}}/{{comunidad.memberslimit}}</p>
-                    </div>
-                    <div class="mt-4">
-                        <button *ngIf="!joinComunidad"
-                            class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            (click)="this.openModal(comunidad)">Ver</button>
+                <div class="mt-4">
+                    <button *ngIf="!joinComunidad"
+                        class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        (click)="this.openModal(comunidad)">Ver</button>
 
-                        <button *ngIf="joinComunidad"
-                            class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-                            (click)="this.joinToComunidad()">Unirse</button>
-                    </div>
+                    <button *ngIf="joinComunidad"
+                        class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                        (click)="this.joinToComunidad()">Unirse</button>
                 </div>
             </div>
         </div>
-    </li>
-</ul>
+    </div>
+</li>
 <app-comunidades-usuarios-list *ngIf="this.comunidadSeleccionada"
     [comunidad]="comunidadSeleccionada"></app-comunidades-usuarios-list>

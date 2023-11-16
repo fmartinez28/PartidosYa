@@ -44,7 +44,7 @@ export function showAlert(alertType: AlertType, message: string, duration: numbe
         'text-sm', 'font-sans'
     );
 
-    const bottomOffset = 5 + activeAlerts.length * 75; // 75px es la altura de una alerta.
+    const bottomOffset = 5 + activeAlerts.length * 100; // El valor multiplicado es la altura
     alertElement.style.bottom = `${bottomOffset}px`;
 
     document.body.appendChild(alertElement);
