@@ -91,8 +91,8 @@ CREATE TABLE public.partido (
 	aprobado boolean NOT NULL default false,
 	CONSTRAINT partido_pk PRIMARY KEY (id),
 	CONSTRAINT partido_fk FOREIGN KEY (canchaid) REFERENCES public.canchas(id),
-	CONSTRAINT partido_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
-	CONSTRAINT usuario_fk_1 FOREIGN KEY (creadorid) REFERENCES public.usuarios(id)
+	CONSTRAINT partido_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id),
+	CONSTRAINT partido_fk_2 FOREIGN KEY (creadorid) REFERENCES public.usuarios(id)
 );
 
 CREATE TABLE public.participacionpartido (
