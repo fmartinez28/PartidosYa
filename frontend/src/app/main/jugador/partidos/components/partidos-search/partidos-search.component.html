@@ -8,7 +8,11 @@
   <button (click)="this.getPartidosByLocation()" class="bg-blue-500 text-white px-4 py-2 rounded-lg focus:outline-none hover:bg-blue-600 transition duration-300">Filtrar</button>
 </div>
 <div *ngIf="this.partidos; else noPartidos">
+<<<<<<< HEAD
   <app-partidos [partidos]="this.partidos" [partidosState]="false"></app-partidos>
+=======
+  <app-partidos></app-partidos>
+>>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
 </div>
 <ng-template #noPartidos>
   <div class="text-center flex flex-col justify-center items-center font-mono text-orange-800 font-extrabold p-4">

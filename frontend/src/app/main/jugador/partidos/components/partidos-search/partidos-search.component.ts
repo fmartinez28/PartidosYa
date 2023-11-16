@@ -17,7 +17,11 @@ export class PartidosSearchComponent {
     if (!this.city || !this.country) {
       return;
     }
+<<<<<<< HEAD
     this.partidosService.getPartidosByLocation(this.city, this.country, true).subscribe({
+=======
+    this.partidosService.getPartidosByLocation(this.city, this.country).subscribe({
+>>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
       next: (matches) => {
         console.log(matches);
         this.partidos = matches;

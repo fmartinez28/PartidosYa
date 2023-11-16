@@ -18,4 +18,33 @@ export class PartidosComponent {
   get title(): string {
     return this.titleService.getTitle();
   }
+<<<<<<< HEAD
+=======
+  @Input() public city?: string;
+  @Input() public country?: string;
+  @Input() public userId?: number;
+  ngOnInit() {
+    (this.city && this.country) ? this.getPartidosByLocation() : this.getPartidosByUser();
+  }
+  private getPartidosByLocation(){
+    this.partidosService.getPartidosByLocation(this.city!, this.country!).subscribe({
+      next: (matches) => {
+        console.log(matches);
+        this.partidos = matches;
+      },
+      error: (err) => console.warn(err),
+      complete: () => console.info("Se completó parece")
+    });
+  }
+  private getPartidosByUser(){
+    this.partidosService.getPartidosJoinedByUser().subscribe({
+      next: (matches) => {
+        console.log(matches);
+        this.partidos = matches;
+      },
+      error: (err) => console.warn(err),
+      complete: () => console.info("Se completó parece")
+    });
+  }
+>>>>>>> ad1cbd6 (Muchos, muchos cambios, reestructuración con pages en vez de components, agregada funcionalidad de search, particionado home en Mis Partidos y Buscar Partidos)
 }
