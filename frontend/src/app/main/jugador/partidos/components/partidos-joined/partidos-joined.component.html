@@ -1,0 +1,9 @@
+<div *ngIf="this.partidos; else noPartidos">
+  <app-partidos [partidos]="this.partidos" [partidosState]="true"></app-partidos>
+</div>
+<ng-template #noPartidos>
+  <div class="text-center flex flex-col justify-center items-center font-mono text-orange-800 font-extrabold p-4">
+    <p>No se han encontrado partidos para el usuario...</p>
+    <p>Crea o unete a un partido</p>
+  </div>
+</ng-template>
