@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ComunidadesService } from '../../services/comunidades.service';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-comunidades-search',
@@ -14,6 +15,7 @@ export class ComunidadesSearchComponent {
   private searchFilter = new Subject<string>();
 
   private comunidadesService: ComunidadesService = inject(ComunidadesService);
+  private componentTitle: Title = inject(Title);
 
   constructor() {
     this.comunidadesService.comunidadAgregada.subscribe(() => {
@@ -34,6 +36,11 @@ export class ComunidadesSearchComponent {
 
   ngOnInit(): void {
     this.getComunidades();
+    this.componentTitle.setTitle("Descubrí nuevas comunidades!");
+  }
+
+  get title() {
+    return this.componentTitle.getTitle();
   }
 
   getComunidades(): void {

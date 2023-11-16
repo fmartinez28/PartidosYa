@@ -45,7 +45,6 @@ export class ComunidadesListItemComponent implements OnInit {
       error: err => {
         showAlert('danger', 'Ocurrió un error al unirse a la comunidad, intente nuevamente');
         console.log({ error: err })
-        this.router.navigate([this.routerLink]);
       }
     });
   }

@@ -3,6 +3,7 @@ import { ComunidadesService } from '../../services/comunidades.service';
 import { IComunidadUser } from 'src/interfaces/IComunidadUser';
 import { IComunidad } from 'src/interfaces/IComunidad';
 import { Router } from '@angular/router';
+import { showAlert } from 'src/utils/utils';
 
 @Component({
   selector: 'app-comunidades-usuarios-list',
@@ -37,6 +38,7 @@ export class ComunidadesUsuariosListComponent {
       },
       error: err => {
         console.error(err);
+        showAlert('danger', 'Ocurrió un error al obtener los usuarios de la comunidad');
       }
     });
   }
