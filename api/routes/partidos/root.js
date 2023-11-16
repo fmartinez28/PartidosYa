@@ -75,4 +75,10 @@ export default async function (fastify, opts) {
         if (rows.length === 0) return reply.status(500).send({ error: 'Error al ingresar el jugador al partido' });
         return reply.status(201).send(rows[0]);
     })
+    fastify.delete('/:id', async function (request, reply) {
+        const queryresult = await query('DELETE FROM "partido" WHERE "id" = $1 RETURNING *', [request.params.id]);
+        const rows = queryresult.rows;
+        if (rows.length === 0) return reply.status(404).send({ error: 'Partido no encontrado' });
+        return reply.status(204).send();
+    })
 }
