@@ -1,12 +1,16 @@
-<header class="my-8">
-    <div class="text-center">
-        <p class="font-extrabold font-sans text-4xl text-lime-500">
+<main class="bg-slate-200 flex flex-col justify-center items-center h-screen p-4"
+    style="min-height: calc(100vh - 116px);">
+    <header class="w-full max-w-2xl mx-auto my-8 text-center">
+        <p class="font-extrabold font-sans text-2xl lg:text-4xl text-lime-500">
             {{title}}
         </p>
-        <a routerLink="/player/comunidades/new" class="text-lime-500 hover:text-lime-700 transition-all">¡Crea tu
-            comunidad! </a>
-        <a routerLink="/player/comunidades/search" class="text-lime-500 hover:text-lime-700 transition-all">Busca
-            comunidades</a>
-    </div>
-</header>
-<app-comunidades-list></app-comunidades-list>
+        <div class="mt-4">
+            <a routerLink="/player/comunidades/new" class="text-lime-500 hover:text-lime-700 transition-all">¡Crea tu
+                comunidad!</a>
+            <a routerLink="/player/comunidades/search" class="text-lime-500 hover:text-lime-700 transition-all">Busca
+                comunidades</a>
+        </div>
+    </header>
+
+    <app-comunidades-list></app-comunidades-list>
+</main>

@@ -1,0 +1,42 @@
+<div *ngIf="this.getComunidadesService().showModal" class="relative z-10" aria-labelledby="modal-title" role="dialog"
+    aria-modal="true">
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" (click)="this.toggleModal()"></div>
+    <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div
+                class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start justify-end">
+
+                        <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                            <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">
+                                {{comunidad.nombre}}
+                            </h3>
+                            <p> {{comunidad.memberscount}}/{{comunidad.memberslimit}}</p>
+                            <div *ngIf="comunidad.descripcion" class="mt-2">
+                                <h3>Descripción</h3>
+                                <p class="text-sm text-gray-500">{{comunidad.descripcion}}</p>
+                            </div>
+                        </div>
+                        <div class="flex-grow text-right">
+
+                        </div>
+                        <div class="flex h-12 w-12 flex-shrink-0 items-center justify-end sm:h-10 sm:w-10">
+                            <button type="button" (click)="this.toggleModal()"
+                                class="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <app-comunidades-usuario-list-item *ngFor="let usuario of usuarios"
+                            [usuario]="usuario"></app-comunidades-usuario-list-item>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                    Footer
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

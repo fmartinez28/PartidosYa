@@ -14,6 +14,8 @@ import { ComunidadesHomeViewComponent } from './pages/comunidades-home-view/comu
 import { ComunidadesSearchViewComponent } from './pages/comunidades-search-view/comunidades-search-view.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ComunidadesListItemComponent } from './components/comunidades-list/comunidades-list-item/comunidades-list-item.component';
+import { ComunidadesUsuarioListItemComponent } from './components/comunidades-usuarios-list/comunidades-usuario-list-item/comunidades-usuario-list-item.component';
+import { ComunidadesUsuariosListComponent } from './components/comunidades-usuarios-list/comunidades-usuarios-list.component';
 
 
 
@@ -30,7 +32,10 @@ import { ComunidadesListItemComponent } from './components/comunidades-list/comu
     ComunidadesFormViewComponent,
 
     ComunidadesSearchComponent,
-    ComunidadesSearchViewComponent
+    ComunidadesSearchViewComponent,
+
+    ComunidadesUsuarioListItemComponent,
+    ComunidadesUsuariosListComponent
   ],
   imports: [
     CommonModule,
