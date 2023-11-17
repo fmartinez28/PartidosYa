@@ -5,6 +5,7 @@ import { CanchasService } from '../../services/canchas.service';
 import { PartidosService } from '../../services/partidos.service';
 import { IPartido } from 'src/interfaces/IPartido';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../../session/services/auth.service';
 
 @Component({
   selector: 'app-partido-form',
@@ -17,7 +18,8 @@ export class PartidoFormComponent {
   constructor(public formBuilder: FormBuilder,
     private canchasService: CanchasService,
     private partidosService: PartidosService,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
   ngOnInit() {
     this.form = this.formBuilder.group({
       fechaprogramada: ['', Validators.required],
@@ -25,7 +27,10 @@ export class PartidoFormComponent {
     });
     this.canchasService.getMatchingCanchas().subscribe(
       {
-        next: (res) => { this.canchas = res; }
+        next: (res) => {
+          console.log(res);
+          this.canchas = res;
+        }
       }
     )
   }
@@ -38,15 +43,17 @@ export class PartidoFormComponent {
     console.log(new Date().toISOString());
     const partido: IPartido = {
       fechacreacion: new Date().toISOString(),
-      fechaprogramada: this.form.get('fechaprogramada')!.value,
+      fechaprogramada: new Date(this.form.get('fechaprogramada')!.value).toISOString(),
       canchaid: this.form.get('canchaid')!.value,
+      creadorid: Number.parseInt(JSON.parse(this.authService.getUser()!).id),
     };
+    console.log(partido);
     this.partidosService.addPartido(partido).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err, "Probablemente un error de autorización"),
       complete: () => {
         console.info("Se completó parece");
-        this.router.navigate(['/partidos']);
+        this.router.navigate(['/player/partidos']);
       }
     })
   };

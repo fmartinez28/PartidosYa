@@ -21,4 +21,7 @@ export class CanchasService {
   public deleteCancha(id: number): Observable<ICancha> {
     return this.httpClient.delete<ICancha>(`${environment.apiUrl}/canchas/${id}`);
   }
+  public getCancha(id: number): Observable<ICancha> {
+    return this.httpClient.get<ICancha>(`${environment.apiUrl}/canchas/${id}`);
+  }
 }

@@ -76,19 +76,20 @@ const genericSingleMatch = {
         canchaid: { type: 'number' },
         fechacreacion: {
             type: 'string',
-            format: 'date'
+            format: 'date-time'
         },
         fechaprogramada: {
             type: 'string',
-            format: 'date'
+            format: 'date-time'
         },
         comunidadid: { type: 'number' },
         playerscount: { type: 'number' },
         playerslimit: { type: 'number' },
-        aprobado: { type: 'boolean' },
-    },
-    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
 
+        aprobado: { type: 'boolean' },
+        creadorid: { type: 'number' }
+    },
+    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid', 'creadorid', 'aprobado']
 }
 
 const genericSingleSignUp = {

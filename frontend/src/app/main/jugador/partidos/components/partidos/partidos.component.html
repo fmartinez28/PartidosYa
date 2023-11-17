@@ -1,31 +1,10 @@
-<header class="my-8">
-  <div class="text-center">
-    <p class="font-extrabold font-sans text-4xl text-lime-500">
-      Partidos
-    </p>
-    <a routerLink="/partidos/new" class="text-lime-500 hover:text-lime-700 transition-all">¿Agregar un partido?</a>
-  </div>
-</header>
 <section class="flex flex-col justify-center items-center">
   <div class="container m-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3">
       <app-partido *ngFor="let partido of partidos"
       [id]="partido.id!" [playerCount]="partido.playerscount!" [playerLimit]="partido.playerslimit!"
-      [scheduledDate]="partido.fechaprogramada"
+      [scheduledDate]="partido.fechaprogramada" [playerHasJoined]="this.partidosState" [creadorid]="partido.creadorid!"
       ></app-partido>
     </div>
   </div>
 </section>
-<footer class="my-4 flex flex-row justify-center">
-  <div class="flex flex-row justify-center items-center gap-4 p-4">
-    <button class="rounded-3xl flex flex-row justify-center items-center p-4 outline outline-slate-300 bg-slate-50 text-slate-600">
-      <i class="fa-solid fa-angle-left"></i>
-    </button>
-    <div class="rounded-3xl flex flex-row justify-center items-center h-8 w-8 outline outline-slate-300 bg-slate-50 text-slate-600">
-      <p>1</p>
-    </div>
-    <button class="rounded-3xl flex flex-row justify-center items-center p-4 outline outline-slate-300 bg-slate-50 text-slate-600">
-      <i class="fa-solid fa-angle-right"></i>
-    </button>
-  </div>
-</footer>
