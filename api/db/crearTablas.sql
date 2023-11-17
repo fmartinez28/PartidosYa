@@ -73,6 +73,7 @@ CREATE TABLE public.canchas (
 	direccionid int8 NOT NULL,
 	canchanum int8 NULL,
 	propietarioid int8 NOT NULL,
+  aprobada boolean NOT NULL default false,
 	CONSTRAINT canchas_pk PRIMARY KEY (id),
 	CONSTRAINT canchas_fk FOREIGN KEY (direccionid) REFERENCES public.direcciones(id) ON DELETE CASCADE,
 	CONSTRAINT canchas_fk1 FOREIGN KEY (propietarioid) REFERENCES public.usuarios(id) ON DELETE CASCADE
@@ -180,7 +181,7 @@ INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, di
 INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, direccionid, email, "password") VALUES(3, 'El', 'Pepe', 'ElPepe','1969-4-20', 1, 1, 'admin@partidosya.com', crypt('admin', gen_salt('bf')));
 INSERT INTO comunidades(id, nombre) VALUES(1, 'PruebaCom');
 INSERT INTO comunidadmoderador(usuarioid, comunidadid) VALUES(1, 1);
-INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(1, 1, '2010-05-10'); 
+INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(1, 1, '2010-05-10');
 INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(2, 1, '2012-08-02');
 INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 1', 1, 1, 3);
 INSERT INTO canchas(nombre, direccionid, canchanum, propietarioid) VALUES('Cancha 2', 2, 2, 4);

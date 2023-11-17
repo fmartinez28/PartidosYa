@@ -10,7 +10,8 @@
         <ul class="space-y-2 font-medium mt-14">
             <app-sidebar-item *ngIf="this.getUserRole() == 1" [label]="'Partidos'" [url]="'/player/partidos'"></app-sidebar-item>
             <app-sidebar-item *ngIf="this.getUserRole() == 1" [label]="'Comunidades'" [url]="'/player/comunidades'"></app-sidebar-item>
-            <app-sidebar-item *ngIf="this.getUserRole() == 2" [label]="'Canchas'" [url]="'/player/canchas'"></app-sidebar-item>
+            <app-sidebar-item *ngIf="this.getUserRole() == 2" [label]="'Mis Canchas'" [url]="'/owner/canchas'"></app-sidebar-item>
+            <app-sidebar-item *ngIf="this.getUserRole() == 2" [label]="'Nueva Cancha'" [url]="'/owner/nueva-cancha'"></app-sidebar-item>
         </ul>
     </div>
  </aside>

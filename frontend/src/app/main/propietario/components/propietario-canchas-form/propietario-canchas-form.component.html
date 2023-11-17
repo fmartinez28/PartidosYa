@@ -1,0 +1,26 @@
+<div class="flex flex-col justify-center items-center p-4">
+  <header class="my-8">
+    <div class="text-center">
+      <p class="font-extrabold font-sans text-4xl text-lime-500">
+        Publicar mi cancha
+      </p>
+    </div>
+  </header>
+  <form [formGroup]="this.form" (ngSubmit)="this.createCancha()" class="bg-slate-50 p-4 rounded flex flex-col gap-2 outline outline-1 outline-indigo-200">
+    <div class="flex flex-col gap-2">
+      <label for="nombre">Nombre</label>
+      <input type="string" name="nombre" formControlName="nombre" class="rounded outline outline-1 outline-slate-300 p-1">
+      <span *ngIf="this.fieldHasErrors('nombre')" style="color: red">El nombre no es valido.</span>
+    </div>
+    <div class="flex flex-col gap-2">
+      <label for="canchaNum">Numero de la cancha</label>
+      <input type="number" name="canchaNum" formControlName="canchaNum" class="rounded outline outline-1 outline-slate-300 p-1">
+      <span *ngIf="this.fieldHasErrors('canchaNum')" style="color: red">El numero de cancha no es valido.</span>
+    </div>
+    <div class="flex justify-center">
+      <button class="rounded bg-lime-500 hover:bg-lime-700 transition-colors text-center w-1/2 text-slate-50 font-mono font-bold my-2">
+        Publicar
+      </button>
+    </div>
+  </form>
+</div>

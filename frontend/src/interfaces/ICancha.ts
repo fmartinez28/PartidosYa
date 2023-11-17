@@ -1,7 +1,8 @@
 export interface ICancha {
-    id: number;
+    id?: number;
     nombre: string;
-    propietarioId: number;
-    direccionId: number;
-    canchaNum: number;
+    propietarioid: number;
+    direccionid: number;
+    canchanum: number;
+    aprobada?: boolean;
 }
