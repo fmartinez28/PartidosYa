@@ -39,23 +39,29 @@ export class PartidosService {
       res.subscribe(partidos => this._partidos = partidos);
       return res;
   }
+<<<<<<< HEAD
 
   private _partidos: IPartido[] = [];
 
   private cachedSearch: IPartido[] = [];
   public getPartidosByLocation(city: string, country: string): Observable<IPartido[]> {
     return this.httpClient.get<IPartido[]>(`${environment.apiUrl}/partidos?city=${city.trim()}&country=${country.trim()}`, {
+=======
+  public getPartidosByLocation(city: string, country: string, filterUser?: boolean): Observable<IPartido[]> {
+    let endpoint = `${environment.apiUrl}/partidos?city=${city.trim()}&country=${country.trim()}`;
+    endpoint = filterUser ? `${endpoint}&without=${this.getUserId()}` : endpoint;
+    return this.httpClient.get<IPartido[]>(endpoint, {
+>>>>>>> 632ac07 (Muchos cambios, pero ahora estaría la funcionalidad, faltaría feedback y ver detalles de un partido)
       //headers: {"Authorization": "Bearer el token"},
     });
   }
   public getPartidosJoinedByUser(): Observable<IPartido[]> {
-    return this.httpClient.get<IPartido[]>(`${environment.apiUrl}/partidos?joinedBy=${this.getUserId()}`, {
+    return this.httpClient.get<IPartido[]>(`${environment.apiUrl}/partidos?with=${this.getUserId()}`, {
       //headers: {"Authorization": "Bearer el token"},
     });
   }
 
   public addPartido(partido: IPartido): Observable<any> {
-    const userId = this.getUserId();
     const token = this.getUserToken();
 
     const headers = new HttpHeaders({
@@ -73,6 +79,19 @@ export class PartidosService {
           return throwError(() => new Error(err));
         }
         ));
+  }
+  public leavePartido(partidoId: number): Observable<any> {
+    return this.httpClient.delete(`${environment.apiUrl}/partidos/${partidoId}/jugadores/${this.getUserId()}`, { observe: 'response' })
+    .pipe(
+      map((res: HttpResponse<any>) => {
+        if (res.status != 204) {
+          throw new Error(res.statusText);
+        }
+      }),
+    catchError((err) => {
+      return throwError(() => new Error(err));
+    })
+    );
   }
   public joinPartido(partidoId: number): Observable<any> {
     const localUserInfo: any = localStorage.getItem('user');

@@ -3,7 +3,7 @@
     <p class="font-extrabold font-sans text-4xl text-lime-500">
       Partidos
     </p>
-    <a routerLink="/player/partidos/new" class="text-lime-500 hover:text-lime-700 transition-all">¿Agregar un partido?</a>
+    <a routerLink="/player/partidos/new" class=" text-teal-600 hover:text-teal-800 transition-all">¿Agregar un partido?</a>
   </div>
 </header>
 <div class="grid grid-cols-2 justify-center m-4 rounded-3xl bg-slate-50 outline outline-1 outline-slate-400">
@@ -20,27 +20,9 @@
 </div>
 
 <div *ngIf="isMisPartidosSelected; else buscarPartidosContent">
-  <app-partidos></app-partidos>
+  <app-partidos-joined></app-partidos-joined>
 </div>
 
 <ng-template #buscarPartidosContent>
   <app-partidos-search></app-partidos-search>
 </ng-template>
-
-
-<!--
-  Si terminamos con paginación
-  <footer class="my-4 flex flex-row justify-center">
-    <div class="flex flex-row justify-center items-center gap-4 p-4">
-      <button class="rounded-3xl flex flex-row justify-center items-center p-4 outline outline-slate-300 bg-slate-50 text-slate-600">
-        <i class="fa-solid fa-angle-left"></i>
-      </button>
-      <div class="rounded-3xl flex flex-row justify-center items-center h-8 w-8 outline outline-slate-300 bg-slate-50 text-slate-600">
-        <p>1</p>
-      </div>
-      <button class="rounded-3xl flex flex-row justify-center items-center p-4 outline outline-slate-300 bg-slate-50 text-slate-600">
-        <i class="fa-solid fa-angle-right"></i>
-      </button>
-    </div>
-  </footer>
--->

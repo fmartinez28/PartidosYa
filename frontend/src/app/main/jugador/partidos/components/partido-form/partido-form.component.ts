@@ -5,6 +5,7 @@ import { CanchasService } from '../../services/canchas.service';
 import { PartidosService } from '../../services/partidos.service';
 import { IPartido } from 'src/interfaces/IPartido';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../../session/services/auth.service';
 
 @Component({
   selector: 'app-partido-form',
@@ -17,7 +18,8 @@ export class PartidoFormComponent {
   constructor(public formBuilder: FormBuilder,
     private canchasService: CanchasService,
     private partidosService: PartidosService,
-    private router: Router) { }
+    private router: Router,
+    private authService: AuthService) { }
   ngOnInit() {
     this.form = this.formBuilder.group({
       fechaprogramada: ['', Validators.required],
@@ -40,6 +42,7 @@ export class PartidoFormComponent {
       fechacreacion: new Date().toISOString(),
       fechaprogramada: this.form.get('fechaprogramada')!.value,
       canchaid: this.form.get('canchaid')!.value,
+      creadorid: JSON.parse(this.authService.getUser()!).id,
     };
     this.partidosService.addPartido(partido).subscribe({
       next: (res) => console.log(res),
