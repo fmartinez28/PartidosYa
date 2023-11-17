@@ -22,9 +22,12 @@ export default async function (fastify, opts) {
             queryString += `${(queryParams.length > 0 ? 'AND' : 'WHERE')} id NOT IN 
                 (SELECT partidoid FROM participacionpartido WHERE jugadorid = '${request.query.without}') `;
             queryParams.push(request.query.without);
+<<<<<<< HEAD
         }
         if(request.query.aprobado){
             queryString += `${(queryParams.length > 0 ? 'AND' : 'WHERE')} aprobado = ${request.query.aprobado}`;
+=======
+>>>>>>> 79f40c9d915fbef3ba4c8f75afff703a5dd62343
         }
         console.log(queryString);
         //queryString = (request.query.page || request.query.limit) ?
