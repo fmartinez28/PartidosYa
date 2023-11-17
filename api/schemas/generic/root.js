@@ -76,19 +76,22 @@ const genericSingleMatch = {
         canchaid: { type: 'number' },
         fechacreacion: {
             type: 'string',
-            format: 'date'
+            format: 'date-time'
         },
         fechaprogramada: {
             type: 'string',
-            format: 'date'
+            format: 'date-time'
         },
         comunidadid: { type: 'number' },
         playerscount: { type: 'number' },
         playerslimit: { type: 'number' },
+<<<<<<< HEAD
         aprobado: { type: 'boolean' },
+=======
+        creadorid: { type: 'number' }
+>>>>>>> ff983f0 (Cambios en routes y schemas para alinearse a los últimos cambios para la tabla de partidos)
     },
-    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid']
-
+    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid', 'creadorid']
 }
 
 const genericSingleSignUp = {
