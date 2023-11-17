@@ -18,8 +18,14 @@ export class AdminCanchasListItemComponent implements OnInit {
   @Output()
   public onDeleteCancha: EventEmitter<number> = new EventEmitter<number>();
 
+  @Output()
+  public onAcceptCancha: EventEmitter<number> = new EventEmitter<number>();
+
   deleteCancha(): void {
     this.onDeleteCancha.emit(this.cancha.id);
   }
 
+  acceptCancha(): void {
+    this.onAcceptCancha.emit(this.cancha.id)
+  }
 }
