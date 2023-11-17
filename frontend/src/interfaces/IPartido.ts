@@ -6,4 +6,5 @@ export interface IPartido {
     fechaprogramada: string;
     playerscount?: number;
     playerslimit?: number;
+    aprobado?: boolean;
 }

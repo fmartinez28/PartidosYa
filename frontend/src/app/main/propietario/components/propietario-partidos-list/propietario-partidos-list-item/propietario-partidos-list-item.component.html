@@ -1,0 +1,28 @@
+<li class="py-3 sm:py-4">
+  <div class="flex items-center space-x-4 rtl:space-x-reverse">
+    <div class="flex-shrink-0">
+      <img class="w-8 h-8 rounded-full" src="https://picsum.photos/300" alt="Foto">
+    </div>
+    <div class="flex-1 min-w-0">
+      <p class="text-sm font-medium text-gray-900 truncate">
+        Id: {{partido.id}} - CanchaId: {{partido.canchaid}} - Fecha: {{partido.fechaprogramada}}
+      </p>
+    </div>
+    <div *ngIf="partido.aprobado" class="flex-shrink-0 self-center flex">
+      <span
+        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+        <p>Aprobado</p>
+      </span>
+    </div>
+    <div *ngIf="!partido.aprobado" class="mt-4 flex justify-center space-x-2">
+      <button (click)="deletePartido()" type="button"
+              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+        Rechazar
+      </button>
+      <button (click)="acceptPartido()" type="button"
+              class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
+        Aceptar
+      </button>
+    </div>
+  </div>
+</li>

@@ -9,6 +9,9 @@ import { PropietarioCanchasFormComponent } from './components/propietario-cancha
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
 import { PropietarioNuevaCanchaPageComponent } from './pages/propietario-nueva-cancha-page/propietario-nueva-cancha-page.component';
+import { PropietarioPartidosListComponent } from './components/propietario-partidos-list/propietario-partidos-list.component';
+import { PropietarioPartidosListItemComponent } from './components/propietario-partidos-list/propietario-partidos-list-item/propietario-partidos-list-item.component';
+import { PropietarioPartidosPageComponent } from './pages/propietario-partidos-page/propietario-partidos-page.component';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { PropietarioNuevaCanchaPageComponent } from './pages/propietario-nueva-c
     PropietarioCanchasListItemComponent,
     PropietarioCanchasPageComponent,
     PropietarioCanchasFormComponent,
-    PropietarioNuevaCanchaPageComponent
+    PropietarioNuevaCanchaPageComponent,
+    PropietarioPartidosListComponent,
+    PropietarioPartidosListItemComponent,
+    PropietarioPartidosPageComponent
   ],
   imports: [
     CommonModule,
