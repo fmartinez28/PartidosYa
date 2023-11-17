@@ -27,7 +27,10 @@ export class PartidoFormComponent {
     });
     this.canchasService.getMatchingCanchas().subscribe(
       {
-        next: (res) => { this.canchas = res; }
+        next: (res) => {
+          console.log(res);
+          this.canchas = res;
+        }
       }
     )
   }
@@ -40,10 +43,11 @@ export class PartidoFormComponent {
     console.log(new Date().toISOString());
     const partido: IPartido = {
       fechacreacion: new Date().toISOString(),
-      fechaprogramada: this.form.get('fechaprogramada')!.value,
+      fechaprogramada: new Date(this.form.get('fechaprogramada')!.value).toISOString(),
       canchaid: this.form.get('canchaid')!.value,
-      creadorid: JSON.parse(this.authService.getUser()!).id,
+      creadorid: Number.parseInt(JSON.parse(this.authService.getUser()!).id),
     };
+    console.log(partido);
     this.partidosService.addPartido(partido).subscribe({
       next: (res) => console.log(res),
       error: (err) => console.warn(err, "Probablemente un error de autorización"),
