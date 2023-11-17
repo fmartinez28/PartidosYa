@@ -58,6 +58,19 @@ export default async function (fastify, opts) {
         }
     });
 
+    fastify.put('/:id/accept', async function (request, reply) { //FIXME: agregar schema correspondiente o no
+        const paramId = request.params.id;
+        try {
+            const queryresult = await query('UPDATE "partido" SET "aprobado" = true WHERE id = $1 RETURNING *', [paramId]);
+            const rows = queryresult.rows;
+            if (rows.length === 0)
+                return reply.status(404).send({ error: 'Partido no encontrado' });
+            return reply.send(rows[0]);
+        } catch (error) {
+            return reply.status(500).send(error);
+        }
+    });
+
     fastify.post('/:id/jugadores', { schema: matchesSchemas.postJugadoresSchema }, async function (request, reply) {
         //honestamente no estoy seguro de si debería ser mejor pasar jugadorid en la url o en el body
         //diría que es por la url, pero bueno, recurso/id/recurso/id tampoco es muy lindo
