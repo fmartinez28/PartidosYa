@@ -35,7 +35,7 @@ export class PropietarioCanchasFormComponent implements OnInit {
     }
 
     // TODO ESTO ES HORROROSO, LA INTERFAZ TAMBIEN, HICIMOS TODO FEO
-    let propietariodireccionid = 1; // FIXME hardcodeado, no trae nada de la db, nunca termina lo del fetch
+    let propietariodireccionid = 0;
     let usuario: IUsuario;
     this.authService.fetchUser().subscribe(
       (res) => {
@@ -43,26 +43,25 @@ export class PropietarioCanchasFormComponent implements OnInit {
         if(usuario && usuario.direccionid) {
           propietariodireccionid = usuario.direccionid;
         }
+        const cancha: ICancha = {
+          nombre: this.form.get('nombre')!.value,
+          direccionid: propietariodireccionid,
+          propietarioid: this.authService.getUserId(),
+          canchanum: this.form.get('canchaNum')!.value,
+        };
+
+        console.log(cancha);
+
+        this.canchasService.addCancha(cancha).subscribe({
+          next: (res) => console.log(res),
+          error: (err) => console.warn(err, "Probablemente un error de autorización"),
+          complete: () => {
+            console.info("Se completó parece");
+            this.router.navigate(['/owner/canchas']);
+          }
+        })
       }
     )
-
-    const cancha: ICancha = {
-      nombre: this.form.get('nombre')!.value,
-      direccionid: propietariodireccionid,
-      propietarioid: this.authService.getUserId(),
-      canchanum: this.form.get('canchaNum')!.value,
-    };
-
-    console.log(cancha);
-
-    this.canchasService.addCancha(cancha).subscribe({
-      next: (res) => console.log(res),
-      error: (err) => console.warn(err, "Probablemente un error de autorización"),
-      complete: () => {
-        console.info("Se completó parece");
-        this.router.navigate(['/owner/canchas']);
-      }
-    })
   }
 
   public markFormGroupTouched(formGroup: FormGroup) {
