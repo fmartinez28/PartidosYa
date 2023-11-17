@@ -5,6 +5,7 @@ import { PropietarioCanchasPageComponent } from './pages/propietario-canchas-pag
 import {
   PropietarioCanchasFormComponent
 } from "./components/propietario-canchas-form/propietario-canchas-form.component";
+import {PropietarioPartidosPageComponent} from "./pages/propietario-partidos-page/propietario-partidos-page.component";
 
 const routes: Routes = [
   {
@@ -20,6 +21,11 @@ const routes: Routes = [
           path: 'nueva-cancha',
           component: PropietarioCanchasFormComponent,
           canMatch: [isUserLogged]
+        },
+        {
+            path: 'solicitudes',
+            component: PropietarioPartidosPageComponent,
+            canMatch: [isUserLogged]
         },
         {
           path: '',
