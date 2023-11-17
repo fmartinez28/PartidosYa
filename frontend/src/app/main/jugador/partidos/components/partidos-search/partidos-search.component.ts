@@ -12,6 +12,18 @@ export class PartidosSearchComponent {
   public city: string = '';
   public country: string = '';
   constructor(private partidosService: PartidosService) { }
+
+  ngOnInit(): void {
+    this.partidosService.getPartidos().subscribe({
+      next: (partidos) => {
+        console.log(partidos);
+        this.partidos = partidos;
+      },
+      error: (err) => console.warn(err),
+      complete: () => console.info("Se completó parece")
+    });
+  }
+
   public getPartidosByLocation(){
     console.log(this.city, this.country);
     if (!this.city || !this.country) {
