@@ -4,6 +4,7 @@ import {ICancha} from "src/interfaces/ICancha";
 import {CanchasService} from "../../../jugador/partidos/services/canchas.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../session/services/auth.service";
+import {IUsuario} from "../../../../../interfaces/IUsuario";
 
 
 @Component({
@@ -22,7 +23,6 @@ export class PropietarioCanchasFormComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       nombre: ['', Validators.required],
-      direccion: ['', Validators.required],
       canchaNum: ['', Validators.required]
     });
   }
@@ -33,12 +33,27 @@ export class PropietarioCanchasFormComponent implements OnInit {
       console.warn("Formulario no válido");
       return;
     }
+
+    // TODO ESTO ES HORROROSO, LA INTERFAZ TAMBIEN, HICIMOS TODO FEO
+    let propietariodireccionid = 1; // FIXME hardcodeado, no trae nada de la db, nunca termina lo del fetch
+    let usuario: IUsuario;
+    this.authService.fetchUser().subscribe(
+      (res) => {
+        usuario = res;
+        if(usuario && usuario.direccionid) {
+          propietariodireccionid = usuario.direccionid;
+        }
+      }
+    )
+
     const cancha: ICancha = {
       nombre: this.form.get('nombre')!.value,
-      direccionid: 1,
+      direccionid: propietariodireccionid,
       propietarioid: this.authService.getUserId(),
       canchanum: this.form.get('canchaNum')!.value,
     };
+
+    console.log(cancha);
 
     this.canchasService.addCancha(cancha).subscribe({
       next: (res) => console.log(res),

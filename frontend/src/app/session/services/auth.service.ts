@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, catchError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ILoginResponse } from 'src/interfaces/ILoginResponse';
 import { ILoginRequest } from 'src/interfaces/ILoginRequest';
+import {IUsuario} from "../../../interfaces/IUsuario";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,10 @@ export class AuthService {
   }
   public checkIfLoggedIn(): boolean {
     return !!localStorage.getItem(this.userKey);
+  }
+
+  public fetchUser(): Observable<IUsuario> {
+    return this.httpClient.get<IUsuario>(`${environment.apiUrl}/usuarios/${this.getUserId()}`);
   }
 
   public getUserRole(): number {

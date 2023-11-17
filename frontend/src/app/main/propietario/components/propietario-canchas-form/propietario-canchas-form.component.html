@@ -13,11 +13,6 @@
       <span *ngIf="this.fieldHasErrors('nombre')" style="color: red">El nombre no es valido.</span>
     </div>
     <div class="flex flex-col gap-2">
-      <label for="direccion">Direccion</label>
-      <input type="string" name="direccion" formControlName="direccion" class="rounded outline outline-1 outline-slate-300 p-1">
-      <span *ngIf="this.fieldHasErrors('direccion')" style="color: red">La direccion no es valida.</span>
-    </div>
-    <div class="flex flex-col gap-2">
       <label for="canchaNum">Numero de la cancha</label>
       <input type="number" name="canchaNum" formControlName="canchaNum" class="rounded outline outline-1 outline-slate-300 p-1">
       <span *ngIf="this.fieldHasErrors('canchaNum')" style="color: red">El numero de cancha no es valido.</span>
