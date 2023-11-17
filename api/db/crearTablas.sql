@@ -73,7 +73,7 @@ CREATE TABLE public.canchas (
 	direccionid int8 NOT NULL,
 	canchanum int8 NULL,
 	propietarioid int8 NOT NULL,
-  aprobada boolean NOT NULL default false,
+    aprobada boolean NOT NULL default false,
 	CONSTRAINT canchas_pk PRIMARY KEY (id),
 	CONSTRAINT canchas_fk FOREIGN KEY (direccionid) REFERENCES public.direcciones(id) ON DELETE CASCADE,
 	CONSTRAINT canchas_fk1 FOREIGN KEY (propietarioid) REFERENCES public.usuarios(id) ON DELETE CASCADE
@@ -87,6 +87,7 @@ CREATE TABLE public.partido (
 	fechacreacion date NOT NULL,
 	fechaprogramada date NOT NULL,
 	comunidadid int8 NULL,
+	aprobado boolean NOT NULL default false,
 	CONSTRAINT partido_pk PRIMARY KEY (id),
 	CONSTRAINT partido_fk FOREIGN KEY (canchaid) REFERENCES public.canchas(id),
 	CONSTRAINT partido_fk_1 FOREIGN KEY (comunidadid) REFERENCES public.comunidades(id)
