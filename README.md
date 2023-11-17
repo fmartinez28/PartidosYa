@@ -3,7 +3,7 @@
 ## NUEVO: PARA PROBAR QUE FUNCIONA
 
 ### Usuarios
-Hay 5 usuarios hardcodeados: jugador1, jugador2, propietario1, propietario2, ElPepe. El último es un admin. La contraseña de todos ellos es "admin", para propósitos de prueba. Se pueden registrar nuevos usuarios pero no nuevos admins, deben ser agregados manualmente a la base de datos. Recordar tener la base de datos al día.
+Hay 5 usuarios hardcodeados: `jugador1`, `jugador2`, `propietario1`, `propietario2`, `ElPepe`. El último es un admininistrador. La contraseña de todos ellos es `admin`, para propósitos de prueba. Se pueden registrar nuevos usuarios pero no nuevos admins, deben ser agregados manualmente a la base de datos. Recordar tener la base de datos al día.
 
 ### Flujo
 El flujo de uso de la aplicación en su forma actual es el siguiente:
