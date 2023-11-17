@@ -11,6 +11,9 @@ export default async function (fastify, opts) {
             (SELECT id FROM canchas WHERE direccionid IN 
             (SELECT id FROM direcciones
             WHERE pais ILIKE '${request.query.country}' AND ciudad ILIKE '${request.query.city}'))`
+            if(request.query.aprobado) queryString += `AND aprobado = ${request.query.aprobado}`;
+        } else { // esto es todavía menos lindo que lo anterior... TODO test
+            if (request.query.aprobado) queryString += `WHERE aprobado = ${request.query.aprobado}`;
         }
         queryString = (request.query.page || request.query.limit) ?
         paginateQuery(queryString, request.query.page, request.query.limit) : queryString;
