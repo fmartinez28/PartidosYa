@@ -4,7 +4,7 @@ import * as courtSchemas from '../../schemas/canchas/root.js';
 export default async function (fastify, opts) {
     // una cancha tiene id, nombre, DireccionID, canchanum y propietarioid
     fastify.get('/', { schema: courtSchemas.getAllSchema }, async function (request, reply) {
-        const queryresult = await query('SELECT * FROM "canchas"');
+        const queryresult = await query('SELECT * FROM "canchas" order by aprobada asc');
         const rows = queryresult.rows;
         if (rows.length === 0)
             return reply.status(204).send({ error: 'No hay entradas para la colección canchas.' });
@@ -34,6 +34,19 @@ export default async function (fastify, opts) {
             if (paramId != bodyId) return reply.status(409).send({ error: 'La id del cuerpo y del parámetro no coinciden.' })
             const { nombre, direccionid, canchanum, propietarioid } = request.body;
             const queryresult = await query('UPDATE "canchas" SET "nombre" = $1, "direccionid" = $2, "canchanum" = $3, "propietarioid" = $4 WHERE "id" = $5 RETURNING *', [nombre, direccionid, canchanum, propietarioid, paramId]);
+            const rows = queryresult.rows;
+            if (rows.length === 0)
+                return reply.status(404).send({ error: 'Cancha no encontrada' });
+            return reply.send(rows[0]);
+        } catch (error) {
+            return reply.status(500).send(error);
+        }
+    });
+
+    fastify.put('/:id/accept', async function (request, reply) { //FIXME: agregar schema correspondiente o no
+        const paramId = request.params.id;
+        try {
+            const queryresult = await query('UPDATE "canchas" SET "aprobada" = true WHERE id = $1 RETURNING *', [paramId]);
             const rows = queryresult.rows;
             if (rows.length === 0)
                 return reply.status(404).send({ error: 'Cancha no encontrada' });
