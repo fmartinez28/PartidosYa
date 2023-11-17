@@ -13,7 +13,7 @@ export class PartidosSearchComponent {
   public country: string = '';
   constructor(private partidosService: PartidosService) { }
 
-  ngOnInit(): void {
+  public getAllPartidos(){
     this.partidosService.getPartidos().subscribe({
       next: (partidos) => {
         console.log(partidos);
