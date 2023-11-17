@@ -50,9 +50,10 @@ export class PartidosService {
       //headers: {"Authorization": "Bearer el token"},
     });
   }
-  public getPartidosByLocation(city: string, country: string, filterUser?: boolean): Observable<IPartido[]> {
+  public getPartidosByLocation(city: string, country: string, filterUser?: boolean, aprobado?: boolean): Observable<IPartido[]> {
     let endpoint = `${environment.apiUrl}/partidos?city=${city.trim()}&country=${country.trim()}`;
     endpoint = filterUser ? `${endpoint}&without=${this.getUserId()}` : endpoint;
+    endpoint = aprobado ? `${endpoint}&aprobado=${aprobado}` : endpoint;
     return this.httpClient.get<IPartido[]>(endpoint, {
       //headers: {"Authorization": "Bearer el token"},
     });
