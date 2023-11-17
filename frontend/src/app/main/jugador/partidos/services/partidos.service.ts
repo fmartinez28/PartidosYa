@@ -39,19 +39,16 @@ export class PartidosService {
       res.subscribe(partidos => this._partidos = partidos);
       return res;
   }
-<<<<<<< HEAD
+
 
   private _partidos: IPartido[] = [];
 
   private cachedSearch: IPartido[] = [];
-  public getPartidosByLocation(city: string, country: string): Observable<IPartido[]> {
-    return this.httpClient.get<IPartido[]>(`${environment.apiUrl}/partidos?city=${city.trim()}&country=${country.trim()}`, {
-=======
+
   public getPartidosByLocation(city: string, country: string, filterUser?: boolean): Observable<IPartido[]> {
     let endpoint = `${environment.apiUrl}/partidos?city=${city.trim()}&country=${country.trim()}`;
     endpoint = filterUser ? `${endpoint}&without=${this.getUserId()}` : endpoint;
     return this.httpClient.get<IPartido[]>(endpoint, {
->>>>>>> 632ac07 (Muchos cambios, pero ahora estaría la funcionalidad, faltaría feedback y ver detalles de un partido)
       //headers: {"Authorization": "Bearer el token"},
     });
   }
