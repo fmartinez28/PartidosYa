@@ -11,18 +11,13 @@ import { IPartido } from 'src/interfaces/IPartido';
 export class PartidosComponent {
   @Input() public partidos!: IPartido[];
   @Input() public partidosState!: boolean;
-<<<<<<< HEAD
   constructor(private titleService: Title, private partidosService: PartidosService) {
-=======
-  constructor(private titleService: Title) {
->>>>>>> 79f40c9d915fbef3ba4c8f75afff703a5dd62343
     this.titleService.setTitle('Partidos');
   }
 
   get title(): string {
     return this.titleService.getTitle();
   }
-<<<<<<< HEAD
 
   @Input() public city?: string;
   @Input() public country?: string;
@@ -50,6 +45,4 @@ export class PartidosComponent {
       complete: () => console.info("Se completó parece")
     });
   }
-=======
->>>>>>> 79f40c9d915fbef3ba4c8f75afff703a5dd62343
 }
