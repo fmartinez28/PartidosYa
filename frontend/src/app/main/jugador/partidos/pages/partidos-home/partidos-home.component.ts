@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./partidos-home.component.scss']
 })
 export class PartidosHomeComponent {
-  isMisPartidosSelected: boolean = false;
+
+  isMisPartidosSelected: boolean = true;
 
   toggleSelection(selected: string): void {
     this.isMisPartidosSelected = selected === 'misPartidos';
