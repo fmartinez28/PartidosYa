@@ -85,17 +85,11 @@ const genericSingleMatch = {
         comunidadid: { type: 'number' },
         playerscount: { type: 'number' },
         playerslimit: { type: 'number' },
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         aprobado: { type: 'boolean' },
-=======
         creadorid: { type: 'number' }
->>>>>>> ff983f0 (Cambios en routes y schemas para alinearse a los últimos cambios para la tabla de partidos)
-=======
-        creadorid: { type: 'number' }
->>>>>>> aa451b2 (Cambios en routes y schemas para alinearse a los últimos cambios para la tabla de partidos)
     },
-    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid', 'creadorid']
+    required: ['id', 'canchaid', 'fechacreacion', 'fechaprogramada', 'comunidadid', 'creadorid', 'aprobado']
 }
 
 const genericSingleSignUp = {
