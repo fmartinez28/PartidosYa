@@ -39,6 +39,11 @@ export class PartidosService {
       //headers: {"Authorization": "Bearer el token"},
     });
   }
+  public getPartido(id: number): Observable<IPartido> {
+    return this.httpClient.get<IPartido>(`${environment.apiUrl}/partidos/${id}`, {
+      //headers: {"Authorization": "Bearer el token"},
+    });
+  }
   public getPartidosByLocation(city: string, country: string, filterUser?: boolean): Observable<IPartido[]> {
     let endpoint = `${environment.apiUrl}/partidos?city=${city.trim()}&country=${country.trim()}`;
     endpoint = filterUser ? `${endpoint}&without=${this.getUserId()}` : endpoint;

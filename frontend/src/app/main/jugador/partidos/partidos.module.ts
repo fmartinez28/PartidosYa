@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 import { PartidosHomeComponent } from './pages/partidos-home/partidos-home.component';
 import { PartidosSearchComponent } from './components/partidos-search/partidos-search.component';
 import { PartidosJoinedComponent } from './components/partidos-joined/partidos-joined.component';
+import { PartidoModalComponent } from './partido-modal/partido-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -20,7 +22,8 @@ import { PartidosJoinedComponent } from './components/partidos-joined/partidos-j
     PartidoComponent,
     PartidosHomeComponent,
     PartidosSearchComponent,
-    PartidosJoinedComponent
+    PartidosJoinedComponent,
+    PartidoModalComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,7 @@ import { PartidosJoinedComponent } from './components/partidos-joined/partidos-j
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class PartidosModule { }
