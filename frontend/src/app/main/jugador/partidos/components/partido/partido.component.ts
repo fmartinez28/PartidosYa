@@ -2,11 +2,20 @@ import { Time } from '@angular/common';
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { PartidosService } from '../../services/partidos.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-partido',
   templateUrl: './partido.component.html',
-  styleUrls: ['./partido.component.scss']
+  styleUrls: ['./partido.component.scss'],
+  animations: [
+    trigger('fadeOut', [
+      state('void', style({ opacity: 1 })),
+      transition(':leave', [
+        animate('300ms ease-in', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class PartidoComponent {
   @Input() public id!: number;
