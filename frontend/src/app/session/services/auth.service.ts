@@ -62,6 +62,13 @@ export class AuthService {
     return localStorage.getItem(this.userKey);
   }
 
+  public getUserId(): number {
+    const user = this.getUser();
+    if (user)
+      return Number.parseInt(JSON.parse(user).id);
+    return 0; // error
+  }
+
   public onLogin(loginReq: ILoginRequest): Observable<ILoginResponse> {
     return this.httpClient.post<ILoginResponse>(`${environment.apiUrl}/login`, loginReq).pipe(
       catchError((err) => {

@@ -13,4 +13,12 @@ export class CanchasService {
   public getMatchingCanchas(): Observable<ICancha[]> {
     return this.httpClient.get<ICancha[]>(`${environment.apiUrl}/canchas`);
   }
+
+  public addCancha(cancha: ICancha): Observable<ICancha> {
+    return this.httpClient.post<ICancha>(`${environment.apiUrl}/canchas`, cancha);
+  }
+
+  public deleteCancha(id: number): Observable<ICancha> {
+    return this.httpClient.delete<ICancha>(`${environment.apiUrl}/canchas/${id}`);
+  }
 }
