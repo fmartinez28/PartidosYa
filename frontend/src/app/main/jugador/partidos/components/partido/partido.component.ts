@@ -23,6 +23,7 @@ export class PartidoComponent {
   @Input() public playerLimit!: number;
   @Input() public scheduledDate!: string;
   @Input() public creadorid!: number;
+  @Input() public aprobado!: boolean;
   public showingModal: boolean = false;
   public visible: boolean = true;
   public toggleModal(){

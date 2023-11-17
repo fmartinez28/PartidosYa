@@ -23,6 +23,11 @@
         {{this.timestamptz | date:'HH:mm'}}
       </p>
     </div>
+    <div class="flex flex-row justify-center items-center gap-2">
+      <p *ngIf="!aprobado">
+        Pendiente de aprobación...
+      </p>
+    </div>
     <!--
 
       <div class="flex flex-row justify-center items-center gap-2">

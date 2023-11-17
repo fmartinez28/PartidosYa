@@ -4,6 +4,7 @@
       <app-partido *ngFor="let partido of partidos"
       [id]="partido.id!" [playerCount]="partido.playerscount!" [playerLimit]="partido.playerslimit!"
       [scheduledDate]="partido.fechaprogramada" [playerHasJoined]="this.partidosState" [creadorid]="partido.creadorid!"
+      [aprobado]="partido.aprobado ? partido.aprobado : false"
       ></app-partido>
     </div>
   </div>
