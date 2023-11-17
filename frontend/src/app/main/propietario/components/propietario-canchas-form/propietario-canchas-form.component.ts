@@ -5,6 +5,7 @@ import {CanchasService} from "../../../jugador/partidos/services/canchas.service
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../session/services/auth.service";
 import {IUsuario} from "../../../../../interfaces/IUsuario";
+import {showAlert} from "../../../../../utils/utils";
 
 
 @Component({
@@ -59,7 +60,7 @@ export class PropietarioCanchasFormComponent implements OnInit {
       next: (res) => console.log(res),
       error: (err) => console.warn(err, "Probablemente un error de autorización"),
       complete: () => {
-        console.info("Se completó parece");
+        showAlert("success", "Cancha creada exitosamente")
         this.router.navigate(['/owner/canchas']);
       }
     })
