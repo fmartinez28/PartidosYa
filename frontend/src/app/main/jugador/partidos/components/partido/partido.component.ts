@@ -14,7 +14,11 @@ export class PartidoComponent {
   @Input() public playerLimit!: number;
   @Input() public scheduledDate!: string;
   @Input() public creadorid!: number;
-
+  public showingModal: boolean = false;
+  public visible: boolean = true;
+  public toggleModal(){
+    this.showingModal = !this.showingModal;
+  }
   public timestamptz!: Date;
 
   constructor(public router: Router,
@@ -39,6 +43,7 @@ export class PartidoComponent {
       },
       complete: () => {
         console.info("Se ha unido al partido");
+        this.toggleVisibility();
       }
     }
     );
@@ -53,7 +58,11 @@ export class PartidoComponent {
       },
       complete: () => {
         console.info("Partido abandonado");
+        this.toggleVisibility();
       }
     })
+  }
+  private toggleVisibility(){
+    this.visible = !this.visible;
   }
 }
