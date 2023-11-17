@@ -1,5 +1,19 @@
 # PartidosYa
 
+## NUEVO: PARA PROBAR QUE FUNCIONA
+
+### Usuarios
+Hay 5 usuarios hardcodeados: jugador1, jugador2, propietario1, propietario2, ElPepe. El último es un admin. La contraseña de todos ellos es "admin", para propósitos de prueba. Se pueden registrar nuevos usuarios pero no nuevos admins, deben ser agregados manualmente a la base de datos.
+
+### Flujo
+El flujo de uso de la aplicación en su forma actual es el siguiente:
+
+1. Propietario crea cancha
+2. Administrador acepta la cancha
+3. Jugador crea partido eligiendo la cancha
+4. Propietario acepta que se haga el partido en su cancha
+5. Otros jugadores se unen al partido
+
 ## Prerrequisitos
 
 Antes de ejecutar, es importante tener la base de datos en condiciones, para esto debe crearse la base de datos, del nombre que quiera, y ejecutar el script que se encuentra dentro de /api/db/CrearTablas.sql en la misma.
