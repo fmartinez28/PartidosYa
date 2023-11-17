@@ -29,7 +29,11 @@ export class AuthService {
   }
 
   public fetchUser(): Observable<IUsuario> {
-    return this.httpClient.get<IUsuario>(`${environment.apiUrl}/usuarios/${this.getUserId()}`);
+    const usuario : Observable<IUsuario> = this.httpClient.get<IUsuario>(`${environment.apiUrl}/usuarios/${this.getUserId()}`);
+    usuario.subscribe((user) => {
+      console.log(user);
+    });
+    return usuario;
   }
 
   public getUserRole(): number {
