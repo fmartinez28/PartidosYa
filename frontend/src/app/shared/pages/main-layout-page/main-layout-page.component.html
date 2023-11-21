@@ -1,16 +1,17 @@
-<div class="flex flex-col min-h-screen">
-    <app-basic-user-navbar></app-basic-user-navbar>
+<div class="flex flex-col bg-slate-200">
+  <app-basic-user-navbar></app-basic-user-navbar>
+  <div class="flex-1">
+    <div class="grid grid-cols-12 min-h-screen">
 
-    <div class="flex-grow">
-        <div class="flex flex-wrap">
-            <app-usuario-sidebar class="w-full md:w-1/4 xl:w-1/6"></app-usuario-sidebar>
+      <div class="col-span-12 h-fit sm:block sm:col-span-3 sm:bg-slate-50">
+        <app-usuario-sidebar></app-usuario-sidebar>
+      </div>
 
-            <main class="flex-1 bg-slate-200 flex flex-col justify-center items-center"
-                style="min-height: calc(100vh - 116px);">
-                <router-outlet></router-outlet>
-            </main>
-        </div>
+      <main class="col-span-12 sm:col-span-9 bg-slate-200 flex flex-col justify-center items-center">
+        <router-outlet></router-outlet>
+      </main>
+
     </div>
-
-    <app-footer></app-footer>
+  </div>
+  <app-footer></app-footer>
 </div>
