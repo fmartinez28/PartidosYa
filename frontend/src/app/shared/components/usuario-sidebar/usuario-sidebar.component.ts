@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/session/services/auth.service';
 
 @Component({
@@ -14,5 +14,18 @@ export class UsuarioSidebarComponent {
 
   getUserRole(): number {
     return this.authService.getUserRole();
+  }
+  public isSidebarHidden: boolean = false;
+
+  public toggleSidebar() {
+  this.isSidebarHidden = !this.isSidebarHidden;
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenWidth();
+  }
+
+  checkScreenWidth() {
+    this.isSidebarHidden = window.innerWidth <= 640;
   }
 }
