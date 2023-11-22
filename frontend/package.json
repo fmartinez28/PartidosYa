@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "sync": "ng build && npx cap update && npx cap sync",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
