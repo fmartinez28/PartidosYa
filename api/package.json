@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "c8 tap \"test/**/*.test.js\" --timeout 100000",
-    "start": "fastify start -l info -p 9000 app.js",
-    "dev": "fastify start -w -l info -P -p 9000 app.js"
+    "start": "fastify start -a 0.0.0.0 -l info -p 9000 app.js",
+    "dev": "fastify start -a 0.0.0.0 -w -l info -P -p 9000 app.js"
   },
   "keywords": [],
   "author": "",
