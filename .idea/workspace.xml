@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3508d87-6c9c-4835-b91c-acf7203a28f6" name="Changes" comment="Arreglado home layout" />
+    <list default="true" id="d3508d87-6c9c-4835-b91c-acf7203a28f6" name="Changes" comment="idea">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/android/app/capacitor.build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/android/app/capacitor.build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/android/capacitor.settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/android/capacitor.settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,7 +19,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="105-home-layout-arreglar" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "111-menu-hamburguesa-de-admin",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Lift/source/repos/PartidosYa",
     "node.js.detected.package.eslint": "true",
@@ -95,7 +101,7 @@
       <updated>1700607573918</updated>
       <workItem from="1700607574970" duration="6810000" />
       <workItem from="1700615612786" duration="244000" />
-      <workItem from="1700775027977" duration="60000" />
+      <workItem from="1700775027977" duration="3339000" />
     </task>
     <task id="LOCAL-00001" summary="Arreglos">
       <option name="closed" value="true" />
@@ -121,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1700615637929</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="idea">
+      <option name="closed" value="true" />
+      <created>1700775270948</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700775270948</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +145,7 @@
     <MESSAGE value="Arreglos" />
     <MESSAGE value=".idea" />
     <MESSAGE value="Arreglado home layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglado home layout" />
+    <MESSAGE value="idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="idea" />
   </component>
 </project>
