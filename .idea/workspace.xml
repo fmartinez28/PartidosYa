@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d3508d87-6c9c-4835-b91c-acf7203a28f6" name="Changes" comment="idea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/android/app/capacitor.build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/android/app/capacitor.build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/android/capacitor.settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/android/capacitor.settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/components/admin-sidebar/admin-sidebar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/shared/components/sidebar-item/sidebar-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/shared/components/sidebar-item/sidebar-item.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +39,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "111-menu-hamburguesa-de-admin",
+    "git-widget-placeholder": "109-menu-con-texto-blanco-fondo-blanco",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Lift/source/repos/PartidosYa",
     "node.js.detected.package.eslint": "true",
@@ -54,7 +51,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="npm.Angular">
+  <component name="RunManager" selected="npm.Sync">
     <configuration name="API" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/api/package.json" />
       <command value="run" />
