@@ -15,6 +15,7 @@ import { AuthService } from '../../../../../session/services/auth.service';
 export class PartidoFormComponent {
   public form!: FormGroup;
   public canchas!: ICancha[];
+  public isEditing: boolean = false;
   constructor(public formBuilder: FormBuilder,
     private canchasService: CanchasService,
     private partidosService: PartidosService,
@@ -57,6 +58,9 @@ export class PartidoFormComponent {
       }
     })
   };
+  public editMatch(){
+
+  }
   public markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => {
       control.markAsTouched();
