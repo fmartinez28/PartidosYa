@@ -3,6 +3,7 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { PartidosService } from '../../services/partidos.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { AuthService } from 'src/app/session/services/auth.service';
 
 @Component({
   selector: 'app-partido',
@@ -26,13 +27,16 @@ export class PartidoComponent {
   @Input() public aprobado!: boolean;
   public showingModal: boolean = false;
   public visible: boolean = true;
+  public ownMatch: boolean = false;
   public toggleModal(){
     this.showingModal = !this.showingModal;
   }
   public timestamptz!: Date;
 
   constructor(public router: Router,
-    private partidosService: PartidosService){
+    private partidosService: PartidosService,
+    private auth: AuthService
+    ){
     }
   ngOnChanges(changes: SimpleChanges) {
     if (changes['scheduledDate']) {
@@ -72,7 +76,27 @@ export class PartidoComponent {
       }
     })
   }
+  ngOnInit(){
+    if(this.creadorid == this.auth.getUserId()){
+      this.ownMatch = true;
+    }
+  }
   private toggleVisibility(){
     this.visible = !this.visible;
+  }
+  public deletePartido(){
+    this.partidosService.deletePartido(this.id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.warn(err);
+      },
+      complete: () => {
+        console.info("Partido eliminado");
+        this.toggleVisibility();
+        this.router.navigate(['/player/partidos']);
+      }
+    })
   }
 }

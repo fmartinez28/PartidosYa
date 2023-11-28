@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable, catchError, map, throwError, of} from 'rxjs';
+import {Observable, catchError, map, throwError, of, tap} from 'rxjs';
 import { AuthService } from 'src/app/session/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { IPartido } from 'src/interfaces/IPartido';
@@ -120,5 +120,25 @@ export class PartidosService {
           }
       }
       return of(this.cachedSearch);
+  }
+  public editPartido(partido: IPartido){
+    return this.httpClient.put<IPartido>(`${environment.apiUrl}/partidos/${partido.id}`, partido, { observe: 'response'}).pipe(
+      tap((res: HttpResponse<IPartido>) => {
+        if (res.status != 200) throw new Error("Error al editar partido.");
+      }),
+      catchError((err) => {
+        return throwError(() => new Error(err));
+      })
+    );
+  }
+  public cancelPartido(id: number){
+    return this.httpClient.delete<IPartido>(`${environment.apiUrl}/partidos/${id}`, { observe: 'response'}).pipe(
+      tap((res: HttpResponse<IPartido>) => {
+        if (res.status != 204) throw new Error("Error al cancelar partido.");
+      }),
+      catchError((err) => {
+        return throwError(() => new Error(err));
+      })
+    );
   }
 }
