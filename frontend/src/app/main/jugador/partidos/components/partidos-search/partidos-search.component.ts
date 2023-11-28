@@ -9,8 +9,8 @@ import { IPartido } from 'src/interfaces/IPartido';
 })
 export class PartidosSearchComponent {
   public partidos?: IPartido[];
-  public city: string = '';
-  public country: string = '';
+  public city: string = " ";
+  public country: string = " ";
   constructor(private partidosService: PartidosService) { }
 
   public getAllPartidos(){
@@ -20,7 +20,7 @@ export class PartidosSearchComponent {
         this.partidos = partidos;
       },
       error: (err) => console.warn(err),
-      complete: () => console.info("Se completó parece")
+      complete: () => console.info("Se completó parece eee")
     });
   }
 
@@ -35,7 +35,7 @@ export class PartidosSearchComponent {
         this.partidos = matches;
       },
       error: (err) => console.warn(err),
-      complete: () => console.info("Se completó parece")
+      complete: () => console.info("Se completó getPartidosByLocation")
     });
   }
 }
