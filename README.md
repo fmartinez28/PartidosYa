@@ -1,11 +1,13 @@
-# PartidosYa
+# SMatcher
 
 ## NUEVO: PARA PROBAR QUE FUNCIONA
 
 ### Usuarios
+
 Hay 5 usuarios hardcodeados: `jugador1`, `jugador2`, `propietario1`, `propietario2`, `ElPepe`. El último es un admininistrador. La contraseña de todos ellos es `admin`, para propósitos de prueba. Se pueden registrar nuevos usuarios pero no nuevos admins, deben ser agregados manualmente a la base de datos. Recordar tener la base de datos al día.
 
 ### Flujo
+
 El flujo de uso de la aplicación en su forma actual es el siguiente:
 
 1. Propietario crea cancha
@@ -27,10 +29,11 @@ Se necesita disponer de un archivo `/src/environments/environment.ts` que tenga 
 
 ```ts
 export const environment = {
-    apiUrl: "http://localhost:9000",
-    production: false,
-}
+  apiUrl: "http://localhost:9000",
+  production: false,
+};
 ```
+
 Reemplazar la apiUrl por la URL en la que tenga la API.
 
 ### API
@@ -52,10 +55,12 @@ JWT_SECRET = [Secret para el plugin de jwt]
 ## Ver documentación
 
 ### Documentación REST
+
 Para ver la documentación se debe ejecutar el programa en /api y acceder a la URL `/docs` del server que se muestre en la terminal (por defecto [http://127.0.0.1:9000/docs](http://127.0.0.1:9000/docs)).
 Alternativamente, también se puede optar por ver el diseño por modelo de entidades de la base de datos en el directorio design.
 
 ### Documentación Front
+
 La documentación del frontend se encuentra disponible en la ruta design/frontend. Los archivos .excalidraw se pueden abrir con la extensión de Visual Studio Code de [Excalidraw](https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor) o desde su versión web [https://excalidraw.com/](https://excalidraw.com/).
 
 ## Base de datos
@@ -65,7 +70,9 @@ El diagrama de la misma se encuentra en design/db dentro del repositorio
 ## Tests
 
 Todos los tests se encuentran dentro del directorio /api/tests, para ejecutarlos, posicionarse en /api/ y ejecutar:
+
 ```
 npm run test
 ```
+
 Las transacciones efectuadas durante los tests no se verán reflejadas en la base de datos, pero es imperativo cumplir con los prerrequisitos antes de ejecutar los tests.

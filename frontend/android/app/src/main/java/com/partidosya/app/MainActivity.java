@@ -1,4 +1,4 @@
-package com.partidosya.app;
+package com.smatcher.app;
 
 import com.getcapacitor.BridgeActivity;
 

@@ -210,7 +210,7 @@ INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, di
 INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, direccionid, email, "password") VALUES(1, 'Tyranno', 'Saurus', 'jugador2','1960-11-10', 1, 1, 'someone@example.com', crypt('admin', gen_salt('bf')));
 INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, direccionid, email, "password") VALUES(2, 'Rico', 'McRico', 'propietario1','1960-11-10', 1, 1, 'alguien@empresa.com', crypt('admin', gen_salt('bf')));
 INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, direccionid, email, "password") VALUES(2, 'Humilde', 'McCristiano', 'propietario2','1960-11-10', 1, 1, 'otro@empresa.com', crypt('admin', gen_salt('bf')));
-INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, direccionid, email, "password") VALUES(3, 'El', 'Pepe', 'ElPepe','1969-4-20', 1, 1, 'admin@partidosya.com', crypt('admin', gen_salt('bf')));
+INSERT INTO usuarios(rolid, nombre, apellido, username, fechanac, telefonoid, direccionid, email, "password") VALUES(3, 'El', 'Pepe', 'ElPepe','1969-4-20', 1, 1, 'admin@smatcher.com', crypt('admin', gen_salt('bf')));
 INSERT INTO comunidades(id, nombre) VALUES(1, 'PruebaCom');
 INSERT INTO comunidadmoderador(usuarioid, comunidadid) VALUES(1, 1);
 INSERT INTO comunidadjugador(jugadorid, comunidadid, fecharegistro) VALUES(1, 1, '2010-05-10');

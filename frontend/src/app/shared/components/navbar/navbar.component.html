@@ -35,8 +35,8 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div (click)="router.navigate(['/'])" class="flex flex-shrink-0 items-center hover:cursor-pointer">
                     <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=lime&shade=500"
-                        alt="Partidos Ya">
-                    <p class="text-white text-2xl ml-4 font-bold">Partidos Ya</p>
+                        alt="SMatcher">
+                    <p class="text-white text-2xl ml-4 font-bold">SMatcher</p>
                 </div>
                 <div class="hidden sm:block sm:ml-6">
                     <div class="flex space-x-4">
@@ -44,10 +44,10 @@
                         <a [routerLink]="['/home']" [routerLinkActive]="['active']"
                             [routerLinkActiveOptions]="{exact: true}"
                             [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Inicio') ? 'bg-gray-900 text-white' : '']">Inicio</a>
-                        
+
                         <a [routerLink]="['/aboutus']" [routerLinkActive]="['active']"
-                        [routerLinkActiveOptions]="{exact: true}"
-                        [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Nosotros') ? 'bg-gray-900 text-white' : '']">Nosotros</a>
+                            [routerLinkActiveOptions]="{exact: true}"
+                            [ngClass]="['text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium', (title == 'Nosotros') ? 'bg-gray-900 text-white' : '']">Nosotros</a>
 
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                 [routerLink]="['/home']" class="block px-3 py-2 rounded-md text-base font-medium">Home</a>
 
             <a [ngClass]="[(title == 'Nosotros') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white']"
-            [routerLink]="['/aboutus']" class="block px-3 py-2 rounded-md text-base font-medium">Nosotros</a>
+                [routerLink]="['/aboutus']" class="block px-3 py-2 rounded-md text-base font-medium">Nosotros</a>
 
         </div>
     </div>
