@@ -1,11 +1,18 @@
-<app-basic-user-navbar></app-basic-user-navbar>
-
-<app-admin-sidebar></app-admin-sidebar>
-
-<div class="h-screen  ml-20 sm:ml-80 md:ml-96">
-    <div class="mt-32 mb-32">
-        <router-outlet></router-outlet>
+<div class="flex flex-col bg-slate-200">
+    <app-basic-user-navbar></app-basic-user-navbar>
+    <div class="flex-1">
+      <div class="grid grid-cols-12 min-h-screen">
+  
+        <div class="col-span-12 h-fit sm:block sm:col-span-3 sm:bg-slate-50">
+          <app-admin-sidebar></app-admin-sidebar>
+        </div>
+  
+        <main class="col-span-12 sm:col-span-9 bg-slate-200 flex flex-col justify-center items-center">
+          <router-outlet></router-outlet>
+        </main>
+  
+      </div>
     </div>
-</div>
-
-<app-footer></app-footer>
+    <app-footer></app-footer>
+  </div>
+  
