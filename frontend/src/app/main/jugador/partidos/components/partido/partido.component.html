@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="this.visible" [@fadeOut] id="card" [ngClass]="(this.playerLimit/2 > this.playerCount) ? 'border-lime-100':'border-orange-100'" class="rounded p-4 shadow-md bg-slate-50 border  flex flex-row lg:flex-col items-center justify-center gap-10">
   <div id="cardheader" class="flex flex-row lg:flex-col place-items-center gap-2">
-    <div id="cardmainheader" [ngClass]="((this.playerLimit/2 > this.playerCount) ? 'text-lime-500' : 'text-orange-500')" class="text-center rounded-2xl outline p-2">
+    <div id="cardmainheader" [ngClass]="((this.playerLimit/2 > this.playerCount) ? 'text-black' : 'text-orange-500')" class="text-center rounded-2xl outline p-2">
       <p>{{this.playerCount}}/{{this.playerLimit}}</p>
       <p class="font-mono text-xs">
         Jugadores
